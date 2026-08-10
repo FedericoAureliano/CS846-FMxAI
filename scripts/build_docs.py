@@ -63,6 +63,11 @@ CSS = """
   --color-blue: #0072b2;
   --color-vermillion: #d55e00;
   --color-purple: #cc79a7;
+  /* darkened from the OI palette's #f0e442; the original is too light for AA text contrast on white */
+  --color-yellow: #7a6a00;
+  --color-black: #000000;
+  /* not in the 8-color OI palette; added for a 9th topic, chosen for hue distance from the above */
+  --color-teal: #106b6b;
 
   --bg: var(--color-base-00);
   --bg-alt: var(--color-base-20);
@@ -309,6 +314,9 @@ tbody tr:nth-child(even) {{
 .c-blue {{ color: var(--color-blue); }}
 .c-vermillion {{ color: var(--color-vermillion); }}
 .c-purple {{ color: var(--color-purple); }}
+.c-yellow {{ color: var(--color-yellow); }}
+.c-black {{ color: var(--color-black); }}
+.c-teal {{ color: var(--color-teal); }}
 
 .tag.c-orange {{ background: color-mix(in srgb, var(--color-orange) 16%, white); }}
 .tag.c-skyblue {{ background: color-mix(in srgb, var(--color-skyblue) 16%, white); }}
@@ -316,6 +324,9 @@ tbody tr:nth-child(even) {{
 .tag.c-blue {{ background: color-mix(in srgb, var(--color-blue) 16%, white); }}
 .tag.c-vermillion {{ background: color-mix(in srgb, var(--color-vermillion) 16%, white); }}
 .tag.c-purple {{ background: color-mix(in srgb, var(--color-purple) 16%, white); }}
+.tag.c-yellow {{ background: color-mix(in srgb, var(--color-yellow) 16%, white); }}
+.tag.c-black {{ background: color-mix(in srgb, var(--color-black) 16%, white); }}
+.tag.c-teal {{ background: color-mix(in srgb, var(--color-teal) 16%, white); }}
 
 main > p .tag {{ margin: 0 1px; }}
 
@@ -360,6 +371,9 @@ TOPIC_COLORS = {
     "SAT": "purple",
     "PRA": "vermillion",
     "AUF": "skyblue",
+    "NSP": "yellow",
+    "SUP": "black",
+    "TPR": "teal",
 }
 
 

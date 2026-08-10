@@ -37,6 +37,11 @@
   --color-blue: #0072b2;
   --color-vermillion: #d55e00;
   --color-purple: #cc79a7;
+  /* darkened from the OI palette's #f0e442; the original is too light for AA text contrast on white */
+  --color-yellow: #7a6a00;
+  --color-black: #000000;
+  /* not in the 8-color OI palette; added for a 9th topic, chosen for hue distance from the above */
+  --color-teal: #106b6b;
 
   --bg: var(--color-base-00);
   --bg-alt: var(--color-base-20);
@@ -283,6 +288,9 @@ tbody tr:nth-child(even) {
 .c-blue { color: var(--color-blue); }
 .c-vermillion { color: var(--color-vermillion); }
 .c-purple { color: var(--color-purple); }
+.c-yellow { color: var(--color-yellow); }
+.c-black { color: var(--color-black); }
+.c-teal { color: var(--color-teal); }
 
 .tag.c-orange { background: color-mix(in srgb, var(--color-orange) 16%, white); }
 .tag.c-skyblue { background: color-mix(in srgb, var(--color-skyblue) 16%, white); }
@@ -290,6 +298,9 @@ tbody tr:nth-child(even) {
 .tag.c-blue { background: color-mix(in srgb, var(--color-blue) 16%, white); }
 .tag.c-vermillion { background: color-mix(in srgb, var(--color-vermillion) 16%, white); }
 .tag.c-purple { background: color-mix(in srgb, var(--color-purple) 16%, white); }
+.tag.c-yellow { background: color-mix(in srgb, var(--color-yellow) 16%, white); }
+.tag.c-black { background: color-mix(in srgb, var(--color-black) 16%, white); }
+.tag.c-teal { background: color-mix(in srgb, var(--color-teal) 16%, white); }
 
 main > p .tag { margin: 0 1px; }
 
@@ -425,115 +436,130 @@ The final presentation should be at most 15 minutes long.</p>
 <h3>Guidelines for Report</h3>
 <p>The report should be a conference paper-style writeup. </p>
 <h2>Reading List</h2>
-<p>The readings below span six themes: <span class="tag c-blue">SSC</span> syntactic and semantic constraints on LLM outputs, <span class="tag c-green">LCD</span> learning constraints from data, <span class="tag c-orange">ATU</span> agents and tool-use, <span class="tag c-purple">SAT</span> satisfiability and satisfiability modulo theories, <span class="tag c-vermillion">PRA</span> program analysis, and <span class="tag c-skyblue">AUF</span> autoformalization. Use the dropdown in the table's rightmost column to narrow the list to a single theme.</p>
+<p>The readings below span nine themes: <span class="tag c-blue">SSC</span> syntactic and semantic constraints on LLM outputs, <span class="tag c-green">LCD</span> learning constraints from data, <span class="tag c-orange">ATU</span> agents and tool-use, <span class="tag c-purple">SAT</span> satisfiability and satisfiability modulo theories, <span class="tag c-vermillion">PRA</span> program analysis, <span class="tag c-skyblue">AUF</span> autoformalization, <span class="tag c-yellow">NSP</span> neuro-symbolic programming, <span class="tag c-black">SUP</span> superoptimization, and <span class="tag c-teal">TPR</span> theorem proving. Use the dropdown in the table's rightmost column to narrow the list to a single theme.</p>
 <table>
 <thead>
 <tr>
 <th>Title</th>
 <th>Link</th>
-<th><select id="topic-filter" aria-label="Filter by topic"><option value="">All</option><option value="SSC">SSC</option><option value="LCD">LCD</option><option value="ATU">ATU</option><option value="SAT">SAT</option><option value="PRA">PRA</option><option value="AUF">AUF</option></select></th>
+<th><select id="topic-filter" aria-label="Filter by topic"><option value="">All</option><option value="SSC">SSC</option><option value="LCD">LCD</option><option value="ATU">ATU</option><option value="SAT">SAT</option><option value="PRA">PRA</option><option value="AUF">AUF</option><option value="NSP">NSP</option><option value="SUP">SUP</option><option value="TPR">TPR</option></select></th>
 </tr>
 </thead>
 <tbody>
-<tr data-topics="SSC">
-<td>Grammar Prompting for Domain-Specific Language Generation with Large Language Models</td>
-<td><a href="https://arxiv.org/pdf/2305.19234">Wang et al., NeurIPS '23</a></td>
-<td><span class="tag-group"><span class="tag c-blue">SSC</span></span></td>
-</tr>
-<tr data-topics="SSC AUF">
-<td>Synthetic Programming Elicitation for Text-to-Code in Very Low-Resource Programming and Formal Languages</td>
-<td><a href="https://arxiv.org/pdf/2406.03636">Mora et al., NeurIPS '24</a></td>
-<td><span class="tag-group"><span class="tag c-blue">SSC</span><span class="tag c-skyblue">AUF</span></span></td>
-</tr>
-<tr data-topics="SSC">
-<td>Constrained Adaptive Rejection Sampling</td>
-<td><a href="https://arxiv.org/pdf/2510.01902">Parys et al., ICML '26</a></td>
-<td><span class="tag-group"><span class="tag c-blue">SSC</span></span></td>
-</tr>
-<tr data-topics="SSC ATU">
-<td>How To Generate Text: Using Different Decoding Methods For Language Generation With Transformers</td>
-<td><a href="https://huggingface.co/blog/how-to-generate">von Platen, Blog '20</a></td>
-<td><span class="tag-group"><span class="tag c-blue">SSC</span><span class="tag c-orange">ATU</span></span></td>
-</tr>
-<tr data-topics="SSC">
-<td>PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models</td>
-<td><a href="https://aclanthology.org/2021.emnlp-main.779/">Scholak et al., EMNLP '21</a></td>
-<td><span class="tag-group"><span class="tag c-blue">SSC</span></span></td>
-</tr>
-<tr data-topics="SSC">
-<td>ChopChop: A Programmable Framework for Semantically Constraining the Output of Language Models</td>
-<td><a href="https://arxiv.org/pdf/2509.00360">Nagy et al., POPL '26</a></td>
-<td><span class="tag-group"><span class="tag c-blue">SSC</span></span></td>
-</tr>
 <tr data-topics="LCD">
 <td>Learning Regular Sets from Queries and Counterexamples</td>
 <td><a href="https://swt.informatik.uni-freiburg.de/teaching/WS2019-20/AutomataTheory/Learning%20Automata%20%28Caveat%20not%20related%20to%20Machine%20Learning?month:int=4&amp;year:int=2025&amp;orig_query=">Angluin, I&amp;C '87</a></td>
 <td><span class="tag-group"><span class="tag c-green">LCD</span></span></td>
-</tr>
-<tr data-topics="LCD ATU">
-<td>Learning Context-Free Grammars for Grammar-Constrained Decoding via Declarative Agentic Programming with Guarantees</td>
-<td><a href="https://arxiv.org/abs/2608.05493">Cheang et al., Arxiv '26</a></td>
-<td><span class="tag-group"><span class="tag c-green">LCD</span><span class="tag c-orange">ATU</span></span></td>
 </tr>
 <tr data-topics="LCD">
 <td>Mining Specifications</td>
 <td><a href="https://haoxintu.github.io/files/10-Mining%20specifications.pdf">Ammons et al., POPL '02</a></td>
 <td><span class="tag-group"><span class="tag c-green">LCD</span></span></td>
 </tr>
-<tr data-topics="LCD PRA">
-<td>LLM Meets Bounded Model Checking: Neuro-symbolic Loop Invariant Inference</td>
-<td><a href="https://dl.acm.org/doi/10.1145/3691620.3695014">Wu et al., ASE '24</a></td>
-<td><span class="tag-group"><span class="tag c-green">LCD</span><span class="tag c-vermillion">PRA</span></span></td>
-</tr>
-<tr data-topics="LCD PRA">
-<td>Let a Neural Network Be Your Invariant</td>
-<td><a href="https://openreview.net/forum?id=qBPb7g1SEa">Giacobbe et al., NeurIPS '25</a></td>
-<td><span class="tag-group"><span class="tag c-green">LCD</span><span class="tag c-vermillion">PRA</span></span></td>
-</tr>
-<tr data-topics="LCD">
-<td>Learning Concise Models from Long Execution Traces</td>
-<td><a href="https://arxiv.org/abs/2001.05230">Jeppu et al., DAC '20</a></td>
-<td><span class="tag-group"><span class="tag c-green">LCD</span></span></td>
-</tr>
-<tr data-topics="ATU">
-<td>Reinforcement Learning from Human Feedback, Chapter 13</td>
-<td><a href="https://rlhfbook.com/c/13-tools">Lambert, Textbook '26</a></td>
-<td><span class="tag-group"><span class="tag c-orange">ATU</span></span></td>
-</tr>
 <tr data-topics="SAT">
-<td>Domain-Specific Hyperspecialization (For SAT)</td>
-<td><a href="https://c.mov/lymphosat/">Green, Blog '26</a></td>
+<td>SATzilla: Portfolio-based Algorithm Selection for SAT</td>
+<td><a href="https://arxiv.org/abs/1111.2249">Xu et al., JAIR '08</a></td>
 <td><span class="tag-group"><span class="tag c-purple">SAT</span></span></td>
+</tr>
+<tr data-topics="SUP">
+<td>Stochastic Superoptimization</td>
+<td><a href="https://dl.acm.org/doi/10.1145/2490301.2451150">Schkufza et al., ASPLOS '13</a></td>
+<td><span class="tag-group"><span class="tag c-black">SUP</span></span></td>
 </tr>
 <tr data-topics="SAT">
 <td>Learning to Solve SMT Formulas</td>
 <td><a href="https://www.sri.inf.ethz.ch/publications/balunovic2018learnsmt">Balunović et al., NeurIPS '18</a></td>
 <td><span class="tag-group"><span class="tag c-purple">SAT</span></span></td>
 </tr>
-<tr data-topics="SAT">
-<td>SATzilla: Portfolio-based Algorithm Selection for SAT</td>
-<td><a href="https://arxiv.org/abs/1111.2249">Xu et al., JAIR '08</a></td>
-<td><span class="tag-group"><span class="tag c-purple">SAT</span></span></td>
+<tr data-topics="ATU SSC">
+<td>How To Generate Text: Using Different Decoding Methods For Language Generation With Transformers</td>
+<td><a href="https://huggingface.co/blog/how-to-generate">von Platen, Blog '20</a></td>
+<td><span class="tag-group"><span class="tag c-orange">ATU</span><span class="tag c-blue">SSC</span></span></td>
+</tr>
+<tr data-topics="LCD">
+<td>Learning Concise Models from Long Execution Traces</td>
+<td><a href="https://arxiv.org/abs/2001.05230">Jeppu et al., DAC '20</a></td>
+<td><span class="tag-group"><span class="tag c-green">LCD</span></span></td>
 </tr>
 <tr data-topics="SAT">
 <td>MedleySolver: Online SMT Algorithm Selection</td>
 <td><a href="https://www.pure.ed.ac.uk/ws/files/248374419/MedleySolver_PIMPALKHARE_DOA05072021_AFV.pdf">Pimpalkhare et al., SAT '21</a></td>
 <td><span class="tag-group"><span class="tag c-purple">SAT</span></span></td>
 </tr>
+<tr data-topics="SSC">
+<td>PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models</td>
+<td><a href="https://aclanthology.org/2021.emnlp-main.779/">Scholak et al., EMNLP '21</a></td>
+<td><span class="tag-group"><span class="tag c-blue">SSC</span></span></td>
+</tr>
+<tr data-topics="NSP">
+<td>Scallop: A Language for Neurosymbolic Programming</td>
+<td><a href="https://dl.acm.org/doi/pdf/10.1145/3591280">Li et al., PLDI '23</a></td>
+<td><span class="tag-group"><span class="tag c-yellow">NSP</span></span></td>
+</tr>
+<tr data-topics="SSC">
+<td>Grammar Prompting for Domain-Specific Language Generation with Large Language Models</td>
+<td><a href="https://arxiv.org/pdf/2305.19234">Wang et al., NeurIPS '23</a></td>
+<td><span class="tag-group"><span class="tag c-blue">SSC</span></span></td>
+</tr>
+<tr data-topics="AUF SSC">
+<td>Synthetic Programming Elicitation for Text-to-Code in Very Low-Resource Programming and Formal Languages</td>
+<td><a href="https://arxiv.org/pdf/2406.03636">Mora et al., NeurIPS '24</a></td>
+<td><span class="tag-group"><span class="tag c-skyblue">AUF</span><span class="tag c-blue">SSC</span></span></td>
+</tr>
+<tr data-topics="LCD PRA">
+<td>LLM Meets Bounded Model Checking: Neuro-symbolic Loop Invariant Inference</td>
+<td><a href="https://dl.acm.org/doi/10.1145/3691620.3695014">Wu et al., ASE '24</a></td>
+<td><span class="tag-group"><span class="tag c-green">LCD</span><span class="tag c-vermillion">PRA</span></span></td>
+</tr>
+<tr data-topics="AUF LCD">
+<td>Specgen: Automated Generation Of Formal Program Specifications Via Large Language Models</td>
+<td><a href="https://dl.acm.org/doi/10.1109/ICSE55347.2025.00129">Ma et al., ICSE '25</a></td>
+<td><span class="tag-group"><span class="tag c-skyblue">AUF</span><span class="tag c-green">LCD</span></span></td>
+</tr>
+<tr data-topics="LCD PRA">
+<td>Let a Neural Network Be Your Invariant</td>
+<td><a href="https://openreview.net/forum?id=qBPb7g1SEa">Giacobbe et al., NeurIPS '25</a></td>
+<td><span class="tag-group"><span class="tag c-green">LCD</span><span class="tag c-vermillion">PRA</span></span></td>
+</tr>
 <tr data-topics="PRA">
 <td>Large Language Model Powered Symbolic Execution</td>
 <td><a href="https://doi.org/10.1145/3763163">Li et al., OOPSLA '25</a></td>
 <td><span class="tag-group"><span class="tag c-vermillion">PRA</span></span></td>
+</tr>
+<tr data-topics="TPR">
+<td>Seed-Prover: Deep and Broad Reasoning for Automated Theorem Proving</td>
+<td><a href="https://arxiv.org/pdf/2507.23726">ByteDance Seed, Arxiv '25</a></td>
+<td><span class="tag-group"><span class="tag c-teal">TPR</span></span></td>
+</tr>
+<tr data-topics="ATU LCD">
+<td>Learning Context-Free Grammars for Grammar-Constrained Decoding via Declarative Agentic Programming with Guarantees</td>
+<td><a href="https://arxiv.org/abs/2608.05493">Cheang et al., Arxiv '26</a></td>
+<td><span class="tag-group"><span class="tag c-orange">ATU</span><span class="tag c-green">LCD</span></span></td>
+</tr>
+<tr data-topics="ATU">
+<td>Reinforcement Learning from Human Feedback, Chapter 13</td>
+<td><a href="https://rlhfbook.com/c/13-tools">Lambert, Textbook '26</a></td>
+<td><span class="tag-group"><span class="tag c-orange">ATU</span></span></td>
 </tr>
 <tr data-topics="PRA">
 <td>Agentic Verification of Software Systems</td>
 <td><a href="https://arxiv.org/abs/2511.17330">Tu et al., FSE '26</a></td>
 <td><span class="tag-group"><span class="tag c-vermillion">PRA</span></span></td>
 </tr>
-<tr data-topics="AUF LCD">
-<td>Specgen: Automated Generation Of Formal Program Specifications Via Large Language Models</td>
-<td><a href="https://dl.acm.org/doi/10.1109/ICSE55347.2025.00129">Ma et al., ICSE '25</a></td>
-<td><span class="tag-group"><span class="tag c-skyblue">AUF</span><span class="tag c-green">LCD</span></span></td>
+<tr data-topics="SAT">
+<td>Domain-Specific Hyperspecialization (For SAT)</td>
+<td><a href="https://c.mov/lymphosat/">Green, Blog '26</a></td>
+<td><span class="tag-group"><span class="tag c-purple">SAT</span></span></td>
+</tr>
+<tr data-topics="SSC">
+<td>Constrained Adaptive Rejection Sampling</td>
+<td><a href="https://arxiv.org/pdf/2510.01902">Parys et al., ICML '26</a></td>
+<td><span class="tag-group"><span class="tag c-blue">SSC</span></span></td>
+</tr>
+<tr data-topics="SSC">
+<td>ChopChop: A Programmable Framework for Semantically Constraining the Output of Language Models</td>
+<td><a href="https://arxiv.org/pdf/2509.00360">Nagy et al., POPL '26</a></td>
+<td><span class="tag-group"><span class="tag c-blue">SSC</span></span></td>
 </tr>
 </tbody>
 </table>
