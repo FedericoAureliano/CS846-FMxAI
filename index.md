@@ -63,9 +63,13 @@ The final presentation should be at most 15 minutes long.
 
 The report should be a conference paper-style writeup. 
 
-## Reading List
+## Schedule
 
-The readings below span nine themes: **SSC** syntactic and semantic constraints on LLM outputs, **LCD** learning constraints from data, **ATU** agents and tool-use, **SAT** satisfiability and satisfiability modulo theories, **PRA** program analysis, **AUF** autoformalization, **NSP** neuro-symbolic programming, **SUP** superoptimization, and **TPR** theorem proving. Use the dropdown in the table's rightmost column to narrow the list to a single theme.
+TBD
+
+## Reading Bank
+
+The readings below span ten themes: **SSC** syntactic and semantic constraints on LLM outputs, **LCD** learning constraints from data, **ATU** agents and tool-use, **SAT** satisfiability and satisfiability modulo theories, **PRA** program analysis, **AUF** autoformalization, **NSP** neuro-symbolic programming, **SUP** superoptimization, **TPR** theorem proving, and **MLV** machine-learning verification. Use the dropdown in the table's rightmost column to narrow the list to a single theme.
 
 | Title | Link | Topics |
 | --- | --- | --- |
@@ -74,10 +78,13 @@ The readings below span nine themes: **SSC** syntactic and semantic constraints 
 | SATzilla: Portfolio-based Algorithm Selection for SAT | [Xu et al., JAIR '08](https://arxiv.org/abs/1111.2249) | SAT |
 | Stochastic Superoptimization | [Schkufza et al., ASPLOS '13](https://dl.acm.org/doi/10.1145/2490301.2451150) | SUP |
 | Learning to Solve SMT Formulas | [Balunović et al., NeurIPS '18](https://www.sri.inf.ethz.ch/publications/balunovic2018learnsmt) | SAT |
+| Guiding High-Performance SAT Solvers with Unsat-Core Predictions | [Selsam and Bjørner, SAT '19](https://link.springer.com/chapter/10.1007/978-3-030-24258-9_24) | SAT |
 | How To Generate Text: Using Different Decoding Methods For Language Generation With Transformers | [von Platen, Blog '20](https://huggingface.co/blog/how-to-generate) | ATU, SSC |
 | Learning Concise Models from Long Execution Traces | [Jeppu et al., DAC '20](https://arxiv.org/abs/2001.05230) | LCD |
+| Proving Data-Poisoning Robustness in Decision Trees | [Drews et al., PLDI '20](https://dl.acm.org/doi/10.1145/3385412.3385975) | MLV |
 | MedleySolver: Online SMT Algorithm Selection | [Pimpalkhare et al., SAT '21](https://www.pure.ed.ac.uk/ws/files/248374419/MedleySolver_PIMPALKHARE_DOA05072021_AFV.pdf) | SAT |
 | PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models | [Scholak et al., EMNLP '21](https://aclanthology.org/2021.emnlp-main.779/) | SSC |
+| Neural Network Verification with Proof Production | [Isac et al., FMCAD '22](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10026587&casa_token=6jy7_pSgbOwAAAAA:HNny8NVwdhsCPew67iMK2jLHdzqnTfss8SOPuMsrDubYtSQ_Y8IiU8myHghTs7t7MO1ymxzL9Q) | MLV |
 | Scallop: A Language for Neurosymbolic Programming | [Li et al., PLDI '23](https://dl.acm.org/doi/pdf/10.1145/3591280) | NSP |
 | Grammar Prompting for Domain-Specific Language Generation with Large Language Models | [Wang et al., NeurIPS '23](https://arxiv.org/pdf/2305.19234) | SSC |
 | Synthetic Programming Elicitation for Text-to-Code in Very Low-Resource Programming and Formal Languages | [Mora et al., NeurIPS '24](https://arxiv.org/pdf/2406.03636) | AUF, SSC |
@@ -85,9 +92,10 @@ The readings below span nine themes: **SSC** syntactic and semantic constraints 
 | Specgen: Automated Generation Of Formal Program Specifications Via Large Language Models | [Ma et al., ICSE '25](https://dl.acm.org/doi/10.1109/ICSE55347.2025.00129) | AUF, LCD |
 | Let a Neural Network Be Your Invariant | [Giacobbe et al., NeurIPS '25](https://openreview.net/forum?id=qBPb7g1SEa) | LCD, PRA |
 | Large Language Model Powered Symbolic Execution | [Li et al., OOPSLA '25](https://doi.org/10.1145/3763163) | PRA |
-| Seed-Prover: Deep and Broad Reasoning for Automated Theorem Proving | [ByteDance Seed, Arxiv '25](https://arxiv.org/pdf/2507.23726) | TPR |
+| Seed-Prover: Deep and Broad Reasoning for Automated Theorem Proving | [ByteDance, Arxiv '25](https://arxiv.org/pdf/2507.23726) | TPR |
 | Learning Context-Free Grammars for Grammar-Constrained Decoding via Declarative Agentic Programming with Guarantees | [Cheang et al., Arxiv '26](https://arxiv.org/abs/2608.05493) | ATU, LCD |
 | Reinforcement Learning from Human Feedback, Chapter 13 | [Lambert, Textbook '26](https://rlhfbook.com/c/13-tools) | ATU |
+| A Neurosymbolic Approach to Natural Language Formalization and Verification | [An et al., CAV '26](https://link.springer.com/chapter/10.1007/978-3-032-32526-6_28) | AUF |
 | Agentic Verification of Software Systems | [Tu et al., FSE '26](https://arxiv.org/abs/2511.17330) | PRA |
 | Domain-Specific Hyperspecialization (For SAT) | [Green, Blog '26](https://c.mov/lymphosat/) | SAT |
 | Constrained Adaptive Rejection Sampling | [Parys et al., ICML '26](https://arxiv.org/pdf/2510.01902) | SSC |

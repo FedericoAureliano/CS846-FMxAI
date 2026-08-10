@@ -42,6 +42,8 @@
   --color-black: #000000;
   /* not in the 8-color OI palette; added for a 9th topic, chosen for hue distance from the above */
   --color-teal: #106b6b;
+  /* not in the 8-color OI palette; added for a 10th topic, chosen for hue distance from the above */
+  --color-indigo: #5b3fa0;
 
   --bg: var(--color-base-00);
   --bg-alt: var(--color-base-20);
@@ -291,6 +293,7 @@ tbody tr:nth-child(even) {
 .c-yellow { color: var(--color-yellow); }
 .c-black { color: var(--color-black); }
 .c-teal { color: var(--color-teal); }
+.c-indigo { color: var(--color-indigo); }
 
 .tag.c-orange { background: color-mix(in srgb, var(--color-orange) 16%, white); }
 .tag.c-skyblue { background: color-mix(in srgb, var(--color-skyblue) 16%, white); }
@@ -301,6 +304,7 @@ tbody tr:nth-child(even) {
 .tag.c-yellow { background: color-mix(in srgb, var(--color-yellow) 16%, white); }
 .tag.c-black { background: color-mix(in srgb, var(--color-black) 16%, white); }
 .tag.c-teal { background: color-mix(in srgb, var(--color-teal) 16%, white); }
+.tag.c-indigo { background: color-mix(in srgb, var(--color-indigo) 16%, white); }
 
 main > p .tag { margin: 0 1px; }
 
@@ -435,14 +439,16 @@ an updated problem definition, an updated literature survey, and final results.
 The final presentation should be at most 15 minutes long.</p>
 <h3>Guidelines for Report</h3>
 <p>The report should be a conference paper-style writeup. </p>
-<h2>Reading List</h2>
-<p>The readings below span nine themes: <span class="tag c-blue">SSC</span> syntactic and semantic constraints on LLM outputs, <span class="tag c-green">LCD</span> learning constraints from data, <span class="tag c-orange">ATU</span> agents and tool-use, <span class="tag c-purple">SAT</span> satisfiability and satisfiability modulo theories, <span class="tag c-vermillion">PRA</span> program analysis, <span class="tag c-skyblue">AUF</span> autoformalization, <span class="tag c-yellow">NSP</span> neuro-symbolic programming, <span class="tag c-black">SUP</span> superoptimization, and <span class="tag c-teal">TPR</span> theorem proving. Use the dropdown in the table's rightmost column to narrow the list to a single theme.</p>
+<h2>Schedule</h2>
+<p>TBD</p>
+<h2>Reading Bank</h2>
+<p>The readings below span ten themes: <span class="tag c-blue">SSC</span> syntactic and semantic constraints on LLM outputs, <span class="tag c-green">LCD</span> learning constraints from data, <span class="tag c-orange">ATU</span> agents and tool-use, <span class="tag c-purple">SAT</span> satisfiability and satisfiability modulo theories, <span class="tag c-vermillion">PRA</span> program analysis, <span class="tag c-skyblue">AUF</span> autoformalization, <span class="tag c-yellow">NSP</span> neuro-symbolic programming, <span class="tag c-black">SUP</span> superoptimization, <span class="tag c-teal">TPR</span> theorem proving, and <span class="tag c-indigo">MLV</span> machine-learning verification. Use the dropdown in the table's rightmost column to narrow the list to a single theme.</p>
 <table>
 <thead>
 <tr>
 <th>Title</th>
 <th>Link</th>
-<th><select id="topic-filter" aria-label="Filter by topic"><option value="">All</option><option value="SSC">SSC</option><option value="LCD">LCD</option><option value="ATU">ATU</option><option value="SAT">SAT</option><option value="PRA">PRA</option><option value="AUF">AUF</option><option value="NSP">NSP</option><option value="SUP">SUP</option><option value="TPR">TPR</option></select></th>
+<th><select id="topic-filter" aria-label="Filter by topic"><option value="">All</option><option value="SSC">SSC</option><option value="LCD">LCD</option><option value="ATU">ATU</option><option value="SAT">SAT</option><option value="PRA">PRA</option><option value="AUF">AUF</option><option value="NSP">NSP</option><option value="SUP">SUP</option><option value="TPR">TPR</option><option value="MLV">MLV</option></select></th>
 </tr>
 </thead>
 <tbody>
@@ -471,6 +477,11 @@ The final presentation should be at most 15 minutes long.</p>
 <td><a href="https://www.sri.inf.ethz.ch/publications/balunovic2018learnsmt">Balunović et al., NeurIPS '18</a></td>
 <td><span class="tag-group"><span class="tag c-purple">SAT</span></span></td>
 </tr>
+<tr data-topics="SAT">
+<td>Guiding High-Performance SAT Solvers with Unsat-Core Predictions</td>
+<td><a href="https://link.springer.com/chapter/10.1007/978-3-030-24258-9_24">Selsam and Bjørner, SAT '19</a></td>
+<td><span class="tag-group"><span class="tag c-purple">SAT</span></span></td>
+</tr>
 <tr data-topics="ATU SSC">
 <td>How To Generate Text: Using Different Decoding Methods For Language Generation With Transformers</td>
 <td><a href="https://huggingface.co/blog/how-to-generate">von Platen, Blog '20</a></td>
@@ -481,6 +492,11 @@ The final presentation should be at most 15 minutes long.</p>
 <td><a href="https://arxiv.org/abs/2001.05230">Jeppu et al., DAC '20</a></td>
 <td><span class="tag-group"><span class="tag c-green">LCD</span></span></td>
 </tr>
+<tr data-topics="MLV">
+<td>Proving Data-Poisoning Robustness in Decision Trees</td>
+<td><a href="https://dl.acm.org/doi/10.1145/3385412.3385975">Drews et al., PLDI '20</a></td>
+<td><span class="tag-group"><span class="tag c-indigo">MLV</span></span></td>
+</tr>
 <tr data-topics="SAT">
 <td>MedleySolver: Online SMT Algorithm Selection</td>
 <td><a href="https://www.pure.ed.ac.uk/ws/files/248374419/MedleySolver_PIMPALKHARE_DOA05072021_AFV.pdf">Pimpalkhare et al., SAT '21</a></td>
@@ -490,6 +506,11 @@ The final presentation should be at most 15 minutes long.</p>
 <td>PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models</td>
 <td><a href="https://aclanthology.org/2021.emnlp-main.779/">Scholak et al., EMNLP '21</a></td>
 <td><span class="tag-group"><span class="tag c-blue">SSC</span></span></td>
+</tr>
+<tr data-topics="MLV">
+<td>Neural Network Verification with Proof Production</td>
+<td><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10026587&amp;casa_token=6jy7_pSgbOwAAAAA:HNny8NVwdhsCPew67iMK2jLHdzqnTfss8SOPuMsrDubYtSQ_Y8IiU8myHghTs7t7MO1ymxzL9Q">Isac et al., FMCAD '22</a></td>
+<td><span class="tag-group"><span class="tag c-indigo">MLV</span></span></td>
 </tr>
 <tr data-topics="NSP">
 <td>Scallop: A Language for Neurosymbolic Programming</td>
@@ -528,7 +549,7 @@ The final presentation should be at most 15 minutes long.</p>
 </tr>
 <tr data-topics="TPR">
 <td>Seed-Prover: Deep and Broad Reasoning for Automated Theorem Proving</td>
-<td><a href="https://arxiv.org/pdf/2507.23726">ByteDance Seed, Arxiv '25</a></td>
+<td><a href="https://arxiv.org/pdf/2507.23726">ByteDance, Arxiv '25</a></td>
 <td><span class="tag-group"><span class="tag c-teal">TPR</span></span></td>
 </tr>
 <tr data-topics="ATU LCD">
@@ -540,6 +561,11 @@ The final presentation should be at most 15 minutes long.</p>
 <td>Reinforcement Learning from Human Feedback, Chapter 13</td>
 <td><a href="https://rlhfbook.com/c/13-tools">Lambert, Textbook '26</a></td>
 <td><span class="tag-group"><span class="tag c-orange">ATU</span></span></td>
+</tr>
+<tr data-topics="AUF">
+<td>A Neurosymbolic Approach to Natural Language Formalization and Verification</td>
+<td><a href="https://link.springer.com/chapter/10.1007/978-3-032-32526-6_28">An et al., CAV '26</a></td>
+<td><span class="tag-group"><span class="tag c-skyblue">AUF</span></span></td>
 </tr>
 <tr data-topics="PRA">
 <td>Agentic Verification of Software Systems</td>
