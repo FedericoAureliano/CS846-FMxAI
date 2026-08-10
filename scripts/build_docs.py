@@ -1,6 +1,7 @@
 """Render index.md into docs/index.html: a static, GitHub Pages-ready site."""
 
 import re
+import shutil
 from pathlib import Path
 
 import markdown
@@ -9,6 +10,7 @@ from pygments.formatters import HtmlFormatter
 ROOT = Path(__file__).resolve().parent.parent
 INDEX_MD = ROOT / "index.md"
 DOCS = ROOT / "docs"
+IMAGES = ROOT / "images"
 
 PAGE = """<!doctype html>
 <html lang="en">
@@ -16,6 +18,7 @@ PAGE = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 {author_meta}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -500,6 +503,9 @@ def main() -> None:
     DOCS.mkdir(exist_ok=True)
     (DOCS / "index.html").write_text(html, encoding="utf-8")
     (DOCS / ".nojekyll").write_text("", encoding="utf-8")
+
+    (DOCS / "images").mkdir(exist_ok=True)
+    shutil.copy(IMAGES / "favicon.svg", DOCS / "images" / "favicon.svg")
 
     print(f"Wrote {DOCS / 'index.html'}")
 
