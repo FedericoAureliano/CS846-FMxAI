@@ -45,6 +45,10 @@
   --color-teal: #106b6b;
   /* not in the 8-color OI palette; added for a 10th topic, chosen for hue distance from the above */
   --color-indigo: #5b3fa0;
+  /* not in the 8-color OI palette; added for an 11th topic, chosen for hue distance from the above */
+  --color-lime: #218807;
+  /* not in the 8-color OI palette; added for a 12th topic, chosen for hue distance from the above */
+  --color-magenta: #9329a3;
 
   --bg: var(--color-base-00);
   --bg-alt: var(--color-base-20);
@@ -295,6 +299,8 @@ tbody tr:nth-child(even) {
 .c-black { color: var(--color-black); }
 .c-teal { color: var(--color-teal); }
 .c-indigo { color: var(--color-indigo); }
+.c-lime { color: var(--color-lime); }
+.c-magenta { color: var(--color-magenta); }
 
 .tag.c-orange { background: color-mix(in srgb, var(--color-orange) 16%, white); }
 .tag.c-skyblue { background: color-mix(in srgb, var(--color-skyblue) 16%, white); }
@@ -306,6 +312,8 @@ tbody tr:nth-child(even) {
 .tag.c-black { background: color-mix(in srgb, var(--color-black) 16%, white); }
 .tag.c-teal { background: color-mix(in srgb, var(--color-teal) 16%, white); }
 .tag.c-indigo { background: color-mix(in srgb, var(--color-indigo) 16%, white); }
+.tag.c-lime { background: color-mix(in srgb, var(--color-lime) 16%, white); }
+.tag.c-magenta { background: color-mix(in srgb, var(--color-magenta) 16%, white); }
 
 main > p .tag { margin: 0 1px; }
 
@@ -443,13 +451,13 @@ The final presentation should be at most 15 minutes long.</p>
 <h2>Schedule</h2>
 <p>TBD: we will read and discuss a small subset of the papers in the reading bank.</p>
 <h2>Reading Bank</h2>
-<p>The readings below span ten themes: <span class="tag c-blue">SSC</span> syntactic and semantic constraints on LLM outputs, <span class="tag c-green">LCD</span> learning constraints from data, <span class="tag c-orange">ATU</span> agents and tool-use, <span class="tag c-purple">SAT</span> satisfiability and satisfiability modulo theories, <span class="tag c-vermillion">PRA</span> program analysis, <span class="tag c-skyblue">AUF</span> autoformalization, <span class="tag c-yellow">NSP</span> neuro-symbolic programming, <span class="tag c-black">SUP</span> superoptimization, <span class="tag c-teal">TPR</span> theorem proving, and <span class="tag c-indigo">MLV</span> machine-learning verification. Use the dropdown in the table's rightmost column to narrow the list to a single theme.</p>
+<p>The readings below span twelve themes: <span class="tag c-blue">SSC</span> syntactic and semantic constraints on LLM outputs, <span class="tag c-green">LCD</span> learning constraints from data, <span class="tag c-orange">ATU</span> agents and tool-use, <span class="tag c-purple">SAT</span> satisfiability and satisfiability modulo theories, <span class="tag c-vermillion">PRA</span> program analysis, <span class="tag c-skyblue">AUF</span> autoformalization, <span class="tag c-yellow">NSP</span> neuro-symbolic programming, <span class="tag c-black">SUP</span> superoptimization, <span class="tag c-teal">TPR</span> theorem proving, <span class="tag c-indigo">MLV</span> machine-learning verification, <span class="tag c-lime">PRP</span> program repair, and <span class="tag c-magenta">TST</span> testing. Use the dropdown in the table's rightmost column to narrow the list to a single theme.</p>
 <table>
 <thead>
 <tr>
 <th>Title</th>
 <th>Link</th>
-<th><select id="topic-filter" aria-label="Filter by topic"><option value="">All</option><option value="SSC">SSC</option><option value="LCD">LCD</option><option value="ATU">ATU</option><option value="SAT">SAT</option><option value="PRA">PRA</option><option value="AUF">AUF</option><option value="NSP">NSP</option><option value="SUP">SUP</option><option value="TPR">TPR</option><option value="MLV">MLV</option></select></th>
+<th><select id="topic-filter" aria-label="Filter by topic"><option value="">All</option><option value="ATU">ATU</option><option value="AUF">AUF</option><option value="LCD">LCD</option><option value="MLV">MLV</option><option value="NSP">NSP</option><option value="PRA">PRA</option><option value="PRP">PRP</option><option value="SAT">SAT</option><option value="SSC">SSC</option><option value="SUP">SUP</option><option value="TPR">TPR</option><option value="TST">TST</option></select></th>
 </tr>
 </thead>
 <tbody>
@@ -473,10 +481,25 @@ The final presentation should be at most 15 minutes long.</p>
 <td><a href="https://dl.acm.org/doi/10.1145/2490301.2451150">Schkufza et al., ASPLOS '13</a></td>
 <td><span class="tag-group"><span class="tag c-black">SUP</span></span></td>
 </tr>
+<tr data-topics="SUP">
+<td>Learning to Superoptimize Programs</td>
+<td><a href="https://arxiv.org/abs/1612.01094">Bunel et al., ICLR '17</a></td>
+<td><span class="tag-group"><span class="tag c-black">SUP</span></span></td>
+</tr>
+<tr data-topics="MLV SAT">
+<td>Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks</td>
+<td><a href="https://link.springer.com/chapter/10.1007/978-3-319-63387-9_5">Katz et al., CAV '17</a></td>
+<td><span class="tag-group"><span class="tag c-indigo">MLV</span><span class="tag c-purple">SAT</span></span></td>
+</tr>
 <tr data-topics="SAT">
 <td>Learning to Solve SMT Formulas</td>
 <td><a href="https://www.sri.inf.ethz.ch/publications/balunovic2018learnsmt">Balunović et al., NeurIPS '18</a></td>
 <td><span class="tag-group"><span class="tag c-purple">SAT</span></span></td>
+</tr>
+<tr data-topics="NSP">
+<td>DeepProbLog: Neural Probabilistic Logic Programming</td>
+<td><a href="https://proceedings.neurips.cc/paper/2018/hash/dc5d637ed5e62c36ecb73b654b05ba2a-Abstract.html">Manhaeve et al., NeurIPS '18</a></td>
+<td><span class="tag-group"><span class="tag c-yellow">NSP</span></span></td>
 </tr>
 <tr data-topics="SAT">
 <td>Guiding High-Performance SAT Solvers with Unsat-Core Predictions</td>
@@ -498,6 +521,11 @@ The final presentation should be at most 15 minutes long.</p>
 <td><a href="https://dl.acm.org/doi/10.1145/3385412.3385975">Drews et al., PLDI '20</a></td>
 <td><span class="tag-group"><span class="tag c-indigo">MLV</span></span></td>
 </tr>
+<tr data-topics="TPR">
+<td>Generative Language Modeling for Automated Theorem Proving</td>
+<td><a href="https://arxiv.org/abs/2009.03393">Polu and Sutskever, arXiv '20</a></td>
+<td><span class="tag-group"><span class="tag c-teal">TPR</span></span></td>
+</tr>
 <tr data-topics="SAT">
 <td>MedleySolver: Online SMT Algorithm Selection</td>
 <td><a href="https://www.pure.ed.ac.uk/ws/files/248374419/MedleySolver_PIMPALKHARE_DOA05072021_AFV.pdf">Pimpalkhare et al., SAT '21</a></td>
@@ -509,9 +537,19 @@ The final presentation should be at most 15 minutes long.</p>
 <td><span class="tag-group"><span class="tag c-blue">SSC</span></span></td>
 </tr>
 <tr data-topics="MLV">
+<td>Beta-CROWN: Efficient Bound Propagation with Per-neuron Split Constraints for Complete and Incomplete Neural Network Robustness Verification</td>
+<td><a href="https://proceedings.neurips.cc/paper/2021/hash/fac7fead96dafceaf80c1daffeae82a4-Abstract.html">Wang et al., NeurIPS '21</a></td>
+<td><span class="tag-group"><span class="tag c-indigo">MLV</span></span></td>
+</tr>
+<tr data-topics="MLV">
 <td>Neural Network Verification with Proof Production</td>
 <td><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10026587&amp;casa_token=6jy7_pSgbOwAAAAA:HNny8NVwdhsCPew67iMK2jLHdzqnTfss8SOPuMsrDubYtSQ_Y8IiU8myHghTs7t7MO1ymxzL9Q">Isac et al., FMCAD '22</a></td>
 <td><span class="tag-group"><span class="tag c-indigo">MLV</span></span></td>
+</tr>
+<tr data-topics="TPR">
+<td>HyperTree Proof Search for Neural Theorem Proving</td>
+<td><a href="https://proceedings.neurips.cc/paper_files/paper/2022/hash/a8901c5e85fb8e1823bbf0f755053672-Abstract-Conference.html">Lample et al., NeurIPS '22</a></td>
+<td><span class="tag-group"><span class="tag c-teal">TPR</span></span></td>
 </tr>
 <tr data-topics="ATU AUF">
 <td>LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers</td>
@@ -528,10 +566,25 @@ The final presentation should be at most 15 minutes long.</p>
 <td><a href="https://arxiv.org/pdf/2305.19234">Wang et al., NeurIPS '23</a></td>
 <td><span class="tag-group"><span class="tag c-blue">SSC</span></span></td>
 </tr>
-<tr data-topics="AUF SSC">
+<tr data-topics="PRP">
+<td>Automated Repair of Programs from Large Language Models</td>
+<td><a href="https://dl.acm.org/doi/10.1109/ICSE48619.2023.00128">Fan et al., ICSE '23</a></td>
+<td><span class="tag-group"><span class="tag c-lime">PRP</span></span></td>
+</tr>
+<tr data-topics="TST">
+<td>Large Language Models Are Zero-Shot Fuzzers: Fuzzing Deep-Learning Libraries via Large Language Models</td>
+<td><a href="https://dl.acm.org/doi/abs/10.1145/3597926.3598067">Deng et al., ISSTA '23</a></td>
+<td><span class="tag-group"><span class="tag c-magenta">TST</span></span></td>
+</tr>
+<tr data-topics="TST">
+<td>CODAMOSA: Escaping Coverage Plateaus in Test Generation with Pre-trained Large Language Models</td>
+<td><a href="https://www.carolemieux.com/codamosa_icse23.pdf">Lemieux et al., ICSE '23</a></td>
+<td><span class="tag-group"><span class="tag c-magenta">TST</span></span></td>
+</tr>
+<tr data-topics="AUF SSC PRP">
 <td>Synthetic Programming Elicitation for Text-to-Code in Very Low-Resource Programming and Formal Languages</td>
 <td><a href="https://arxiv.org/pdf/2406.03636">Mora et al., NeurIPS '24</a></td>
-<td><span class="tag-group"><span class="tag c-skyblue">AUF</span><span class="tag c-blue">SSC</span></span></td>
+<td><span class="tag-group"><span class="tag c-skyblue">AUF</span><span class="tag c-blue">SSC</span><span class="tag c-lime">PRP</span></span></td>
 </tr>
 <tr data-topics="LCD PRA">
 <td>LLM Meets Bounded Model Checking: Neuro-symbolic Loop Invariant Inference</td>
@@ -558,10 +611,10 @@ The final presentation should be at most 15 minutes long.</p>
 <td><a href="https://arxiv.org/pdf/2507.23726">ByteDance, Arxiv '25</a></td>
 <td><span class="tag-group"><span class="tag c-teal">TPR</span></span></td>
 </tr>
-<tr data-topics="ATU LCD">
+<tr data-topics="ATU LCD AUF">
 <td>Learning Context-Free Grammars for Grammar-Constrained Decoding via Declarative Agentic Programming with Guarantees</td>
 <td><a href="https://arxiv.org/abs/2608.05493">Cheang et al., Arxiv '26</a></td>
-<td><span class="tag-group"><span class="tag c-orange">ATU</span><span class="tag c-green">LCD</span></span></td>
+<td><span class="tag-group"><span class="tag c-orange">ATU</span><span class="tag c-green">LCD</span><span class="tag c-skyblue">AUF</span></span></td>
 </tr>
 <tr data-topics="ATU">
 <td>Reinforcement Learning from Human Feedback, Chapter 13</td>

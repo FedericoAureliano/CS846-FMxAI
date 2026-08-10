@@ -73,6 +73,10 @@ CSS = """
   --color-teal: #106b6b;
   /* not in the 8-color OI palette; added for a 10th topic, chosen for hue distance from the above */
   --color-indigo: #5b3fa0;
+  /* not in the 8-color OI palette; added for an 11th topic, chosen for hue distance from the above */
+  --color-lime: #218807;
+  /* not in the 8-color OI palette; added for a 12th topic, chosen for hue distance from the above */
+  --color-magenta: #9329a3;
 
   --bg: var(--color-base-00);
   --bg-alt: var(--color-base-20);
@@ -323,6 +327,8 @@ tbody tr:nth-child(even) {{
 .c-black {{ color: var(--color-black); }}
 .c-teal {{ color: var(--color-teal); }}
 .c-indigo {{ color: var(--color-indigo); }}
+.c-lime {{ color: var(--color-lime); }}
+.c-magenta {{ color: var(--color-magenta); }}
 
 .tag.c-orange {{ background: color-mix(in srgb, var(--color-orange) 16%, white); }}
 .tag.c-skyblue {{ background: color-mix(in srgb, var(--color-skyblue) 16%, white); }}
@@ -334,6 +340,8 @@ tbody tr:nth-child(even) {{
 .tag.c-black {{ background: color-mix(in srgb, var(--color-black) 16%, white); }}
 .tag.c-teal {{ background: color-mix(in srgb, var(--color-teal) 16%, white); }}
 .tag.c-indigo {{ background: color-mix(in srgb, var(--color-indigo) 16%, white); }}
+.tag.c-lime {{ background: color-mix(in srgb, var(--color-lime) 16%, white); }}
+.tag.c-magenta {{ background: color-mix(in srgb, var(--color-magenta) 16%, white); }}
 
 main > p .tag {{ margin: 0 1px; }}
 
@@ -382,6 +390,8 @@ TOPIC_COLORS = {
     "SUP": "black",
     "TPR": "teal",
     "MLV": "indigo",
+    "PRP": "lime",
+    "TST": "magenta",
 }
 
 
@@ -418,7 +428,7 @@ def build_topic_filter(body: str) -> str:
     rows by their data-topics attribute (see wrap_tag_cells)."""
 
     options = ['<option value="">All</option>']
-    options.extend(f'<option value="{code}">{code}</option>' for code in TOPIC_COLORS)
+    options.extend(f'<option value="{code}">{code}</option>' for code in sorted(TOPIC_COLORS))
     select = (
         '<th><select id="topic-filter" aria-label="Filter by topic">'
         + "".join(options)
