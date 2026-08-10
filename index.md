@@ -65,7 +65,7 @@ The report should be a conference paper-style writeup.
 
 ## Schedule
 
-TBD
+TBD: we will read and discuss a small subset of the papers in the reading bank.
 
 ## Reading Bank
 
