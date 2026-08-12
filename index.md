@@ -14,26 +14,25 @@ location: DC 2585
 This course surveys important ideas and literature at the intersection of formal
 methods and artificial intelligence.
 
-## Grading
+## Grading {: #grading}
 
 Our meetings will be centered around paper discussions. Attendance, reading of
 assigned papers, and participation are essential. The grading scheme reflects
 that:
 
-- 25% participation;
-- 25% discussion lead; and
+- 20% participation;
+- 30% discussion leads; and
 - 50% project.
 
+## Discussion Leads {: #discussion-leads}
 
-## Discussions
+Every student will pick and present two papers with two different themes from the reading bank below.
 
-Every student will lead a paper discussion. 
-
-
-## Projects
+## Projects {: #projects}
 
 Every project must contain new research---a new idea or insight---and an
-element of both formal methods and artificial intelligence.
+element of both formal methods and artificial intelligence. Students can work
+in groups of up to three.
 
 The main deliverables (in chronological order) will be:
 
@@ -42,34 +41,65 @@ The main deliverables (in chronological order) will be:
 3. final presentation; and
 4. report.
 
-### Guidelines for Proposal
+### Guidelines for Proposal {: #guidelines-for-proposal}
 
 The proposal must contain a problem definition and a brief literature survey.
-It should be at most one page long and use a reasonable font.
+It should be at most one page long and use a reasonable format (margins, font, etc.).
 
-### Guidelines for Mini Presentation
+### Guidelines for Mini Presentation {: #guidelines-for-mini-presentation}
 
 The mini presentation should cover the contents of the proposal, a quick status
 update, and a timeline for the remainder of the term. The mini presentation
-should be at most five minutes long.
+should be at most 10 minutes long.
 
-### Guidelines for Final Presentation
+### Guidelines for Final Presentation {: #guidelines-for-final-presentation}
 
 The final presentation should build on the mini presentation. It should contain
 an updated problem definition, an updated literature survey, and final results.
-The final presentation should be at most 15 minutes long.
+The final presentation should be at most 20 minutes long.
 
-### Guidelines for Report
+### Guidelines for Report {: #guidelines-for-report}
 
-The report should be a conference paper-style writeup. 
+The report should be a conference paper-style write-up.
 
-## Schedule
+## Participation {: #participation}
 
-TBD: we will read and discuss a small subset of the papers in the reading bank.
+Students are expected to complete the assigned readings before class and to
+engage respectfully with their peers and their work.
 
-## Reading Bank
+## Schedule {: #schedule}
 
-The readings below span twelve themes: **SSC** syntactic and semantic constraints on LLM outputs, **LCD** learning constraints from data, **ATU** agents and tool-use, **SAT** satisfiability and satisfiability modulo theories, **PRA** program analysis, **AUF** autoformalization, **NSP** neuro-symbolic programming, **SUP** superoptimization, **TPR** theorem proving, **MLV** machine-learning verification, **PRP** program repair, and **TST** testing. Use the dropdown in the table's rightmost column to narrow the list to a single theme.
+On paper discussion days, there will be **two** assigned readings and
+corresponding student-led presentations.
+
+| Date | Description | Readings |
+| --- | --- | --- |
+| Sep 15 | Introduction and overview | |
+| **Sep 16** | **Reading preferences due** | |
+| Sep 22 | Agents and tool-use **ATU** | TBD |
+| Sep 29 | Syntactic and semantic constraints on LLM outputs **SSC** | TBD |
+| Oct 06 | Learning constraints from data **LCD** | TBD |
+| **Oct 09** | **Proposals due** | |
+| ~~Oct 13~~ | ~~Reading week~~ | |
+| Oct 20 | Autoformalization **AUF** | TBD |
+| Oct 27 | Program analysis **PRA** | TBD |
+| _Nov 03_ | _Mini presentations day_ | |
+| Nov 10 | Satisfiability and satisfiability modulo theories **SAT** | TBD |
+| Nov 17 | Theorem proving **TPR** | TBD |
+| Nov 24 | Superoptimization **SUP** | TBD |
+| Dec 01 | Bonus (**NSP**, **MLV**, **PRP**, or **TST**) | TBD |
+| _Dec 08_ | _Final presentations day_ | |
+| **Dec 18** | **Reports due** | |
+
+## Reading Bank {: #reading-bank}
+
+The readings below span twelve themes: syntactic and semantic constraints on
+LLM outputs **SSC**; learning constraints from data **LCD**; agents and
+tool-use **ATU**; satisfiability and satisfiability modulo theories **SAT**;
+program analysis **PRA**; autoformalization **AUF**; neuro-symbolic programming
+**NSP**; superoptimization **SUP**; theorem proving **TPR**; machine-learning
+verification **MLV**; program repair **PRP**; and testing **TST**. Use the
+dropdown in the table's rightmost column to narrow the list to a single theme.
 
 | Title | Link | Topics |
 | --- | --- | --- |

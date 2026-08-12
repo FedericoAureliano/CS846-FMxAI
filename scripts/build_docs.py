@@ -28,6 +28,7 @@ PAGE = """<!doctype html>
 </style>
 </head>
 <body>
+{toc}
 <main>
 {body}
 </main>
@@ -140,8 +141,8 @@ main {{
 }}
 
 .draft-banner {{
-  background: color-mix(in srgb, var(--color-vermillion) 18%, white);
-  border: 2px solid var(--color-vermillion);
+  background: color-mix(in srgb, var(--color-accent) 18%, white);
+  border: 2px solid var(--color-accent);
   border-radius: 8px;
   padding: var(--size-4-4) var(--size-4-5);
   margin: 0 0 var(--size-4-12);
@@ -149,6 +150,67 @@ main {{
   font-weight: 600;
   text-align: center;
   color: var(--fg);
+}}
+
+.toc {{
+  display: none;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  /* 20rem (half of main's max-width) + 2rem gap + 12rem (own width) */
+  left: calc(50% - 34rem);
+  width: 12rem;
+  max-height: 80vh;
+  overflow-y: auto;
+}}
+
+.toc > ul {{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--border);
+}}
+
+.toc li {{ margin: 0; }}
+
+.toc a {{
+  display: block;
+  padding: var(--size-4-1) 0 var(--size-4-1) var(--size-4-3);
+  margin-left: -1px;
+  border-left: 1px solid transparent;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: var(--font-ui-smaller);
+}}
+
+.toc a:hover {{
+  color: var(--fg);
+  border-left-color: var(--color-accent);
+}}
+
+.toc a.active {{
+  color: var(--fg);
+  font-weight: 600;
+  border-left-color: var(--color-accent);
+}}
+
+.toc li > ul {{
+  list-style: none;
+  margin: 0 0 0 var(--size-4-2);
+  padding: 0;
+  border-left: 1px solid var(--border);
+}}
+
+.toc li > ul a {{
+  font-size: 10px;
+  padding-top: var(--size-2-2);
+  padding-bottom: var(--size-2-2);
+}}
+
+/* Only shown when there's enough side margin around main (40rem) for
+   the panel to sit without overlapping the content or the viewport edge. */
+@media (min-width: 1200px) {{
+  .toc {{ display: block; }}
 }}
 
 h1, h2, h3 {{
@@ -194,6 +256,8 @@ h3::before {{
 }}
 
 p, ul, ol {{ margin: var(--size-4-4) 0; }}
+
+li > ul, li > ol {{ margin: var(--size-2-2) 0; }}
 
 main > p {{
   color: var(--fg);
@@ -294,8 +358,26 @@ th:last-child, td:last-child {{
   padding-right: var(--size-2-1);
 }}
 
-tbody tr:nth-child(even) {{
+tbody tr.row-alt {{
   background: var(--bg-alt);
+}}
+
+.schedule-table th:first-child, .schedule-table td:first-child {{
+  width: 12%;
+  white-space: nowrap;
+}}
+
+.schedule-table th:nth-child(2), .schedule-table td:nth-child(2) {{
+  width: 68%;
+  padding-left: var(--size-4-4);
+  padding-right: var(--size-4-4);
+}}
+
+.schedule-table th:last-child, .schedule-table td:last-child {{
+  width: 20%;
+  text-align: right;
+  padding-left: var(--size-4-4);
+  padding-right: var(--size-4-4);
 }}
 
 .tag {{
@@ -347,6 +429,12 @@ main > p .tag {{ margin: 0 1px; }}
 
 img {{ max-width: 100%; }}
 
+del {{
+  color: var(--muted);
+  text-decoration-thickness: 0.15em;
+  font-weight: 600;
+}}
+
 @media (max-width: 480px) {{
   main {{ padding: var(--size-4-8) var(--size-4-4) var(--size-4-12); }}
   h1 {{ font-size: var(--font-ui-medium); }}
@@ -360,21 +448,59 @@ img {{ max-width: 100%; }}
 
 
 FRONTMATTER_RE = re.compile(r"\A---\n(.*?)\n---\n+", re.DOTALL)
+STRIKETHROUGH_RE = re.compile(r"~~(.+?)~~")
+EM_DASH_RE = re.compile(r"(?<=\S)---(?=\S)")
 ROW_RE = re.compile(r"<tr>\n(<td>.*?</td>\n<td>.*?</td>\n)<td>([^<]+)</td>\n</tr>", re.DOTALL)
 TOPICS_HEADER_RE = re.compile(r"<th>Topics</th>")
 LEGEND_ITEM_RE = re.compile(r"<strong>(.+?)</strong>")
+SCHEDULE_TABLE_RE = re.compile(r"<table>\n(?=<thead>\n<tr>\n<th>Date</th>)")
+HEADING_RE = re.compile(r'<h([23]) id="([\w-]+)">(.*?)</h\1>')
 
 FILTER_SCRIPT = """
 document.addEventListener('DOMContentLoaded', function () {
+  function restripe(rows) {
+    var visible = 0;
+    rows.forEach(function (row) {
+      if (row.style.display === 'none') return;
+      row.classList.toggle('row-alt', visible % 2 === 1);
+      visible++;
+    });
+  }
+
+  document.querySelectorAll('table').forEach(function (table) {
+    restripe(table.querySelectorAll('tbody tr'));
+  });
+
+  var headings = Array.prototype.slice.call(document.querySelectorAll('main h2[id], main h3[id]'));
+  var tocLinks = {};
+  document.querySelectorAll('.toc a[href^="#"]').forEach(function (a) {
+    tocLinks[a.getAttribute('href').slice(1)] = a;
+  });
+  if (headings.length && Object.keys(tocLinks).length) {
+    var updateActive = function () {
+      var current = '';
+      headings.forEach(function (h) {
+        if (h.getBoundingClientRect().top <= 100) current = h.id;
+      });
+      Object.keys(tocLinks).forEach(function (id) {
+        tocLinks[id].classList.toggle('active', id === current);
+      });
+    };
+    window.addEventListener('scroll', updateActive, { passive: true });
+    window.addEventListener('resize', updateActive);
+    updateActive();
+  }
+
   var select = document.getElementById('topic-filter');
   if (!select) return;
-  var rows = document.querySelectorAll('tbody tr');
+  var rows = select.closest('table').querySelectorAll('tbody tr');
   select.addEventListener('change', function () {
     var value = select.value;
     rows.forEach(function (row) {
       var topics = (row.getAttribute('data-topics') || '').split(' ');
       row.style.display = !value || topics.indexOf(value) !== -1 ? '' : 'none';
     });
+    restripe(rows);
   });
 });
 """
@@ -451,6 +577,47 @@ def colorize_legend(body: str) -> str:
     return LEGEND_ITEM_RE.sub(render, body)
 
 
+def classify_schedule_table(body: str) -> str:
+    """Tag the Schedule table with a class so its Date column can be
+    styled narrower than the reading table's columns (attr_list doesn't
+    apply to markdown tables, so this is done structurally instead)."""
+
+    return SCHEDULE_TABLE_RE.sub('<table class="schedule-table">\n', body)
+
+
+def build_toc(body: str) -> str:
+    """Build the floating sidebar nav from the rendered section (h2) and
+    subsection (h3) headings, nesting each h3 under the h2 that precedes
+    it in document order, so it can't drift out of sync with the content."""
+
+    items = ['<li><a href="#">Overview</a></li>']
+    subitems: list[str] = []
+
+    def close_section() -> None:
+        if subitems:
+            items.append(f"<ul>{''.join(subitems)}</ul>")
+        items.append("</li>")
+
+    open_section = False
+    for level, id_, text in HEADING_RE.findall(body):
+        if level == "2":
+            if open_section:
+                close_section()
+            items.append(f'<li><a href="#{id_}">{text}</a>')
+            subitems = []
+            open_section = True
+        else:
+            subitems.append(f'<li><a href="#{id_}">{text}</a></li>')
+    if open_section:
+        close_section()
+
+    return (
+        '<nav class="toc" aria-label="Table of contents">\n'
+        f"<ul>{''.join(items)}</ul>\n"
+        "</nav>"
+    )
+
+
 def parse_frontmatter(text: str) -> tuple[dict[str, str], str]:
     match = FRONTMATTER_RE.match(text)
     if not match:
@@ -466,6 +633,8 @@ def parse_frontmatter(text: str) -> tuple[dict[str, str], str]:
 def main() -> None:
     raw = INDEX_MD.read_text(encoding="utf-8")
     meta, text = parse_frontmatter(raw)
+    text = STRIKETHROUGH_RE.sub(r"<del>\1</del>", text)
+    text = EM_DASH_RE.sub("—", text)
 
     body = markdown.markdown(
         text,
@@ -496,9 +665,16 @@ def main() -> None:
             count=1,
         )
 
-    body = wrap_tag_cells(body)
-    body = build_topic_filter(body)
+    # Scoped to the Reading Bank table only: wrap_tag_cells' row regex isn't
+    # anchored to a single <tr>, so running it over the whole body risks
+    # matching across rows of other tables (e.g. the Schedule table).
+    pre, marker, post = body.partition('<h2 id="reading-bank">Reading Bank</h2>')
+    post = wrap_tag_cells(post)
+    post = build_topic_filter(post)
+    body = pre + marker + post
     body = colorize_legend(body)
+    body = classify_schedule_table(body)
+    toc = build_toc(body)
 
     pygments_css = HtmlFormatter(style="default").get_style_defs(".codehilite")
     css = CSS.format(pygments_css=pygments_css)
@@ -506,6 +682,7 @@ def main() -> None:
         title=title,
         css=css,
         body=body,
+        toc=toc,
         author_meta=author_meta,
         filter_script=FILTER_SCRIPT,
     )

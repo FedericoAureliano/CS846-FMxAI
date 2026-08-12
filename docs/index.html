@@ -112,8 +112,8 @@ main {
 }
 
 .draft-banner {
-  background: color-mix(in srgb, var(--color-vermillion) 18%, white);
-  border: 2px solid var(--color-vermillion);
+  background: color-mix(in srgb, var(--color-accent) 18%, white);
+  border: 2px solid var(--color-accent);
   border-radius: 8px;
   padding: var(--size-4-4) var(--size-4-5);
   margin: 0 0 var(--size-4-12);
@@ -121,6 +121,67 @@ main {
   font-weight: 600;
   text-align: center;
   color: var(--fg);
+}
+
+.toc {
+  display: none;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  /* 20rem (half of main's max-width) + 2rem gap + 12rem (own width) */
+  left: calc(50% - 34rem);
+  width: 12rem;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.toc > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--border);
+}
+
+.toc li { margin: 0; }
+
+.toc a {
+  display: block;
+  padding: var(--size-4-1) 0 var(--size-4-1) var(--size-4-3);
+  margin-left: -1px;
+  border-left: 1px solid transparent;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: var(--font-ui-smaller);
+}
+
+.toc a:hover {
+  color: var(--fg);
+  border-left-color: var(--color-accent);
+}
+
+.toc a.active {
+  color: var(--fg);
+  font-weight: 600;
+  border-left-color: var(--color-accent);
+}
+
+.toc li > ul {
+  list-style: none;
+  margin: 0 0 0 var(--size-4-2);
+  padding: 0;
+  border-left: 1px solid var(--border);
+}
+
+.toc li > ul a {
+  font-size: 10px;
+  padding-top: var(--size-2-2);
+  padding-bottom: var(--size-2-2);
+}
+
+/* Only shown when there's enough side margin around main (40rem) for
+   the panel to sit without overlapping the content or the viewport edge. */
+@media (min-width: 1200px) {
+  .toc { display: block; }
 }
 
 h1, h2, h3 {
@@ -166,6 +227,8 @@ h3::before {
 }
 
 p, ul, ol { margin: var(--size-4-4) 0; }
+
+li > ul, li > ol { margin: var(--size-2-2) 0; }
 
 main > p {
   color: var(--fg);
@@ -266,8 +329,26 @@ th:last-child, td:last-child {
   padding-right: var(--size-2-1);
 }
 
-tbody tr:nth-child(even) {
+tbody tr.row-alt {
   background: var(--bg-alt);
+}
+
+.schedule-table th:first-child, .schedule-table td:first-child {
+  width: 12%;
+  white-space: nowrap;
+}
+
+.schedule-table th:nth-child(2), .schedule-table td:nth-child(2) {
+  width: 68%;
+  padding-left: var(--size-4-4);
+  padding-right: var(--size-4-4);
+}
+
+.schedule-table th:last-child, .schedule-table td:last-child {
+  width: 20%;
+  text-align: right;
+  padding-left: var(--size-4-4);
+  padding-right: var(--size-4-4);
 }
 
 .tag {
@@ -318,6 +399,12 @@ tbody tr:nth-child(even) {
 main > p .tag { margin: 0 1px; }
 
 img { max-width: 100%; }
+
+del {
+  color: var(--muted);
+  text-decoration-thickness: 0.15em;
+  font-weight: 600;
+}
 
 @media (max-width: 480px) {
   main { padding: var(--size-4-8) var(--size-4-4) var(--size-4-12); }
@@ -406,6 +493,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 </head>
 <body>
+<nav class="toc" aria-label="Table of contents">
+<ul><li><a href="#">Overview</a></li><li><a href="#grading">Grading</a></li><li><a href="#discussion-leads">Discussion Leads</a></li><li><a href="#projects">Projects</a><ul><li><a href="#guidelines-for-proposal">Guidelines for Proposal</a></li><li><a href="#guidelines-for-mini-presentation">Guidelines for Mini Presentation</a></li><li><a href="#guidelines-for-final-presentation">Guidelines for Final Presentation</a></li><li><a href="#guidelines-for-report">Guidelines for Report</a></li></ul></li><li><a href="#participation">Participation</a></li><li><a href="#schedule">Schedule</a></li><li><a href="#reading-bank">Reading Bank</a></li></ul>
+</nav>
 <main>
 <p class="draft-banner"><strong>⚠ DRAFT:</strong> This syllabus will change substantially before the term begins.</p>
 <div class="header-row">
@@ -414,20 +504,21 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 <p>This course surveys important ideas and literature at the intersection of formal
 methods and artificial intelligence.</p>
-<h2>Grading</h2>
+<h2 id="grading">Grading</h2>
 <p>Our meetings will be centered around paper discussions. Attendance, reading of
 assigned papers, and participation are essential. The grading scheme reflects
 that:</p>
 <ul>
-<li>25% participation;</li>
-<li>25% discussion lead; and</li>
+<li>20% participation;</li>
+<li>30% discussion leads; and</li>
 <li>50% project.</li>
 </ul>
-<h2>Discussions</h2>
-<p>Every student will lead a paper discussion. </p>
-<h2>Projects</h2>
-<p>Every project must contain new research---a new idea or insight---and an
-element of both formal methods and artificial intelligence.</p>
+<h2 id="discussion-leads">Discussion Leads</h2>
+<p>Every student will pick and present two papers with two different themes from the reading bank below.</p>
+<h2 id="projects">Projects</h2>
+<p>Every project must contain new research—a new idea or insight—and an
+element of both formal methods and artificial intelligence. Students can work
+in groups of up to three.</p>
 <p>The main deliverables (in chronological order) will be:</p>
 <ol>
 <li>proposal;</li>
@@ -435,23 +526,124 @@ element of both formal methods and artificial intelligence.</p>
 <li>final presentation; and</li>
 <li>report.</li>
 </ol>
-<h3>Guidelines for Proposal</h3>
+<h3 id="guidelines-for-proposal">Guidelines for Proposal</h3>
 <p>The proposal must contain a problem definition and a brief literature survey.
-It should be at most one page long and use a reasonable font.</p>
-<h3>Guidelines for Mini Presentation</h3>
+It should be at most one page long and use a reasonable format (margins, font, etc.).</p>
+<h3 id="guidelines-for-mini-presentation">Guidelines for Mini Presentation</h3>
 <p>The mini presentation should cover the contents of the proposal, a quick status
 update, and a timeline for the remainder of the term. The mini presentation
-should be at most five minutes long.</p>
-<h3>Guidelines for Final Presentation</h3>
+should be at most 10 minutes long.</p>
+<h3 id="guidelines-for-final-presentation">Guidelines for Final Presentation</h3>
 <p>The final presentation should build on the mini presentation. It should contain
 an updated problem definition, an updated literature survey, and final results.
-The final presentation should be at most 15 minutes long.</p>
-<h3>Guidelines for Report</h3>
-<p>The report should be a conference paper-style writeup. </p>
-<h2>Schedule</h2>
-<p>TBD: we will read and discuss a small subset of the papers in the reading bank.</p>
-<h2>Reading Bank</h2>
-<p>The readings below span twelve themes: <span class="tag c-blue">SSC</span> syntactic and semantic constraints on LLM outputs, <span class="tag c-green">LCD</span> learning constraints from data, <span class="tag c-orange">ATU</span> agents and tool-use, <span class="tag c-purple">SAT</span> satisfiability and satisfiability modulo theories, <span class="tag c-vermillion">PRA</span> program analysis, <span class="tag c-skyblue">AUF</span> autoformalization, <span class="tag c-yellow">NSP</span> neuro-symbolic programming, <span class="tag c-black">SUP</span> superoptimization, <span class="tag c-teal">TPR</span> theorem proving, <span class="tag c-indigo">MLV</span> machine-learning verification, <span class="tag c-lime">PRP</span> program repair, and <span class="tag c-magenta">TST</span> testing. Use the dropdown in the table's rightmost column to narrow the list to a single theme.</p>
+The final presentation should be at most 20 minutes long.</p>
+<h3 id="guidelines-for-report">Guidelines for Report</h3>
+<p>The report should be a conference paper-style write-up.</p>
+<h2 id="participation">Participation</h2>
+<p>Students are expected to complete the assigned readings before class and to
+engage respectfully with their peers and their work.</p>
+<h2 id="schedule">Schedule</h2>
+<p>On paper discussion days, there will be <strong>two</strong> assigned readings and
+corresponding student-led presentations.</p>
+<table class="schedule-table">
+<thead>
+<tr>
+<th>Date</th>
+<th>Description</th>
+<th>Readings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sep 15</td>
+<td>Introduction and overview</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Sep 16</strong></td>
+<td><strong>Reading preferences due</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Sep 22</td>
+<td>Agents and tool-use <span class="tag c-orange">ATU</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Sep 29</td>
+<td>Syntactic and semantic constraints on LLM outputs <span class="tag c-blue">SSC</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Oct 06</td>
+<td>Learning constraints from data <span class="tag c-green">LCD</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td><strong>Oct 09</strong></td>
+<td><strong>Proposals due</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><del>Oct 13</del></td>
+<td><del>Reading week</del></td>
+<td></td>
+</tr>
+<tr>
+<td>Oct 20</td>
+<td>Autoformalization <span class="tag c-skyblue">AUF</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Oct 27</td>
+<td>Program analysis <span class="tag c-vermillion">PRA</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td><em>Nov 03</em></td>
+<td><em>Mini presentations day</em></td>
+<td></td>
+</tr>
+<tr>
+<td>Nov 10</td>
+<td>Satisfiability and satisfiability modulo theories <span class="tag c-purple">SAT</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Nov 17</td>
+<td>Theorem proving <span class="tag c-teal">TPR</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Nov 24</td>
+<td>Superoptimization <span class="tag c-black">SUP</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Dec 01</td>
+<td>Bonus (<span class="tag c-yellow">NSP</span>, <span class="tag c-indigo">MLV</span>, <span class="tag c-lime">PRP</span>, or <span class="tag c-magenta">TST</span>)</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td><em>Dec 08</em></td>
+<td><em>Final presentations day</em></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Dec 18</strong></td>
+<td><strong>Reports due</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="reading-bank">Reading Bank</h2>
+<p>The readings below span twelve themes: syntactic and semantic constraints on
+LLM outputs <span class="tag c-blue">SSC</span>; learning constraints from data <span class="tag c-green">LCD</span>; agents and
+tool-use <span class="tag c-orange">ATU</span>; satisfiability and satisfiability modulo theories <span class="tag c-purple">SAT</span>;
+program analysis <span class="tag c-vermillion">PRA</span>; autoformalization <span class="tag c-skyblue">AUF</span>; neuro-symbolic programming
+<span class="tag c-yellow">NSP</span>; superoptimization <span class="tag c-black">SUP</span>; theorem proving <span class="tag c-teal">TPR</span>; machine-learning
+verification <span class="tag c-indigo">MLV</span>; program repair <span class="tag c-lime">PRP</span>; and testing <span class="tag c-magenta">TST</span>. Use the
+dropdown in the table's rightmost column to narrow the list to a single theme.</p>
 <table>
 <thead>
 <tr>
@@ -652,15 +844,49 @@ The final presentation should be at most 15 minutes long.</p>
 <script>
 
 document.addEventListener('DOMContentLoaded', function () {
+  function restripe(rows) {
+    var visible = 0;
+    rows.forEach(function (row) {
+      if (row.style.display === 'none') return;
+      row.classList.toggle('row-alt', visible % 2 === 1);
+      visible++;
+    });
+  }
+
+  document.querySelectorAll('table').forEach(function (table) {
+    restripe(table.querySelectorAll('tbody tr'));
+  });
+
+  var headings = Array.prototype.slice.call(document.querySelectorAll('main h2[id], main h3[id]'));
+  var tocLinks = {};
+  document.querySelectorAll('.toc a[href^="#"]').forEach(function (a) {
+    tocLinks[a.getAttribute('href').slice(1)] = a;
+  });
+  if (headings.length && Object.keys(tocLinks).length) {
+    var updateActive = function () {
+      var current = '';
+      headings.forEach(function (h) {
+        if (h.getBoundingClientRect().top <= 100) current = h.id;
+      });
+      Object.keys(tocLinks).forEach(function (id) {
+        tocLinks[id].classList.toggle('active', id === current);
+      });
+    };
+    window.addEventListener('scroll', updateActive, { passive: true });
+    window.addEventListener('resize', updateActive);
+    updateActive();
+  }
+
   var select = document.getElementById('topic-filter');
   if (!select) return;
-  var rows = document.querySelectorAll('tbody tr');
+  var rows = select.closest('table').querySelectorAll('tbody tr');
   select.addEventListener('change', function () {
     var value = select.value;
     rows.forEach(function (row) {
       var topics = (row.getAttribute('data-topics') || '').split(' ');
       row.style.display = !value || topics.indexOf(value) !== -1 ? '' : 'none';
     });
+    restripe(rows);
   });
 });
 
