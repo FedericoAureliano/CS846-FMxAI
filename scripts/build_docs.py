@@ -363,21 +363,22 @@ tbody tr.row-alt {{
 }}
 
 .schedule-table th:first-child, .schedule-table td:first-child {{
-  width: 12%;
+  width: 4.5rem;
   white-space: nowrap;
 }}
 
 .schedule-table th:nth-child(2), .schedule-table td:nth-child(2) {{
-  width: 68%;
+  width: auto;
   padding-left: var(--size-4-4);
   padding-right: var(--size-4-4);
+  text-align: center;
 }}
 
 .schedule-table th:last-child, .schedule-table td:last-child {{
-  width: 20%;
-  text-align: right;
-  padding-left: var(--size-4-4);
-  padding-right: var(--size-4-4);
+  width: 3.5rem;
+  text-align: center;
+  padding-left: var(--size-4-2);
+  padding-right: var(--size-4-2);
 }}
 
 .tag {{

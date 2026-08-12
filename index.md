@@ -69,22 +69,22 @@ engage respectfully with their peers and their work.
 
 ## Schedule {: #schedule}
 
-On paper discussion days, there will be **two** assigned readings and
-corresponding student-led presentations.
+On paper discussion days, there will be two assigned readings and
+two corresponding student-led presentations.
 
-| Date | Description | Readings |
+| Date | Description | Read |
 | --- | --- | --- |
 | Sep 15 | Introduction and overview | |
 | **Sep 16** | **Reading preferences due** | |
 | Sep 22 | Agents and tool-use **ATU** | TBD |
-| Sep 29 | Syntactic and semantic constraints on LLM outputs **SSC** | TBD |
+| Sep 29 | Constraints on LLM outputs **SSC** | TBD |
 | Oct 06 | Learning constraints from data **LCD** | TBD |
 | **Oct 09** | **Proposals due** | |
 | ~~Oct 13~~ | ~~Reading week~~ | |
 | Oct 20 | Autoformalization **AUF** | TBD |
 | Oct 27 | Program analysis **PRA** | TBD |
 | _Nov 03_ | _Mini presentations day_ | |
-| Nov 10 | Satisfiability and satisfiability modulo theories **SAT** | TBD |
+| Nov 10 | Satisfiability (modulo theories) **SAT** | TBD |
 | Nov 17 | Theorem proving **TPR** | TBD |
 | Nov 24 | Superoptimization **SUP** | TBD |
 | Dec 01 | Bonus (**NSP**, **MLV**, **PRP**, or **TST**) | TBD |
