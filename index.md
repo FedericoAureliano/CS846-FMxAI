@@ -74,7 +74,7 @@ two corresponding student-led presentations.
 
 | Date | Description | Read |
 | --- | --- | --- |
-| Sep 15 | Introduction and overview | |
+| Sep 15 | Introduction and overview | [1](overview-slides.html) |
 | **Sep 16** | **Reading preferences due** | |
 | Sep 22 | Agents and tool-use **ATU** | TBD |
 | Sep 29 | Constraints on LLM outputs **SSC** | TBD |
@@ -112,7 +112,7 @@ dropdown in the table's rightmost column to narrow the list to a single theme.
 | Learning to Solve SMT Formulas | [Balunović et al., NeurIPS '18](https://www.sri.inf.ethz.ch/publications/balunovic2018learnsmt) | SAT |
 | DeepProbLog: Neural Probabilistic Logic Programming | [Manhaeve et al., NeurIPS '18](https://proceedings.neurips.cc/paper/2018/hash/dc5d637ed5e62c36ecb73b654b05ba2a-Abstract.html) | NSP |
 | Guiding High-Performance SAT Solvers with Unsat-Core Predictions | [Selsam and Bjørner, SAT '19](https://link.springer.com/chapter/10.1007/978-3-030-24258-9_24) | SAT |
-| How To Generate Text: Using Different Decoding Methods For Language Generation With Transformers | [von Platen, Blog '20](https://huggingface.co/blog/how-to-generate) | ATU, SSC |
+| How To Generate Text: Using Different Decoding Methods For Language Generation With Transformers | [von Platen, Blog '20](https://huggingface.co/blog/how-to-generate) | SSC |
 | Learning Concise Models from Long Execution Traces | [Jeppu et al., DAC '20](https://arxiv.org/abs/2001.05230) | LCD |
 | Proving Data-Poisoning Robustness in Decision Trees | [Drews et al., PLDI '20](https://dl.acm.org/doi/10.1145/3385412.3385975) | MLV |
 | Generative Language Modeling for Automated Theorem Proving | [Polu and Sutskever, arXiv '20](https://arxiv.org/abs/2009.03393) | TPR |

@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CS846: FMxAI</title>
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Emoji&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-emoji: "Noto Emoji";
+
+  --color-base-00: #ffffff;
+  --color-base-05: #fcfcfc;
+  --color-base-20: #f6f6f6;
+  --color-base-30: #e4e4e4;
+  --color-base-40: #bdbdbd;
+  --color-base-60: #707070;
+  --color-base-100: #222222;
+  --color-accent: hsl(258, 88%, 66%);
+  --color-accent-hover: hsl(258, 88%, 58%);
+
+  --color-orange: #e69f00;
+  --color-skyblue: #56b4e9;
+  --color-green: #009e73;
+  --color-blue: #0072b2;
+  --color-vermillion: #d55e00;
+  --color-purple: #cc79a7;
+  --color-yellow: #7a6a00;
+  --color-black: #000000;
+  --color-teal: #106b6b;
+  --color-indigo: #5b3fa0;
+  --color-lime: #218807;
+  --color-magenta: #9329a3;
+
+  --bg: var(--color-base-00);
+  --bg-alt: var(--color-base-20);
+  --fg: var(--color-base-100);
+  --muted: var(--color-base-60);
+  --border: var(--color-base-30);
+
+  --size-2-2: 4px;
+  --size-4-1: 4px;
+  --size-4-2: 8px;
+  --size-4-3: 12px;
+  --size-4-4: 16px;
+  --size-4-5: 20px;
+  --size-4-6: 24px;
+  --size-4-8: 32px;
+  --size-4-9: 36px;
+  --size-4-12: 48px;
+  --size-4-16: 64px;
+
+  --line-height-normal: 1.5;
+  --line-height-tight: 1.15;
+
+  /* Space between the slide frame and the browser edge. */
+  --frame-gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: var(--line-height-normal);
+  -webkit-text-size-adjust: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--frame-gap);
+}
+
+/* The 16:9 frame. container-type lets slide typography below be sized in
+   cqw/cqh so it scales with the frame itself, not the raw viewport. */
+#stage {
+  container-type: size;
+  position: relative;
+  width: min(100%, calc((100vh - 2 * var(--frame-gap)) * 16 / 9));
+  max-height: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid #000;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+#deck {
+  position: absolute;
+  inset: 0;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6cqh 7cqw 10cqh;
+}
+
+.slide.active { display: flex; }
+
+.slide a {
+  color: var(--fg);
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-orange) 38%, transparent);
+  text-decoration-thickness: 0.6em;
+  text-underline-offset: -0.42em;
+  text-decoration-skip-ink: none;
+}
+.slide a:hover { text-decoration-color: var(--color-orange); }
+
+/* Title slide */
+
+.slide-title h1 {
+  font-size: clamp(2rem, 6cqw, 3.6rem);
+  font-weight: 700;
+  margin: 0;
+  line-height: var(--line-height-tight);
+}
+
+.slide-title h2 {
+  font-size: clamp(1rem, 2.4cqw, 1.4rem);
+  font-weight: 400;
+  color: var(--muted);
+  margin: var(--size-4-4) 0 0;
+}
+
+.slide-title .meta {
+  margin-top: var(--size-4-9);
+  color: var(--muted);
+  font-size: var(--font-ui-small, 15px);
+}
+
+.slide-title .nav-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8cqh;
+  margin: 0;
+  text-align: center;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.slide-title .nav-hint .nav-key {
+  font-family: var(--font-emoji);
+  font-variant-emoji: text;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  vertical-align: -0.15em;
+}
+
+/* Content slides (Grading, Project, Paper Discussions, Schedule, ...) */
+
+.slide-content {
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.slide-content h1 .lightning {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.1em;
+  margin-left: var(--size-4-2);
+  fill: var(--color-accent);
+}
+
+.slide-content h1 {
+  font-size: clamp(1.6rem, 5cqw, 3rem);
+  font-weight: 700;
+  margin: 0 0 var(--size-4-6);
+  line-height: var(--line-height-tight);
+  flex-shrink: 0;
+}
+
+.slide-content h1::before {
+  content: "> ";
+  color: var(--color-accent);
+}
+
+.slide-content .body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  font-size: clamp(0.9rem, 1.6cqw, 1.15rem);
+}
+
+.slide-content .body p,
+.slide-content .body ul,
+.slide-content .body ol { margin: 0 0 var(--size-4-3); }
+
+.slide-content .body li { margin: 0 0 var(--size-2-2); }
+
+.slide-content .body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: clamp(0.75rem, 1.3cqw, 0.95rem);
+}
+
+.slide-content .body th, .slide-content .body td {
+  text-align: left;
+  padding: var(--size-4-1) var(--size-4-3);
+  vertical-align: top;
+}
+
+.slide-content .body thead th {
+  border-bottom: 2px solid var(--fg);
+  font-weight: 600;
+}
+
+.slide-content .body tbody tr:not(:last-child) td {
+  border-bottom: 1px solid var(--border);
+}
+
+.slide-content .body del { color: var(--muted); text-decoration-thickness: 0.12em; }
+
+.slide-content .body pre {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--size-4-4);
+  margin: 0 0 var(--size-4-3);
+  overflow-x: auto;
+}
+
+.slide-content .body pre code {
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 1.2cqw, 0.9rem);
+  line-height: var(--line-height-normal);
+}
+
+/* Section (theme divider) slides */
+
+.slide-section {
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.slide-section .section-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--size-4-4);
+}
+
+.slide-section h1 {
+  font-size: clamp(1.6rem, 5.5cqw, 3.2rem);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  margin: 0;
+}
+
+.slide-section h1::before {
+  content: "> ";
+  color: var(--color-accent);
+}
+
+.slide-section .section-head .tag {
+  font-size: clamp(0.85rem, 1.7cqw, 1.1rem);
+  padding: 4px 14px;
+  position: relative;
+  top: -0.55em;
+}
+
+.slide-section .body {
+  margin-top: var(--size-4-6);
+  font-size: clamp(0.95rem, 1.6cqw, 1.15rem);
+  color: var(--muted);
+}
+
+.slide-section .body p, .slide-section .body li { margin: 0 0 var(--size-4-2); }
+
+/* Paper slides */
+
+.slide-paper {
+  align-items: stretch;
+  justify-content: flex-start;
+  padding-top: var(--size-4-9);
+  padding-bottom: var(--size-4-9);
+}
+
+.slide-paper .paper-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--size-4-2) var(--size-4-4);
+  margin-bottom: var(--size-4-6);
+  flex-shrink: 0;
+}
+
+.slide-paper h2 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: clamp(1rem, 1.9cqw, 1.5rem);
+  line-height: var(--line-height-tight);
+  margin: 0;
+  text-align: left;
+  flex: 1 1 20rem;
+  min-width: 0;
+  white-space: normal;
+  /* Hanging indent: wrapped lines start after the ">> " prefix below,
+     not under it. */
+  padding-left: 1.4em;
+  text-indent: -1.4em;
+}
+
+.slide-paper h2::before {
+  content: ">> ";
+  color: var(--color-accent);
+}
+
+.slide-paper .citation {
+  font-family: var(--font-mono);
+  color: var(--muted);
+  font-size: clamp(0.75rem, 1.2cqw, 0.9rem);
+  margin: 0;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.tag {
+  display: inline-block;
+  background: hsla(258, 88%, 66%, 0.14);
+  color: var(--color-accent-hover);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding: 2px var(--size-4-2);
+  border: 1px solid currentColor;
+  border-radius: 999px;
+}
+.tag + .tag { margin-left: 4px; }
+
+.tag-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+  margin: 0;
+}
+
+.slide-paper .paper-head .tag-group { flex: 0 0 auto; }
+
+.c-orange { color: var(--color-orange); }
+.c-skyblue { color: var(--color-skyblue); }
+.c-green { color: var(--color-green); }
+.c-blue { color: var(--color-blue); }
+.c-vermillion { color: var(--color-vermillion); }
+.c-purple { color: var(--color-purple); }
+.c-yellow { color: var(--color-yellow); }
+.c-black { color: var(--color-black); }
+.c-teal { color: var(--color-teal); }
+.c-indigo { color: var(--color-indigo); }
+.c-lime { color: var(--color-lime); }
+.c-magenta { color: var(--color-magenta); }
+
+.tag.c-orange { background: color-mix(in srgb, var(--color-orange) 16%, white); }
+.tag.c-skyblue { background: color-mix(in srgb, var(--color-skyblue) 16%, white); }
+.tag.c-green { background: color-mix(in srgb, var(--color-green) 16%, white); }
+.tag.c-blue { background: color-mix(in srgb, var(--color-blue) 16%, white); }
+.tag.c-vermillion { background: color-mix(in srgb, var(--color-vermillion) 16%, white); }
+.tag.c-purple { background: color-mix(in srgb, var(--color-purple) 16%, white); }
+.tag.c-yellow { background: color-mix(in srgb, var(--color-yellow) 16%, white); }
+.tag.c-black { background: color-mix(in srgb, var(--color-black) 16%, white); }
+.tag.c-teal { background: color-mix(in srgb, var(--color-teal) 16%, white); }
+.tag.c-indigo { background: color-mix(in srgb, var(--color-indigo) 16%, white); }
+.tag.c-lime { background: color-mix(in srgb, var(--color-lime) 16%, white); }
+.tag.c-magenta { background: color-mix(in srgb, var(--color-magenta) 16%, white); }
+
+.slide-paper .body {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-width: 56rem;
+  overflow-y: auto;
+}
+
+.slide-paper .body p, .slide-paper .body li { font-size: 1.05rem; }
+
+/* Chrome: progress bar and a 3-column footer (brand / theme / count),
+   both pinned inside the frame so they read as part of the slide. */
+
+#progress {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--bg-alt);
+  z-index: 10;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--color-accent);
+  transition: width 0.15s ease;
+}
+
+#chrome {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--size-4-4);
+  padding: var(--size-4-2) var(--size-4-5);
+  background: linear-gradient(to top, var(--bg) 55%, transparent);
+  z-index: 10;
+}
+
+#chrome.hidden { display: none; }
+
+#footer-brand, #theme-footer, #counter {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#footer-brand { justify-self: start; }
+#theme-footer { justify-self: center; }
+#counter { justify-self: end; }
+
+@media (max-width: 640px) {
+  .slide { padding: 5cqh 6cqw 12cqh; }
+  #footer-brand { display: none; }
+  .slide-paper h2 { flex-basis: 100%; }
+  .slide-section .section-head { flex-wrap: wrap; }
+}
+
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="deck">
+  <section class="slide slide-title active"><div><h1>CS846: FMxAI</h1><p class="meta"><a href="https://federico.morarocha.ca">Federico Mora</a> &middot; CS 846: FMxAI &middot; University of Waterloo &middot; Fall '26 &middot; Tues 3:00-5:50pm &middot; DC 2585</p></div><p class="nav-hint"><span class="nav-key">&#11013;&#65039; &#10145;&#65039;</span> move between slides &middot; <span class="nav-key">&#11014;&#65039; &#11015;&#65039;</span> jump between sections</p></section>
+<section class="slide slide-content"><h1>Grading</h1><div class="body"><p>Our meetings will be centered around paper discussions. Attendance, reading of assigned papers, and participation are essential.</p>
+<ul>
+<li>20% participation</li>
+<li>30% discussion leads</li>
+<li>50% project</li>
+</ul></div></section>
+<section class="slide slide-content"><h1>Project</h1><div class="body"><p>Every project must contain new research — a new idea or insight — and an element of both formal methods and artificial intelligence. Students can work in groups of up to three.</p>
+<ol>
+<li>Proposal — problem definition and a brief literature survey; at most one page.</li>
+<li>Mini presentation — proposal recap, status update, and timeline; at most 10 minutes.</li>
+<li>Final presentation — updated problem definition, literature survey, and results; at most 20 minutes.</li>
+<li>Report — a conference paper-style write-up.</li>
+</ol></div></section>
+<section class="slide slide-content"><h1>Paper Discussions</h1><div class="body"><ul>
+<li>Every student picks and presents two papers, each from a different theme.</li>
+<li>Each paper-discussion day pairs two assigned readings with two student-led presentations.</li>
+<li>Come having read the assigned papers, ready to engage respectfully with your peers' work.</li>
+</ul></div></section>
+<section class="slide slide-content"><h1>Schedule</h1><div class="body"><table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Description</th>
+<th>Read</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sep 15</td>
+<td>Introduction and overview</td>
+<td><a href="overview-slides.html">1</a></td>
+</tr>
+<tr>
+<td><strong>Sep 16</strong></td>
+<td><strong>Reading preferences due</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Sep 22</td>
+<td>Agents and tool-use <span class="tag c-orange">ATU</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Sep 29</td>
+<td>Constraints on LLM outputs <span class="tag c-blue">SSC</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Oct 06</td>
+<td>Learning constraints from data <span class="tag c-green">LCD</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td><strong>Oct 09</strong></td>
+<td><strong>Proposals due</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><del>Oct 13</del></td>
+<td><del>Reading week</del></td>
+<td></td>
+</tr>
+<tr>
+<td>Oct 20</td>
+<td>Autoformalization <span class="tag c-skyblue">AUF</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Oct 27</td>
+<td>Program analysis <span class="tag c-vermillion">PRA</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td><em>Nov 03</em></td>
+<td><em>Mini presentations day</em></td>
+<td></td>
+</tr>
+<tr>
+<td>Nov 10</td>
+<td>Satisfiability (modulo theories) <span class="tag c-purple">SAT</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Nov 17</td>
+<td>Theorem proving <span class="tag c-teal">TPR</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Nov 24</td>
+<td>Superoptimization <span class="tag c-black">SUP</span></td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Dec 01</td>
+<td>Bonus (<span class="tag c-yellow">NSP</span>, <span class="tag c-indigo">MLV</span>, <span class="tag c-lime">PRP</span>, or <span class="tag c-magenta">TST</span>)</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td><em>Dec 08</em></td>
+<td><em>Final presentations day</em></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Dec 18</strong></td>
+<td><strong>Reports due</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table></div></section>
+<section class="slide slide-section" data-theme="ATU" data-theme-name="Agents and Tool-Use"><div class="section-head"><h1>Agents and Tool-Use</h1><div class="tag-group"><span class="tag c-orange">ATU</span></div></div><div class="body"><p>Next token prediction plus a harness for tool calling.</p></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers</h2><p class="citation"><a href="https://aclanthology.org/2023.emnlp-main.313.pdf">Olausson et al., EMNLP '23</a></p><div class="tag-group"><span class="tag c-orange">ATU</span><span class="tag c-skyblue">AUF</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Learning Context-Free Grammars for Grammar-Constrained Decoding via Declarative Agentic Programming with Guarantees</h2><p class="citation"><a href="https://arxiv.org/abs/2608.05493">Cheang et al., Arxiv '26</a></p><div class="tag-group"><span class="tag c-orange">ATU</span><span class="tag c-green">LCD</span><span class="tag c-skyblue">AUF</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Reinforcement Learning from Human Feedback, Chapter 13</h2><p class="citation"><a href="https://rlhfbook.com/c/13-tools">Lambert, Textbook '26</a></p><div class="tag-group"><span class="tag c-orange">ATU</span></div></div></section>
+<section class="slide slide-section" data-theme="SSC" data-theme-name="Constraints on LLM Outputs"><div class="section-head"><h1>Constraints on LLM Outputs</h1><div class="tag-group"><span class="tag c-blue">SSC</span></div></div><div class="body"><p>Techniques for constraining what a language model can generate so its output is syntactically or semantically valid by construction.</p></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>How To Generate Text: Using Different Decoding Methods For Language Generation With Transformers</h2><p class="citation"><a href="https://huggingface.co/blog/how-to-generate">von Platen, Blog '20</a></p><div class="tag-group"><span class="tag c-blue">SSC</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models</h2><p class="citation"><a href="https://aclanthology.org/2021.emnlp-main.779/">Scholak et al., EMNLP '21</a></p><div class="tag-group"><span class="tag c-blue">SSC</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Grammar Prompting for Domain-Specific Language Generation with Large Language Models</h2><p class="citation"><a href="https://arxiv.org/pdf/2305.19234">Wang et al., NeurIPS '23</a></p><div class="tag-group"><span class="tag c-blue">SSC</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Synthetic Programming Elicitation for Text-to-Code in Very Low-Resource Programming and Formal Languages</h2><p class="citation"><a href="https://arxiv.org/pdf/2406.03636">Mora et al., NeurIPS '24</a></p><div class="tag-group"><span class="tag c-skyblue">AUF</span><span class="tag c-blue">SSC</span><span class="tag c-lime">PRP</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Constrained Adaptive Rejection Sampling</h2><p class="citation"><a href="https://arxiv.org/pdf/2510.01902">Parys et al., ICML '26</a></p><div class="tag-group"><span class="tag c-blue">SSC</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>ChopChop: A Programmable Framework for Semantically Constraining the Output of Language Models</h2><p class="citation"><a href="https://arxiv.org/pdf/2509.00360">Nagy et al., POPL '26</a></p><div class="tag-group"><span class="tag c-blue">SSC</span></div></div></section>
+<section class="slide slide-section" data-theme="LCD" data-theme-name="Learning Constraints from Data"><div class="section-head"><h1>Learning Constraints from Data</h1><div class="tag-group"><span class="tag c-green">LCD</span></div></div><div class="body"><p>Inferring specifications, invariants, models or other formal artifacts automatically from examples or execution traces.</p></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Learning Regular Sets from Queries and Counterexamples</h2><p class="citation"><a href="https://swt.informatik.uni-freiburg.de/teaching/WS2019-20/AutomataTheory/Learning%20Automata%20%28Caveat%20not%20related%20to%20Machine%20Learning?month:int=4&year:int=2025&orig_query=">Angluin, I&C '87</a></p><div class="tag-group"><span class="tag c-green">LCD</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Mining Specifications</h2><p class="citation"><a href="https://haoxintu.github.io/files/10-Mining%20specifications.pdf">Ammons et al., POPL '02</a></p><div class="tag-group"><span class="tag c-green">LCD</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Learning Concise Models from Long Execution Traces</h2><p class="citation"><a href="https://arxiv.org/abs/2001.05230">Jeppu et al., DAC '20</a></p><div class="tag-group"><span class="tag c-green">LCD</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>LLM Meets Bounded Model Checking: Neuro-symbolic Loop Invariant Inference</h2><p class="citation"><a href="https://dl.acm.org/doi/10.1145/3691620.3695014">Wu et al., ASE '24</a></p><div class="tag-group"><span class="tag c-green">LCD</span><span class="tag c-vermillion">PRA</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Specgen: Automated Generation Of Formal Program Specifications Via Large Language Models</h2><p class="citation"><a href="https://dl.acm.org/doi/10.1109/ICSE55347.2025.00129">Ma et al., ICSE '25</a></p><div class="tag-group"><span class="tag c-skyblue">AUF</span><span class="tag c-green">LCD</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Let a Neural Network Be Your Invariant</h2><p class="citation"><a href="https://openreview.net/forum?id=qBPb7g1SEa">Giacobbe et al., NeurIPS '25</a></p><div class="tag-group"><span class="tag c-green">LCD</span><span class="tag c-vermillion">PRA</span></div></div></section>
+<section class="slide slide-section" data-theme="AUF" data-theme-name="Autoformalization"><div class="section-head"><h1>Autoformalization</h1><div class="tag-group"><span class="tag c-skyblue">AUF</span></div></div><div class="body"><p>Translating informal, natural-language mathematics and specifications into formal, machine-checkable statements.</p></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>A Neurosymbolic Approach to Natural Language Formalization and Verification</h2><p class="citation"><a href="https://link.springer.com/chapter/10.1007/978-3-032-32526-6_28">An et al., CAV '26</a></p><div class="tag-group"><span class="tag c-skyblue">AUF</span></div></div></section>
+<section class="slide slide-content"><h1>Speed Matching <svg class="lightning" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></h1><div class="body"><ul>
+<li>Find a pair (30 seconds)</li>
+<li>Describe a research project that you have worked on or that you would like to work on (1 minute)</li>
+<li>Listen to a research project that your pair has worked on or would like to work on (1 minute)</li>
+<li>Brainstorm with your pair on a project that you could work on together (2 minutes)</li>
+<li>Find a new pair (30 seconds) and repeat</li>
+</ul></div></section>
+<section class="slide slide-section" data-theme="PRA" data-theme-name="Program Analysis"><div class="section-head"><h1>Program Analysis</h1><div class="tag-group"><span class="tag c-vermillion">PRA</span></div></div><div class="body"><p>Formally analyzing programs</p></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Large Language Model Powered Symbolic Execution</h2><p class="citation"><a href="https://doi.org/10.1145/3763163">Li et al., OOPSLA '25</a></p><div class="tag-group"><span class="tag c-vermillion">PRA</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Agentic Verification of Software Systems</h2><p class="citation"><a href="https://arxiv.org/abs/2511.17330">Tu et al., FSE '26</a></p><div class="tag-group"><span class="tag c-vermillion">PRA</span></div></div></section>
+<section class="slide slide-section" data-theme="SAT" data-theme-name="Satisfiability (Modulo Theories)"><div class="section-head"><h1>Satisfiability (Modulo Theories)</h1><div class="tag-group"><span class="tag c-purple">SAT</span></div></div><div class="body"><p>Algorithms and heuristics for deciding the satisfiability of logical formulas.</p></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>SATzilla: Portfolio-based Algorithm Selection for SAT</h2><p class="citation"><a href="https://arxiv.org/abs/1111.2249">Xu et al., JAIR '08</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks</h2><p class="citation"><a href="https://link.springer.com/chapter/10.1007/978-3-319-63387-9_5">Katz et al., CAV '17</a></p><div class="tag-group"><span class="tag c-indigo">MLV</span><span class="tag c-purple">SAT</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Learning to Solve SMT Formulas</h2><p class="citation"><a href="https://www.sri.inf.ethz.ch/publications/balunovic2018learnsmt">Balunović et al., NeurIPS '18</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Guiding High-Performance SAT Solvers with Unsat-Core Predictions</h2><p class="citation"><a href="https://link.springer.com/chapter/10.1007/978-3-030-24258-9_24">Selsam and Bjørner, SAT '19</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>MedleySolver: Online SMT Algorithm Selection</h2><p class="citation"><a href="https://www.pure.ed.ac.uk/ws/files/248374419/MedleySolver_PIMPALKHARE_DOA05072021_AFV.pdf">Pimpalkhare et al., SAT '21</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Domain-Specific Hyperspecialization (For SAT)</h2><p class="citation"><a href="https://c.mov/lymphosat/">Green, Blog '26</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div></section>
+<section class="slide slide-section" data-theme="TPR" data-theme-name="Theorem Proving"><div class="section-head"><h1>Theorem Proving</h1><div class="tag-group"><span class="tag c-teal">TPR</span></div></div><div class="body"><p>Automating the search for formal proofs</p></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Generative Language Modeling for Automated Theorem Proving</h2><p class="citation"><a href="https://arxiv.org/abs/2009.03393">Polu and Sutskever, arXiv '20</a></p><div class="tag-group"><span class="tag c-teal">TPR</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>HyperTree Proof Search for Neural Theorem Proving</h2><p class="citation"><a href="https://proceedings.neurips.cc/paper_files/paper/2022/hash/a8901c5e85fb8e1823bbf0f755053672-Abstract-Conference.html">Lample et al., NeurIPS '22</a></p><div class="tag-group"><span class="tag c-teal">TPR</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Seed-Prover: Deep and Broad Reasoning for Automated Theorem Proving</h2><p class="citation"><a href="https://arxiv.org/pdf/2507.23726">ByteDance, Arxiv '25</a></p><div class="tag-group"><span class="tag c-teal">TPR</span></div></div></section>
+<section class="slide slide-section" data-theme="SUP" data-theme-name="Superoptimization"><div class="section-head"><h1>Superoptimization</h1><div class="tag-group"><span class="tag c-black">SUP</span></div></div><div class="body"><p>Improving (usually in terms of speed) programs by searching the space of equivalent programs.</p></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Stochastic Superoptimization</h2><p class="citation"><a href="https://dl.acm.org/doi/10.1145/2490301.2451150">Schkufza et al., ASPLOS '13</a></p><div class="tag-group"><span class="tag c-black">SUP</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Learning to Superoptimize Programs</h2><p class="citation"><a href="https://arxiv.org/abs/1612.01094">Bunel et al., ICLR '17</a></p><div class="tag-group"><span class="tag c-black">SUP</span></div></div></section>
+<section class="slide slide-section" data-theme="NSP" data-theme-name="Neuro-symbolic Programming"><div class="section-head"><h1>Neuro-symbolic Programming</h1><div class="tag-group"><span class="tag c-yellow">NSP</span></div></div><div class="body"><p>Programming languages and systems that combine neural components with symbolic, logical reasoning.</p></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>DeepProbLog: Neural Probabilistic Logic Programming</h2><p class="citation"><a href="https://proceedings.neurips.cc/paper/2018/hash/dc5d637ed5e62c36ecb73b654b05ba2a-Abstract.html">Manhaeve et al., NeurIPS '18</a></p><div class="tag-group"><span class="tag c-yellow">NSP</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Scallop: A Language for Neurosymbolic Programming</h2><p class="citation"><a href="https://dl.acm.org/doi/pdf/10.1145/3591280">Li et al., PLDI '23</a></p><div class="tag-group"><span class="tag c-yellow">NSP</span></div></div></section>
+<section class="slide slide-section" data-theme="MLV" data-theme-name="Machine-Learning Verification"><div class="section-head"><h1>Machine-Learning Verification</h1><div class="tag-group"><span class="tag c-indigo">MLV</span></div></div><div class="body"><p>Formally verifying properties of machine-learned models, such as robustness.</p></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Proving Data-Poisoning Robustness in Decision Trees</h2><p class="citation"><a href="https://dl.acm.org/doi/10.1145/3385412.3385975">Drews et al., PLDI '20</a></p><div class="tag-group"><span class="tag c-indigo">MLV</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Beta-CROWN: Efficient Bound Propagation with Per-neuron Split Constraints for Complete and Incomplete Neural Network Robustness Verification</h2><p class="citation"><a href="https://proceedings.neurips.cc/paper/2021/hash/fac7fead96dafceaf80c1daffeae82a4-Abstract.html">Wang et al., NeurIPS '21</a></p><div class="tag-group"><span class="tag c-indigo">MLV</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Neural Network Verification with Proof Production</h2><p class="citation"><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10026587&casa_token=6jy7_pSgbOwAAAAA:HNny8NVwdhsCPew67iMK2jLHdzqnTfss8SOPuMsrDubYtSQ_Y8IiU8myHghTs7t7MO1ymxzL9Q">Isac et al., FMCAD '22</a></p><div class="tag-group"><span class="tag c-indigo">MLV</span></div></div></section>
+<section class="slide slide-section" data-theme="PRP" data-theme-name="Program Repair"><div class="section-head"><h1>Program Repair</h1><div class="tag-group"><span class="tag c-lime">PRP</span></div></div><div class="body"><p>Automatically finding and applying fixes to buggy programs.</p></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Automated Repair of Programs from Large Language Models</h2><p class="citation"><a href="https://dl.acm.org/doi/10.1109/ICSE48619.2023.00128">Fan et al., ICSE '23</a></p><div class="tag-group"><span class="tag c-lime">PRP</span></div></div></section>
+<section class="slide slide-section" data-theme="TST" data-theme-name="Testing"><div class="section-head"><h1>Testing</h1><div class="tag-group"><span class="tag c-magenta">TST</span></div></div><div class="body"><p>Automatically generating tests</p></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Large Language Models Are Zero-Shot Fuzzers: Fuzzing Deep-Learning Libraries via Large Language Models</h2><p class="citation"><a href="https://dl.acm.org/doi/abs/10.1145/3597926.3598067">Deng et al., ISSTA '23</a></p><div class="tag-group"><span class="tag c-magenta">TST</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>CODAMOSA: Escaping Coverage Plateaus in Test Generation with Pre-trained Large Language Models</h2><p class="citation"><a href="https://www.carolemieux.com/codamosa_icse23.pdf">Lemieux et al., ICSE '23</a></p><div class="tag-group"><span class="tag c-magenta">TST</span></div></div></section>
+<section class="slide slide-content"><h1>Speed Matching <svg class="lightning" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></h1><div class="body"><ul>
+<li>Find a pair (30 seconds)</li>
+<li>Describe a research project that you have worked on or that you would like to work on (1 minute)</li>
+<li>Listen to a research project that your pair has worked on or would like to work on (1 minute)</li>
+<li>Brainstorm with your pair on a project that you could work on together (2 minutes)</li>
+<li>Find a new pair (30 seconds) and repeat</li>
+</ul></div></section>
+<section class="slide slide-content"><h1>Reading Preferences (Due Tuesday, September 16)</h1><div class="body"><p>Email Federico your ranking of 9 papers, one from each of 9 different themes, from most to least preferred. Feel free to use this template.</p>
+<pre><code>Subject: CS 846 Reading Preferences
+
+Hi Federico,
+
+Here is my ranked list of 9 papers, one from each theme,
+from most to least preferred:
+
+1. &lt;Theme&gt; — &lt;Paper Title&gt;
+2. &lt;Theme&gt; — &lt;Paper Title&gt;
+...
+9. &lt;Theme&gt; — &lt;Paper Title&gt;
+
+Thanks,
+&lt;Your Name&gt;
+</code></pre></div></section>
+  </div>
+  <div id="progress"><div id="progress-bar"></div></div>
+  <div id="chrome">
+    <div id="footer-brand">Federico Mora &middot; CS 846: FMxAI &middot; University of Waterloo</div>
+    <div id="theme-footer"></div>
+    <div id="counter"><span id="counter-current">1</span> / <span id="counter-total">1</span></div>
+  </div>
+</div>
+<script>
+
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var current = 0;
+
+  var counterCurrent = document.getElementById('counter-current');
+  var counterTotal = document.getElementById('counter-total');
+  var progressBar = document.getElementById('progress-bar');
+  var themeFooter = document.getElementById('theme-footer');
+  var chrome = document.getElementById('chrome');
+  var sectionSlides = slides.filter(function (s) { return s.classList.contains('slide-section'); });
+  // Top-level slides: everything except individual paper slides, which
+  // nest under the section that precedes them.
+  var landmarks = [];
+  slides.forEach(function (s, i) { if (!s.classList.contains('slide-paper')) landmarks.push(i); });
+
+  counterTotal.textContent = String(total);
+
+  // Only section/paper slides belong to a theme; content slides (Grading,
+  // Speed Matching, etc.) are top-level regardless of where they sit in
+  // the deck, so they never inherit a theme label from a slide before them.
+  function nearestThemeLabel(i) {
+    var cur = slides[i];
+    if (!cur.classList.contains('slide-section') && !cur.classList.contains('slide-paper')) {
+      return '';
+    }
+    for (var j = i; j >= 0; j--) {
+      if (slides[j].classList.contains('slide-section')) {
+        var number = sectionSlides.indexOf(slides[j]) + 1;
+        var name = slides[j].getAttribute('data-theme-name') || '';
+        return 'Theme ' + number + ': ' + name;
+      }
+    }
+    return '';
+  }
+
+  function showSlide(i) {
+    slides[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+
+    counterCurrent.textContent = String(current + 1);
+    progressBar.style.width = ((current + 1) / total * 100) + '%';
+    themeFooter.textContent = nearestThemeLabel(current);
+    chrome.classList.toggle('hidden', slides[current].classList.contains('slide-title'));
+    history.replaceState(null, '', '#' + (current + 1));
+  }
+
+  function next() { if (current + 1 < total) showSlide(current + 1); }
+  function prev() { if (current - 1 >= 0) showSlide(current - 1); }
+
+  function nextLandmark() {
+    for (var i = 0; i < landmarks.length; i++) {
+      if (landmarks[i] > current) { showSlide(landmarks[i]); return; }
+    }
+  }
+
+  function prevLandmark() {
+    for (var i = landmarks.length - 1; i >= 0; i--) {
+      if (landmarks[i] < current) { showSlide(landmarks[i]); return; }
+    }
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      next();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      prev();
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      nextLandmark();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      prevLandmark();
+    }
+  });
+
+  var hash = parseInt(location.hash.replace('#', ''), 10);
+  var start = Number.isInteger(hash) && hash >= 1 && hash <= total ? hash - 1 : 0;
+  showSlide(start);
+})();
+
+</script>
+</body>
+</html>
