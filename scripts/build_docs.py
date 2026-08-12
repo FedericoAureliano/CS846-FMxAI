@@ -157,8 +157,8 @@ main {{
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  /* 20rem (half of main's max-width) + 2rem gap + 12rem (own width) */
-  left: calc(50% - 34rem);
+  /* 20rem (half of main's max-width) + 3rem gap + 12rem (own width) */
+  right: calc(50% - 35rem);
   width: 12rem;
   max-height: 80vh;
   overflow-y: auto;
@@ -228,7 +228,7 @@ h1 {{
 
 h2 {{
   font-size: 17px;
-  margin: var(--size-4-8) 0 var(--size-4-2);
+  margin: var(--size-4-12) 0 var(--size-4-2);
 }}
 
 h3 {{
