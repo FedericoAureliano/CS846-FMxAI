@@ -30,19 +30,17 @@ Our meetings will be centered around paper discussions. Attendance, reading of a
 
 Every project must contain new research — a new idea or insight — and an element of both formal methods and artificial intelligence. Students can work in groups of up to three.
 
-1. Proposal — problem definition and a brief literature survey; at most one page.
-2. Mini presentation — proposal recap, status update, and timeline; at most 10 minutes.
-3. Final presentation — updated problem definition, literature survey, and results; at most 20 minutes.
-4. Report — a conference paper-style write-up.
+1. Proposal (due Oct 09) — problem definition and a brief literature survey; at most one page.
+2. Mini presentation (Nov 03) — proposal recap, status update, and timeline; at most 10 minutes.
+3. Final presentation (Dec 08) — updated problem definition, literature survey, and results; at most 20 minutes.
+4. Report (due Dec 18) — a conference paper-style write-up.
 
 ---
 
 <!-- slide:content -->
 # Paper Discussions
 
-- Every student picks and presents two papers, each from a different theme.
-- Each paper-discussion day pairs two assigned readings with two student-led presentations.
-- Come having read the assigned papers, ready to engage respectfully with your peers' work.
+- Every student will present two papers.
 
 ---
 
@@ -52,7 +50,7 @@ Every project must contain new research — a new idea or insight — and an ele
 | Date | Description | Read |
 | --- | --- | --- |
 | Sep 15 | Introduction and overview | [1](overview-slides.html) |
-| **Sep 16** | **Reading preferences due** | |
+| **Sep 16** | **[Reading preferences due](FORM_URL_HERE)** | |
 | Sep 22 | Agents and tool-use **ATU** | TBD |
 | Sep 29 | Constraints on LLM outputs **SSC** | TBD |
 | Oct 06 | Learning constraints from data **LCD** | TBD |
@@ -71,10 +69,22 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:section -->
-# Agents and Tool-Use
+# Agents and Tool-Use (Sep 22)
 `ATU`
 
-Next token prediction plus a harness for tool calling.
+---
+
+<!-- slide:paper -->
+## Reinforcement Learning from Human Feedback, Chapter 13
+
+[Lambert, Textbook '26](https://rlhfbook.com/c/13-tools)
+
+`ATU`
+
+<figure class="paper-figure">
+  <img src="https://rlhfbook.com/c/images/tool_use_generation.png" alt="Diagram of tool use interleaving model generation with external tool execution">
+  <figcaption>Figure 1: Tool use interleaves model generation with external execution: the model generates tokens until it emits a tool call (orange), an external system executes the tool and injects the output (purple) into the sequence, then the model continues generating. Models can emit multiple tool calls in a single generation. During training, tool call and output tokens are typically masked from the loss.</figcaption>
+</figure>
 
 ---
 
@@ -87,29 +97,9 @@ Next token prediction plus a harness for tool calling.
 
 ---
 
-<!-- slide:paper -->
-## Learning Context-Free Grammars for Grammar-Constrained Decoding via Declarative Agentic Programming with Guarantees
-
-[Cheang et al., Arxiv '26](https://arxiv.org/abs/2608.05493)
-
-`ATU` `LCD` `AUF`
-
----
-
-<!-- slide:paper -->
-## Reinforcement Learning from Human Feedback, Chapter 13
-
-[Lambert, Textbook '26](https://rlhfbook.com/c/13-tools)
-
-`ATU`
-
----
-
 <!-- slide:section -->
-# Constraints on LLM Outputs
+# Constraints on LLM Outputs (Sep 29)
 `SSC`
-
-Techniques for constraining what a language model can generate so its output is syntactically or semantically valid by construction.
 
 ---
 
@@ -168,10 +158,8 @@ Techniques for constraining what a language model can generate so its output is 
 ---
 
 <!-- slide:section -->
-# Learning Constraints from Data
+# Learning Constraints from Data (Oct 06)
 `LCD`
-
-Inferring specifications, invariants, models or other formal artifacts automatically from examples or execution traces.
 
 ---
 
@@ -203,6 +191,15 @@ Inferring specifications, invariants, models or other formal artifacts automatic
 ---
 
 <!-- slide:paper -->
+## Learning Context-Free Grammars for Grammar-Constrained Decoding via Declarative Agentic Programming with Guarantees
+
+[Cheang et al., Arxiv '26](https://arxiv.org/abs/2608.05493)
+
+`ATU` `LCD` `AUF`
+
+---
+
+<!-- slide:paper -->
 ## LLM Meets Bounded Model Checking: Neuro-symbolic Loop Invariant Inference
 
 [Wu et al., ASE '24](https://dl.acm.org/doi/10.1145/3691620.3695014)
@@ -230,10 +227,8 @@ Inferring specifications, invariants, models or other formal artifacts automatic
 ---
 
 <!-- slide:section -->
-# Autoformalization
+# Autoformalization (Oct 20)
 `AUF`
-
-Translating informal, natural-language mathematics and specifications into formal, machine-checkable statements.
 
 ---
 
@@ -258,10 +253,8 @@ Translating informal, natural-language mathematics and specifications into forma
 ---
 
 <!-- slide:section -->
-# Program Analysis
+# Program Analysis (Oct 27)
 `PRA`
-
-Formally analyzing programs
 
 ---
 
@@ -284,10 +277,8 @@ Formally analyzing programs
 ---
 
 <!-- slide:section -->
-# Satisfiability (Modulo Theories)
+# Satisfiability (Modulo Theories, Nov 10)
 `SAT`
-
-Algorithms and heuristics for deciding the satisfiability of logical formulas.
 
 ---
 
@@ -346,10 +337,8 @@ Algorithms and heuristics for deciding the satisfiability of logical formulas.
 ---
 
 <!-- slide:section -->
-# Theorem Proving
+# Theorem Proving (Nov 17)
 `TPR`
-
-Automating the search for formal proofs
 
 ---
 
@@ -381,10 +370,8 @@ Automating the search for formal proofs
 ---
 
 <!-- slide:section -->
-# Superoptimization
+# Superoptimization (Nov 24)
 `SUP`
-
-Improving (usually in terms of speed) programs by searching the space of equivalent programs.
 
 ---
 
@@ -407,10 +394,8 @@ Improving (usually in terms of speed) programs by searching the space of equival
 ---
 
 <!-- slide:section -->
-# Neuro-symbolic Programming
+# Neuro-symbolic Programming (Dec 01, Bonus)
 `NSP`
-
-Programming languages and systems that combine neural components with symbolic, logical reasoning.
 
 ---
 
@@ -433,10 +418,8 @@ Programming languages and systems that combine neural components with symbolic, 
 ---
 
 <!-- slide:section -->
-# Machine-Learning Verification
+# Machine-Learning Verification (Dec 01, Bonus)
 `MLV`
-
-Formally verifying properties of machine-learned models, such as robustness.
 
 ---
 
@@ -468,10 +451,8 @@ Formally verifying properties of machine-learned models, such as robustness.
 ---
 
 <!-- slide:section -->
-# Program Repair
+# Program Repair (Dec 01, Bonus)
 `PRP`
-
-Automatically finding and applying fixes to buggy programs.
 
 ---
 
@@ -485,10 +466,8 @@ Automatically finding and applying fixes to buggy programs.
 ---
 
 <!-- slide:section -->
-# Testing
+# Testing (Dec 01, Bonus)
 `TST`
-
-Automatically generating tests
 
 ---
 
@@ -522,23 +501,8 @@ Automatically generating tests
 ---
 
 <!-- slide:content -->
-# Reading Preferences (Due Tuesday, September 16)
+# Reading Preferences (Due Sep 16)
 
-Email Federico your ranking of 9 papers, one from each of 9 different themes, from most to least preferred. Feel free to use this template.
+Fill out [this form](FORM_URL_HERE) to submit your preferences before Sep 16.
 
-```
-Subject: CS 846 Reading Preferences
-
-Hi Federico,
-
-Here is my ranked list of 9 papers, one from each theme,
-from most to least preferred:
-
-1. <Theme> — <Paper Title>
-2. <Theme> — <Paper Title>
-...
-9. <Theme> — <Paper Title>
-
-Thanks,
-<Your Name>
-```
+You will be matched to papers based on your submitted preferences on Sep 17.

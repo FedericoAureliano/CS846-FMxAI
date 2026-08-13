@@ -26,7 +26,8 @@ that:
 
 ## Discussion Leads {: #discussion-leads}
 
-Every student will pick and present two papers with two different themes from the reading bank below.
+Students will submit ranked paper preferences using [this form](FORM_URL_HERE) before Sep 16. 
+Discussion lead assignments will be sent out on Sep 17.
 
 ## Projects {: #projects}
 
@@ -36,10 +37,10 @@ in groups of up to three.
 
 The main deliverables (in chronological order) will be:
 
-1. proposal;
-2. mini presentation;
-3. final presentation; and
-4. report.
+1. proposal (due Oct 09);
+2. mini presentation (Nov 03);
+3. final presentation (Dec 08); and
+4. report (due Dec 18).
 
 ### Guidelines for Proposal {: #guidelines-for-proposal}
 
@@ -75,7 +76,7 @@ two corresponding student-led presentations.
 | Date | Description | Read |
 | --- | --- | --- |
 | Sep 15 | Introduction and overview | [1](overview-slides.html) |
-| **Sep 16** | **Reading preferences due** | |
+| **Sep 16** | **[Reading preferences due](FORM_URL_HERE)** | |
 | Sep 22 | Agents and tool-use **ATU** | TBD |
 | Sep 29 | Constraints on LLM outputs **SSC** | TBD |
 | Oct 06 | Learning constraints from data **LCD** | TBD |
