@@ -88,7 +88,7 @@ two corresponding student-led presentations.
 | Nov 10 | Satisfiability (modulo theories) **SAT** | TBD |
 | Nov 17 | Theorem proving **TPR** | TBD |
 | Nov 24 | Superoptimization **SUP** | TBD |
-| Dec 01 | Bonus (**NSP**, **MLV**, or **TST**) | TBD |
+| Dec 01 | Bonus (**NSP**, **MLV**, or **TST**) | [1](https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html), TBD |
 | _Dec 08_ | _Final presentations day_ | |
 | **Dec 18** | **Reports due** | |
 
@@ -117,6 +117,7 @@ dropdown in the table's rightmost column to narrow the list to a single theme.
 | Learning Concise Models from Long Execution Traces | [Jeppu et al., DAC '20](https://arxiv.org/abs/2001.05230) | LSD |
 | Proving Data-Poisoning Robustness in Decision Trees | [Drews et al., PLDI '20](https://dl.acm.org/doi/10.1145/3385412.3385975) | MLV |
 | Generative Language Modeling for Automated Theorem Proving | [Polu and Sutskever, arXiv '20](https://arxiv.org/abs/2009.03393) | TPR |
+| Learning Differentiable Programs with Admissible Neural Heuristics | [Shah et al., NeurIPS '20](https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html) | NSP |
 | MedleySolver: Online SMT Algorithm Selection | [Pimpalkhare et al., SAT '21](https://www.pure.ed.ac.uk/ws/files/248374419/MedleySolver_PIMPALKHARE_DOA05072021_AFV.pdf) | SAT |
 | PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models | [Scholak et al., EMNLP '21](https://aclanthology.org/2021.emnlp-main.779/) | SSC |
 | Beta-CROWN: Efficient Bound Propagation with Per-neuron Split Constraints for Complete and Incomplete Neural Network Robustness Verification | [Wang et al., NeurIPS '21](https://proceedings.neurips.cc/paper/2021/hash/fac7fead96dafceaf80c1daffeae82a4-Abstract.html) | MLV |

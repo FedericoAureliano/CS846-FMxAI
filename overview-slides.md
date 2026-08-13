@@ -62,7 +62,7 @@ Every project must contain new research — a new idea or insight — and an ele
 | Nov 10 | Satisfiability (modulo theories) **SAT** | TBD |
 | Nov 17 | Theorem proving **TPR** | TBD |
 | Nov 24 | Superoptimization **SUP** | TBD |
-| Dec 01 | Bonus (**NSP**, **MLV**, or **TST**) | TBD |
+| Dec 01 | Bonus (**NSP**, **MLV**, or **TST**) | [1](https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html), TBD |
 | _Dec 08_ | _Final presentations day_ | |
 | **Dec 18** | **Reports due** | |
 
@@ -448,6 +448,15 @@ Every project must contain new research — a new idea or insight — and an ele
 ## DeepProbLog: Neural Probabilistic Logic Programming
 
 [Manhaeve et al., NeurIPS '18](https://proceedings.neurips.cc/paper/2018/hash/dc5d637ed5e62c36ecb73b654b05ba2a-Abstract.html)
+
+`NSP`
+
+---
+
+<!-- slide:paper -->
+## Learning Differentiable Programs with Admissible Neural Heuristics
+
+[Shah et al., NeurIPS '20](https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html)
 
 `NSP`
 
