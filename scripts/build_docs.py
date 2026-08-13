@@ -508,7 +508,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 TOPIC_COLORS = {
     "SSC": "blue",
-    "LCD": "green",
+    "LSD": "green",
     "ATU": "orange",
     "SAT": "purple",
     "PRA": "vermillion",
@@ -517,7 +517,6 @@ TOPIC_COLORS = {
     "SUP": "black",
     "TPR": "teal",
     "MLV": "indigo",
-    "PRP": "lime",
     "TST": "magenta",
 }
 

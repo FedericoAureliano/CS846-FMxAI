@@ -53,7 +53,7 @@ Every project must contain new research — a new idea or insight — and an ele
 | **Sep 16** | **[Reading preferences due](FORM_URL_HERE)** | |
 | Sep 22 | Agents and tool-use **ATU** | TBD |
 | Sep 29 | Constraints on LLM outputs **SSC** | TBD |
-| Oct 06 | Learning constraints from data **LCD** | TBD |
+| Oct 06 | Learning specifications from data **LSD** | TBD |
 | **Oct 09** | **Proposals due** | |
 | ~~Oct 13~~ | ~~Reading week~~ | |
 | Oct 20 | Autoformalization **AUF** | TBD |
@@ -62,7 +62,7 @@ Every project must contain new research — a new idea or insight — and an ele
 | Nov 10 | Satisfiability (modulo theories) **SAT** | TBD |
 | Nov 17 | Theorem proving **TPR** | TBD |
 | Nov 24 | Superoptimization **SUP** | TBD |
-| Dec 01 | Bonus (**NSP**, **MLV**, **PRP**, or **TST**) | TBD |
+| Dec 01 | Bonus (**NSP**, **MLV**, or **TST**) | TBD |
 | _Dec 08_ | _Final presentations day_ | |
 | **Dec 18** | **Reports due** | |
 
@@ -94,6 +94,15 @@ Every project must contain new research — a new idea or insight — and an ele
 [Olausson et al., EMNLP '23](https://aclanthology.org/2023.emnlp-main.313.pdf)
 
 `ATU` `AUF`
+
+---
+
+<!-- slide:paper -->
+## Towards Verifiably Safe Tool Use for LLM Agents
+
+[Doshi et al., ICSE-NIER '26](https://dl.acm.org/doi/pdf/10.1145/3786582.3786839)
+
+`ATU`
 
 ---
 
@@ -149,8 +158,8 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:section -->
-# Learning Constraints from Data (Oct 06)
-`LCD`
+# Learning Specifications from Data (Oct 06)
+`LSD`
 
 ---
 
@@ -159,7 +168,7 @@ Every project must contain new research — a new idea or insight — and an ele
 
 [Angluin, I&C '87](https://swt.informatik.uni-freiburg.de/teaching/WS2019-20/AutomataTheory/Learning%20Automata%20%28Caveat%20not%20related%20to%20Machine%20Learning?month:int=4&year:int=2025&orig_query=)
 
-`LCD`
+`LSD`
 
 ---
 
@@ -168,7 +177,7 @@ Every project must contain new research — a new idea or insight — and an ele
 
 [Ammons et al., POPL '02](https://haoxintu.github.io/files/10-Mining%20specifications.pdf)
 
-`LCD`
+`LSD`
 
 ---
 
@@ -177,25 +186,16 @@ Every project must contain new research — a new idea or insight — and an ele
 
 [Jeppu et al., DAC '20](https://arxiv.org/abs/2001.05230)
 
-`LCD`
+`LSD`
 
 ---
 
 <!-- slide:paper -->
 ## Learning Context-Free Grammars for Grammar-Constrained Decoding via Declarative Agentic Programming with Guarantees
 
-[Cheang et al., Arxiv '26](https://arxiv.org/abs/2608.05493)
+[Cheang et al., arXiv '26](https://arxiv.org/abs/2608.05493)
 
-`ATU` `LCD` `AUF`
-
----
-
-<!-- slide:paper -->
-## Let a Neural Network Be Your Invariant
-
-[Giacobbe et al., NeurIPS '25](https://openreview.net/forum?id=qBPb7g1SEa)
-
-`LCD` `PRA`
+`ATU` `LSD` `AUF`
 
 ---
 
@@ -206,11 +206,20 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:paper -->
+## Autoformalization with Large Language Models
+
+[Wu et al., NeurIPS '22](https://arxiv.org/abs/2205.12615)
+
+`AUF`
+
+---
+
+<!-- slide:paper -->
 ## Synthetic Programming Elicitation for Text-to-Code in Very Low-Resource Programming and Formal Languages
 
 [Mora et al., NeurIPS '24](https://arxiv.org/pdf/2406.03636)
 
-`AUF` `SSC` `PRP`
+`AUF` `SSC`
 
 ---
 
@@ -219,7 +228,7 @@ Every project must contain new research — a new idea or insight — and an ele
 
 [Ma et al., ICSE '25](https://dl.acm.org/doi/10.1109/ICSE55347.2025.00129)
 
-`AUF` `LCD`
+`AUF` `LSD`
 
 ---
 
@@ -254,7 +263,7 @@ Every project must contain new research — a new idea or insight — and an ele
 
 [Wu et al., ASE '24](https://dl.acm.org/doi/10.1145/3691620.3695014)
 
-`LCD` `PRA`
+`LSD` `PRA`
 
 ---
 
@@ -262,6 +271,15 @@ Every project must contain new research — a new idea or insight — and an ele
 ## Large Language Model Powered Symbolic Execution
 
 [Li et al., OOPSLA '25](https://doi.org/10.1145/3763163)
+
+`PRA`
+
+---
+
+<!-- slide:paper -->
+## Let a Neural Network Be Your Invariant
+
+[Giacobbe et al., NeurIPS '25](https://openreview.net/forum?id=qBPb7g1SEa)
 
 `PRA`
 
@@ -352,9 +370,18 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:paper -->
+## Baldur: Whole-Proof Generation and Repair with Large Language Models
+
+[First et al., FSE '23](https://dl.acm.org/doi/10.1145/3611643.3616243)
+
+`TPR`
+
+---
+
+<!-- slide:paper -->
 ## Seed-Prover: Deep and Broad Reasoning for Automated Theorem Proving
 
-[ByteDance, Arxiv '25](https://arxiv.org/pdf/2507.23726)
+[ByteDance, arXiv '25](https://arxiv.org/pdf/2507.23726)
 
 `TPR`
 
@@ -379,6 +406,15 @@ Every project must contain new research — a new idea or insight — and an ele
 ## Learning to Superoptimize Programs
 
 [Bunel et al., ICLR '17](https://arxiv.org/abs/1612.01094)
+
+`SUP`
+
+---
+
+<!-- slide:paper -->
+## Faster Sorting Algorithms Discovered Using Deep Reinforcement Learning
+
+[Mankowitz et al., Nature '23](https://www.nature.com/articles/s41586-023-06004-9)
 
 `SUP`
 
@@ -447,21 +483,6 @@ Every project must contain new research — a new idea or insight — and an ele
 [Isac et al., FMCAD '22](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10026587&casa_token=6jy7_pSgbOwAAAAA:HNny8NVwdhsCPew67iMK2jLHdzqnTfss8SOPuMsrDubYtSQ_Y8IiU8myHghTs7t7MO1ymxzL9Q)
 
 `MLV`
-
----
-
-<!-- slide:section -->
-# Program Repair (Dec 01)
-`PRP`
-
----
-
-<!-- slide:paper -->
-## Automated Repair of Programs from Large Language Models
-
-[Fan et al., ICSE '23](https://dl.acm.org/doi/10.1109/ICSE48619.2023.00128)
-
-`PRP`
 
 ---
 
