@@ -183,6 +183,7 @@ body {
   border: 1px solid #000;
   background: var(--bg);
   overflow: hidden;
+  touch-action: none;
 }
 
 #deck {
@@ -639,6 +640,32 @@ JS = """
       prevLandmark();
     }
   });
+
+  // Swipe navigation: horizontal swipes step through slides like the left/
+  // right arrow keys, vertical swipes jump between sections like up/down.
+  var SWIPE_THRESHOLD = 50;
+  var touchStartX = 0;
+  var touchStartY = 0;
+
+  document.addEventListener('touchstart', function (e) {
+    var t = e.changedTouches[0];
+    touchStartX = t.clientX;
+    touchStartY = t.clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', function (e) {
+    var t = e.changedTouches[0];
+    var dx = t.clientX - touchStartX;
+    var dy = t.clientY - touchStartY;
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+      if (dx <= -SWIPE_THRESHOLD) next();
+      else if (dx >= SWIPE_THRESHOLD) prev();
+    } else {
+      if (dy <= -SWIPE_THRESHOLD) nextLandmark();
+      else if (dy >= SWIPE_THRESHOLD) prevLandmark();
+    }
+  }, { passive: true });
 
   var hash = parseInt(location.hash.replace('#', ''), 10);
   var start = Number.isInteger(hash) && hash >= 1 && hash <= total ? hash - 1 : 0;
