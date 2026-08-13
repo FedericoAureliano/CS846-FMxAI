@@ -387,6 +387,15 @@ Every project must contain new research — a new idea or insight — and an ele
 
 ---
 
+<!-- slide:paper -->
+## Postmortem for Kernel Soundness Bug #14576
+
+[de Moura, Blog '26](https://leodemoura.github.io/blog/2026-8-1-postmortem-for-kernel-soundness-bug-14576/)
+
+`TPR`
+
+---
+
 <!-- slide:section -->
 # Superoptimization (Nov 24)
 `SUP`
