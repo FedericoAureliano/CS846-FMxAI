@@ -131,15 +131,6 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:paper -->
-## Synthetic Programming Elicitation for Text-to-Code in Very Low-Resource Programming and Formal Languages
-
-[Mora et al., NeurIPS '24](https://arxiv.org/pdf/2406.03636)
-
-`AUF` `SSC` `PRP`
-
----
-
-<!-- slide:paper -->
 ## Constrained Adaptive Rejection Sampling
 
 [Parys et al., ICML '26](https://arxiv.org/pdf/2510.01902)
@@ -200,24 +191,6 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:paper -->
-## LLM Meets Bounded Model Checking: Neuro-symbolic Loop Invariant Inference
-
-[Wu et al., ASE '24](https://dl.acm.org/doi/10.1145/3691620.3695014)
-
-`LCD` `PRA`
-
----
-
-<!-- slide:paper -->
-## Specgen: Automated Generation Of Formal Program Specifications Via Large Language Models
-
-[Ma et al., ICSE '25](https://dl.acm.org/doi/10.1109/ICSE55347.2025.00129)
-
-`AUF` `LCD`
-
----
-
-<!-- slide:paper -->
 ## Let a Neural Network Be Your Invariant
 
 [Giacobbe et al., NeurIPS '25](https://openreview.net/forum?id=qBPb7g1SEa)
@@ -229,6 +202,24 @@ Every project must contain new research — a new idea or insight — and an ele
 <!-- slide:section -->
 # Autoformalization (Oct 20)
 `AUF`
+
+---
+
+<!-- slide:paper -->
+## Synthetic Programming Elicitation for Text-to-Code in Very Low-Resource Programming and Formal Languages
+
+[Mora et al., NeurIPS '24](https://arxiv.org/pdf/2406.03636)
+
+`AUF` `SSC` `PRP`
+
+---
+
+<!-- slide:paper -->
+## Specgen: Automated Generation Of Formal Program Specifications Via Large Language Models
+
+[Ma et al., ICSE '25](https://dl.acm.org/doi/10.1109/ICSE55347.2025.00129)
+
+`AUF` `LCD`
 
 ---
 
@@ -259,6 +250,15 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:paper -->
+## LLM Meets Bounded Model Checking: Neuro-symbolic Loop Invariant Inference
+
+[Wu et al., ASE '24](https://dl.acm.org/doi/10.1145/3691620.3695014)
+
+`LCD` `PRA`
+
+---
+
+<!-- slide:paper -->
 ## Large Language Model Powered Symbolic Execution
 
 [Li et al., OOPSLA '25](https://doi.org/10.1145/3763163)
@@ -277,7 +277,7 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:section -->
-# Satisfiability (Modulo Theories, Nov 10)
+# Satisfiability (Modulo Theories) (Nov 10)
 `SAT`
 
 ---
@@ -292,18 +292,9 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:paper -->
-## Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks
+## MedleySolver: Online SMT Algorithm Selection
 
-[Katz et al., CAV '17](https://link.springer.com/chapter/10.1007/978-3-319-63387-9_5)
-
-`MLV` `SAT`
-
----
-
-<!-- slide:paper -->
-## Learning to Solve SMT Formulas
-
-[Balunović et al., NeurIPS '18](https://www.sri.inf.ethz.ch/publications/balunovic2018learnsmt)
+[Pimpalkhare et al., SAT '21](https://www.pure.ed.ac.uk/ws/files/248374419/MedleySolver_PIMPALKHARE_DOA05072021_AFV.pdf)
 
 `SAT`
 
@@ -319,9 +310,9 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:paper -->
-## MedleySolver: Online SMT Algorithm Selection
+## Learning to Solve SMT Formulas
 
-[Pimpalkhare et al., SAT '21](https://www.pure.ed.ac.uk/ws/files/248374419/MedleySolver_PIMPALKHARE_DOA05072021_AFV.pdf)
+[Balunović et al., NeurIPS '18](https://www.sri.inf.ethz.ch/publications/balunovic2018learnsmt)
 
 `SAT`
 
@@ -394,7 +385,7 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:section -->
-# Neuro-symbolic Programming (Dec 01, Bonus)
+# Neuro-symbolic Programming (Dec 01)
 `NSP`
 
 ---
@@ -418,8 +409,17 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:section -->
-# Machine-Learning Verification (Dec 01, Bonus)
+# Machine-Learning Verification (Dec 01)
 `MLV`
+
+---
+
+<!-- slide:paper -->
+## Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks
+
+[Katz et al., CAV '17](https://link.springer.com/chapter/10.1007/978-3-319-63387-9_5)
+
+`MLV` `SAT`
 
 ---
 
@@ -451,7 +451,7 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:section -->
-# Program Repair (Dec 01, Bonus)
+# Program Repair (Dec 01)
 `PRP`
 
 ---
@@ -466,7 +466,7 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:section -->
-# Testing (Dec 01, Bonus)
+# Testing (Dec 01)
 `TST`
 
 ---
