@@ -642,7 +642,7 @@ JS = """
   });
 
   // Swipe navigation: horizontal swipes step through slides like the left/
-  // right arrow keys, vertical swipes jump between sections like up/down.
+  // right arrow keys.
   var SWIPE_THRESHOLD = 50;
   var touchStartX = 0;
   var touchStartY = 0;
@@ -661,9 +661,6 @@ JS = """
     if (Math.abs(dx) > Math.abs(dy)) {
       if (dx <= -SWIPE_THRESHOLD) next();
       else if (dx >= SWIPE_THRESHOLD) prev();
-    } else {
-      if (dy <= -SWIPE_THRESHOLD) nextLandmark();
-      else if (dy >= SWIPE_THRESHOLD) prevLandmark();
     }
   }, { passive: true });
 
