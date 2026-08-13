@@ -145,3 +145,4 @@ dropdown in the table's rightmost column to narrow the list to a single theme.
 | Constrained Adaptive Rejection Sampling | [Parys et al., ICML '26](https://arxiv.org/pdf/2510.01902) | SSC |
 | ChopChop: A Programmable Framework for Semantically Constraining the Output of Language Models | [Nagy et al., POPL '26](https://arxiv.org/pdf/2509.00360) | SSC |
 | Postmortem for Kernel Soundness Bug #14576 | [de Moura, Blog '26](https://leodemoura.github.io/blog/2026-8-1-postmortem-for-kernel-soundness-bug-14576/) | TPR |
+| Formal Verification for Agent Orchestration | [Phoenix, Blog '26](https://understandingdata.com/posts/formal-verification-for-agent-orchestration/) | ATU |

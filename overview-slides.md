@@ -106,6 +106,15 @@ Every project must contain new research — a new idea or insight — and an ele
 
 ---
 
+<!-- slide:paper -->
+## Formal Verification for Agent Orchestration
+
+[Phoenix, Blog '26](https://understandingdata.com/posts/formal-verification-for-agent-orchestration/)
+
+`ATU`
+
+---
+
 <!-- slide:section -->
 # Constraints on LLM Outputs (Sep 29)
 `SSC`
