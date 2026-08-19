@@ -35,7 +35,7 @@ providing constructive feedback to other students, and doing your best on all
 assessments.
 
 This class is not a competition. There is no curve or anything resembling a
-curve. The goal is for everyone to learn and create something new and your
+curve. The goal is for everyone to learn and create something new, and your
 behavior should reflect that. In particular, your actions should never make
 another student feel stereotyped, unwelcome, uncomfortable, or unsafe. Not only
 would these actions be wrong, but there is a great deal of research that shows
@@ -46,8 +46,23 @@ and respected.
 
 ## Discussion Leads {: #discussion-leads}
 
-Students will submit ranked discussion preferences using [this form](FORM_URL_HERE) by
-end of day on Sep 15. Discussion lead assignments will be sent out on Sep 16.
+Students will submit discussion lead preferences using [this form](FORM_URL_HERE) by
+Sep 15. Discussion lead assignments will be sent out on Sep 16. 
+
+There will be three kinds of readings: research papers, textbooks, and blog
+posts. For research papers, discussion leads will present a review with four
+components:
+
+- research context (~5 minutes);
+- paper summary (~15 minutes);
+- strengths and weaknesses (~5 minutes); and
+- what has changed or will change (~5 minutes).
+
+For textbooks, discussion leads will give a 30-minute tutorial. The goal is to
+gain an in-depth understanding of foundational concepts as a class. Students
+can follow the textbook content as closely as needed. For blog posts, students
+will lead a 30-minute deep-dive into the blog content. This can include slides,
+a code demo, or any other pedagogical activities.
 
 ## Projects {: #projects}
 
@@ -78,7 +93,7 @@ should be at most 10 minutes long.
 
 The final presentation should build on the mini presentation. It should contain
 an updated problem definition, an updated literature survey, a description of
-the appraoch, and final results. The final presentation should be at most 20
+the approach, and final results. The final presentation should be at most 20
 minutes long.
 
 ### Guidelines for Report {: #guidelines-for-report}
