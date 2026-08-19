@@ -452,7 +452,7 @@ FRONTMATTER_RE = re.compile(r"\A---\n(.*?)\n---\n+", re.DOTALL)
 STRIKETHROUGH_RE = re.compile(r"~~(.+?)~~")
 EM_DASH_RE = re.compile(r"(?<=\S)---(?=\S)")
 ROW_RE = re.compile(r"<tr>\n(<td>.*?</td>\n<td>.*?</td>\n)<td>([^<]+)</td>\n</tr>", re.DOTALL)
-TOPICS_HEADER_RE = re.compile(r"<th>Topics</th>")
+TOPICS_HEADER_RE = re.compile(r"<th>Topic</th>")
 LEGEND_ITEM_RE = re.compile(r"<strong>(.+?)</strong>")
 SCHEDULE_TABLE_RE = re.compile(r"<table>\n(?=<thead>\n<tr>\n<th>Date</th>)")
 HEADING_RE = re.compile(r'<h([23]) id="([\w-]+)">(.*?)</h\1>')
@@ -511,13 +511,11 @@ TOPIC_COLORS = {
     "LSD": "green",
     "ATU": "orange",
     "SAT": "purple",
-    "PRA": "vermillion",
     "AUF": "skyblue",
     "NSP": "yellow",
     "SUP": "black",
     "TPR": "teal",
-    "MLV": "indigo",
-    "TST": "magenta",
+    "VER": "indigo",
 }
 
 
@@ -527,7 +525,7 @@ def wrap_tag_cells(body: str) -> str:
     stamp each row with a data-topics attribute so the header dropdown
     (see build_topic_filter) can filter rows client-side.
 
-    Rows are always three plain <td>...</td> cells (Title, Link, Topics)
+    Rows are always three plain <td>...</td> cells (Title, Link, Topic)
     followed by </tr>, so a full row can be matched and its topic cell
     (the third) rewritten without touching the other two. A cell may hold
     several comma-separated topics, each becoming its own pill.
@@ -550,7 +548,7 @@ def wrap_tag_cells(body: str) -> str:
 
 
 def build_topic_filter(body: str) -> str:
-    """Replace the "Topics" table header with a <select> that filters
+    """Replace the "Topic" table header with a <select> that filters
     rows by their data-topics attribute (see wrap_tag_cells)."""
 
     options = ['<option value="">All</option>']
@@ -668,7 +666,7 @@ def main() -> None:
     # Scoped to the Reading Bank table only: wrap_tag_cells' row regex isn't
     # anchored to a single <tr>, so running it over the whole body risks
     # matching across rows of other tables (e.g. the Schedule table).
-    pre, marker, post = body.partition('<h2 id="reading-bank">Reading Bank</h2>')
+    pre, marker, post = body.partition('<h3 id="reading-bank">Reading Bank</h3>')
     post = wrap_tag_cells(post)
     post = build_topic_filter(post)
     body = pre + marker + post

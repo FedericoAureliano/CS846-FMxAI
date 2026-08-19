@@ -11,23 +11,43 @@ location: DC 2585
 
 # CS846: FMxAI
 
-This course surveys important ideas and literature at the intersection of formal
-methods and artificial intelligence.
+The goal of this course is to help every student create a novel piece of
+research at the intersection of formal methods and artificial intelligence. To
+do this, we will discuss important ideas in this space and collaborate to
+refine each other's work.
 
 ## Grading {: #grading}
 
-Our meetings will be centered around paper discussions. Attendance, reading of
-assigned papers, and participation are essential. The grading scheme reflects
-that:
+Our meetings will be centered around paper discussions and in-class activities.
+Attendance, reading of assigned papers, and participation are essential. The
+grading scheme reflects that:
 
 - 20% participation;
 - 30% discussion leads; and
 - 50% project.
 
+## Participation {: #participation}
+
+The best way to achieve the goal of the course is through active participation.
+That means completing the assigned readings before class, engaging in
+discussions during class, helping other students understand the material,
+providing constructive feedback to other students, and doing your best on all
+assessments.
+
+This class is not a competition. There is no curve or anything resembling a
+curve. The goal is for everyone to learn and create something new and your
+behavior should reflect that. In particular, your actions should never make
+another student feel stereotyped, unwelcome, uncomfortable, or unsafe. Not only
+would these actions be wrong, but there is a great deal of research that shows
+how they damage students' course performance (e.g., see "stereotype threat").
+Please take care, so we can create a class in which all students feel supported
+and respected.
+
+
 ## Discussion Leads {: #discussion-leads}
 
-Students will submit ranked paper preferences using [this form](FORM_URL_HERE) before Sep 16. 
-Discussion lead assignments will be sent out on Sep 17.
+Students will submit ranked discussion preferences using [this form](FORM_URL_HERE) by
+end of day on Sep 15. Discussion lead assignments will be sent out on Sep 16.
 
 ## Projects {: #projects}
 
@@ -44,8 +64,9 @@ The main deliverables (in chronological order) will be:
 
 ### Guidelines for Proposal {: #guidelines-for-proposal}
 
-The proposal must contain a problem definition and a brief literature survey.
-It should be at most one page long and use a reasonable format (margins, font, etc.).
+The proposal must contain a problem definition, a literature survey, and an
+intuition for a possible solution. It should be at most one page long and use a
+reasonable format (margins, font, etc.).
 
 ### Guidelines for Mini Presentation {: #guidelines-for-mini-presentation}
 
@@ -56,94 +77,86 @@ should be at most 10 minutes long.
 ### Guidelines for Final Presentation {: #guidelines-for-final-presentation}
 
 The final presentation should build on the mini presentation. It should contain
-an updated problem definition, an updated literature survey, and final results.
-The final presentation should be at most 20 minutes long.
+an updated problem definition, an updated literature survey, a description of
+the appraoch, and final results. The final presentation should be at most 20
+minutes long.
 
 ### Guidelines for Report {: #guidelines-for-report}
 
 The report should be a conference paper-style write-up.
 
-## Participation {: #participation}
-
-Students are expected to complete the assigned readings before class and to
-engage respectfully with their peers and their work.
-
 ## Schedule {: #schedule}
 
-On paper discussion days, there will be two assigned readings and
-two corresponding student-led presentations.
+On paper discussion days, there will be at least two assigned readings and
+corresponding student-led presentations.
 
 | Date | Description | Read |
 | --- | --- | --- |
 | Sep 15 | Introduction and overview | [1](overview-slides.html) |
-| **Sep 16** | **[Reading preferences due](FORM_URL_HERE)** | |
-| Sep 22 | Agents and tool-use **ATU** | TBD |
-| Sep 29 | Constraints on LLM outputs **SSC** | TBD |
-| Oct 06 | Learning specifications from data **LSD** | TBD |
+| **Sep 15** | **[Discussion preferences due](FORM_URL_HERE)** | |
+| Sep 22 | Agents and tool-use **ATU** | [1](https://rlhfbook.com/c/13-tools), ? |
+| Sep 29 | Constraints on LLM outputs **SSC** | [1](https://huggingface.co/blog/how-to-generate), ? |
+| Oct 06 | Learning specifications from data **LSD** | ?, ? |
 | **Oct 09** | **Proposals due** | |
 | ~~Oct 13~~ | ~~Reading week~~ | |
-| Oct 20 | Autoformalization **AUF** | TBD |
-| Oct 27 | Program analysis **PRA** | TBD |
+| Oct 20 | Autoformalization **AUF** | ?, ? |
+| Oct 27 | Satisfiability (modulo theories) **SAT** | [1](https://verifieddeeplearning.com/nnv_book.pdf), ? |
 | _Nov 03_ | _Mini presentations day_ | |
-| Nov 10 | Satisfiability (modulo theories) **SAT** | TBD |
-| Nov 17 | Theorem proving **TPR** | TBD |
-| Nov 24 | Superoptimization **SUP** | TBD |
-| Dec 01 | Bonus (**NSP**, **MLV**, or **TST**) | [1](https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html), TBD |
+| Nov 10 | Theorem proving **TPR** | ?, ? |
+| Nov 17 | Verification of programs **VER** | ?, ? |
+| Nov 24 | Superoptimization **SUP** | ?, ? |
+| Dec 01 | Bonus | [1](https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html), ? |
 | _Dec 08_ | _Final presentations day_ | |
 | **Dec 18** | **Reports due** | |
 
-## Reading Bank {: #reading-bank}
+### Reading Bank {: #reading-bank}
 
-The readings below span eleven themes: syntactic and semantic constraints on
-LLM outputs **SSC**; learning specifications from data **LSD**; agents and
-tool-use **ATU**; satisfiability and satisfiability modulo theories **SAT**;
-program analysis **PRA**; autoformalization **AUF**; neuro-symbolic programming
-**NSP**; superoptimization **SUP**; theorem proving **TPR**; machine-learning
-verification **MLV**; and testing **TST**. Use the
-dropdown in the table's rightmost column to narrow the list to a single theme.
+The readings below span nine themes: agents and tool-use **ATU**; syntactic
+and semantic constraints on LLM outputs **SSC**; learning specifications
+from data **LSD**; autoformalization **AUF**; satisfiability (modulo
+theories) **SAT**; theorem proving **TPR**;
+verification of programs **VER**; superoptimization **SUP**; and
+neuro-symbolic programming **NSP**. Use the dropdown in the table's
+rightmost column to narrow the list to a single theme.
 
-| Title | Link | Topics |
+| Title | Link | Topic |
 | --- | --- | --- |
-| Learning Regular Sets from Queries and Counterexamples | [Angluin, I&C '87](https://swt.informatik.uni-freiburg.de/teaching/WS2019-20/AutomataTheory/Learning%20Automata%20%28Caveat%20not%20related%20to%20Machine%20Learning?month:int=4&year:int=2025&orig_query=) | LSD |
-| Mining Specifications | [Ammons et al., POPL '02](https://haoxintu.github.io/files/10-Mining%20specifications.pdf) | LSD |
-| SATzilla: Portfolio-based Algorithm Selection for SAT | [Xu et al., JAIR '08](https://arxiv.org/abs/1111.2249) | SAT |
-| Stochastic Superoptimization | [Schkufza et al., ASPLOS '13](https://dl.acm.org/doi/10.1145/2490301.2451150) | SUP |
-| Learning to Superoptimize Programs | [Bunel et al., ICLR '17](https://arxiv.org/abs/1612.01094) | SUP |
-| Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks | [Katz et al., CAV '17](https://link.springer.com/chapter/10.1007/978-3-319-63387-9_5) | MLV, SAT |
-| Learning to Solve SMT Formulas | [Balunović et al., NeurIPS '18](https://www.sri.inf.ethz.ch/publications/balunovic2018learnsmt) | SAT |
-| DeepProbLog: Neural Probabilistic Logic Programming | [Manhaeve et al., NeurIPS '18](https://proceedings.neurips.cc/paper/2018/hash/dc5d637ed5e62c36ecb73b654b05ba2a-Abstract.html) | NSP |
-| Guiding High-Performance SAT Solvers with Unsat-Core Predictions | [Selsam and Bjørner, SAT '19](https://link.springer.com/chapter/10.1007/978-3-030-24258-9_24) | SAT |
-| How To Generate Text: Using Different Decoding Methods For Language Generation With Transformers | [von Platen, Blog '20](https://huggingface.co/blog/how-to-generate) | SSC |
-| Learning Concise Models from Long Execution Traces | [Jeppu et al., DAC '20](https://arxiv.org/abs/2001.05230) | LSD |
-| Proving Data-Poisoning Robustness in Decision Trees | [Drews et al., PLDI '20](https://dl.acm.org/doi/10.1145/3385412.3385975) | MLV |
-| Generative Language Modeling for Automated Theorem Proving | [Polu and Sutskever, arXiv '20](https://arxiv.org/abs/2009.03393) | TPR |
-| Learning Differentiable Programs with Admissible Neural Heuristics | [Shah et al., NeurIPS '20](https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html) | NSP |
-| MedleySolver: Online SMT Algorithm Selection | [Pimpalkhare et al., SAT '21](https://www.pure.ed.ac.uk/ws/files/248374419/MedleySolver_PIMPALKHARE_DOA05072021_AFV.pdf) | SAT |
-| PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models | [Scholak et al., EMNLP '21](https://aclanthology.org/2021.emnlp-main.779/) | SSC |
-| Beta-CROWN: Efficient Bound Propagation with Per-neuron Split Constraints for Complete and Incomplete Neural Network Robustness Verification | [Wang et al., NeurIPS '21](https://proceedings.neurips.cc/paper/2021/hash/fac7fead96dafceaf80c1daffeae82a4-Abstract.html) | MLV |
-| Neural Network Verification with Proof Production | [Isac et al., FMCAD '22](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10026587&casa_token=6jy7_pSgbOwAAAAA:HNny8NVwdhsCPew67iMK2jLHdzqnTfss8SOPuMsrDubYtSQ_Y8IiU8myHghTs7t7MO1ymxzL9Q) | MLV |
-| Autoformalization with Large Language Models | [Wu et al., NeurIPS '22](https://arxiv.org/abs/2205.12615) | AUF |
-| HyperTree Proof Search for Neural Theorem Proving | [Lample et al., NeurIPS '22](https://proceedings.neurips.cc/paper_files/paper/2022/hash/a8901c5e85fb8e1823bbf0f755053672-Abstract-Conference.html) | TPR |
-| LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers | [Olausson et al., EMNLP '23](https://aclanthology.org/2023.emnlp-main.313.pdf) | ATU, AUF |
-| Scallop: A Language for Neurosymbolic Programming | [Li et al., PLDI '23](https://dl.acm.org/doi/pdf/10.1145/3591280) | NSP |
-| Grammar Prompting for Domain-Specific Language Generation with Large Language Models | [Wang et al., NeurIPS '23](https://arxiv.org/pdf/2305.19234) | SSC |
-| Large Language Models Are Zero-Shot Fuzzers: Fuzzing Deep-Learning Libraries via Large Language Models | [Deng et al., ISSTA '23](https://dl.acm.org/doi/abs/10.1145/3597926.3598067) | TST |
-| CODAMOSA: Escaping Coverage Plateaus in Test Generation with Pre-trained Large Language Models | [Lemieux et al., ICSE '23](https://www.carolemieux.com/codamosa_icse23.pdf) | TST |
-| Baldur: Whole-Proof Generation and Repair with Large Language Models | [First et al., FSE '23](https://dl.acm.org/doi/10.1145/3611643.3616243) | TPR |
-| Faster Sorting Algorithms Discovered Using Deep Reinforcement Learning | [Mankowitz et al., Nature '23](https://www.nature.com/articles/s41586-023-06004-9) | SUP |
-| Synthetic Programming Elicitation for Text-to-Code in Very Low-Resource Programming and Formal Languages | [Mora et al., NeurIPS '24](https://arxiv.org/pdf/2406.03636) | AUF, SSC |
-| LLM Meets Bounded Model Checking: Neuro-symbolic Loop Invariant Inference | [Wu et al., ASE '24](https://dl.acm.org/doi/10.1145/3691620.3695014) | LSD, PRA |
-| Specgen: Automated Generation Of Formal Program Specifications Via Large Language Models | [Ma et al., ICSE '25](https://dl.acm.org/doi/10.1109/ICSE55347.2025.00129) | AUF, LSD |
-| Let a Neural Network Be Your Invariant | [Giacobbe et al., NeurIPS '25](https://openreview.net/forum?id=qBPb7g1SEa) | PRA |
-| Large Language Model Powered Symbolic Execution | [Li et al., OOPSLA '25](https://doi.org/10.1145/3763163) | PRA |
-| Seed-Prover: Deep and Broad Reasoning for Automated Theorem Proving | [ByteDance, arXiv '25](https://arxiv.org/pdf/2507.23726) | TPR |
-| Learning Context-Free Grammars for Grammar-Constrained Decoding via Declarative Agentic Programming with Guarantees | [Cheang et al., arXiv '26](https://arxiv.org/abs/2608.05493) | ATU, LSD, AUF |
 | Reinforcement Learning from Human Feedback, Chapter 13 | [Lambert, Textbook '26](https://rlhfbook.com/c/13-tools) | ATU |
+| LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers | [Olausson et al., EMNLP '23](https://aclanthology.org/2023.emnlp-main.313.pdf) | ATU |
 | Towards Verifiably Safe Tool Use for LLM Agents | [Doshi et al., ICSE-NIER '26](https://dl.acm.org/doi/pdf/10.1145/3786582.3786839) | ATU |
-| A Neurosymbolic Approach to Natural Language Formalization and Verification | [An et al., CAV '26](https://link.springer.com/chapter/10.1007/978-3-032-32526-6_28) | AUF |
-| Agentic Verification of Software Systems | [Tu et al., FSE '26](https://arxiv.org/abs/2511.17330) | PRA |
-| Domain-Specific Hyperspecialization (For SAT) | [Green, Blog '26](https://c.mov/lymphosat/) | SAT |
+| How To Generate Text: Using Different Decoding Methods For Language Generation With Transformers | [von Platen, Blog '20](https://huggingface.co/blog/how-to-generate) | SSC |
 | Constrained Adaptive Rejection Sampling | [Parys et al., ICML '26](https://arxiv.org/pdf/2510.01902) | SSC |
 | ChopChop: A Programmable Framework for Semantically Constraining the Output of Language Models | [Nagy et al., POPL '26](https://arxiv.org/pdf/2509.00360) | SSC |
+| Mining Specifications | [Ammons et al., POPL '02](https://haoxintu.github.io/files/10-Mining%20specifications.pdf) | LSD |
+| Learning Concise Models from Long Execution Traces | [Jeppu et al., DAC '20](https://arxiv.org/abs/2001.05230) | LSD |
+| Learning Context-Free Grammars for Grammar-Constrained Decoding via Declarative Agentic Programming with Guarantees | [Cheang et al., arXiv '26](https://arxiv.org/abs/2608.05493) | LSD |
+| Synthetic Programming Elicitation for Text-to-Code in Very Low-Resource Programming and Formal Languages | [Mora et al., NeurIPS '24](https://arxiv.org/pdf/2406.03636) | AUF |
+| A Neurosymbolic Approach to Natural Language Formalization and Verification | [An et al., CAV '26](https://link.springer.com/chapter/10.1007/978-3-032-32526-6_28) | AUF |
+| Introduction to Neural Network Verification, Chapters 4, 6 (7 optional) | [Albarghouthi, Textbook '26](https://verifieddeeplearning.com/nnv_book.pdf) | SAT |
+| SATzilla: Portfolio-based Algorithm Selection for SAT | [Xu et al., JAIR '08](https://arxiv.org/abs/1111.2249) | SAT |
+| Learning to Solve SMT Formulas | [Balunović et al., NeurIPS '18](https://www.sri.inf.ethz.ch/publications/balunovic2018learnsmt) | SAT |
+| Guiding High-Performance SAT Solvers with Unsat-Core Predictions | [Selsam and Bjørner, SAT '19](https://link.springer.com/chapter/10.1007/978-3-030-24258-9_24) | SAT |
+| MedleySolver: Online SMT Algorithm Selection | [Pimpalkhare et al., SAT '21](https://www.pure.ed.ac.uk/ws/files/248374419/MedleySolver_PIMPALKHARE_DOA05072021_AFV.pdf) | SAT |
+| Domain-Specific Hyperspecialization (For SAT) | [Green, Blog '26](https://c.mov/lymphosat/) | SAT |
+| Generative Language Modeling for Automated Theorem Proving | [Polu and Sutskever, arXiv '20](https://arxiv.org/abs/2009.03393) | TPR |
 | Postmortem for Kernel Soundness Bug #14576 | [de Moura, Blog '26](https://leodemoura.github.io/blog/2026-8-1-postmortem-for-kernel-soundness-bug-14576/) | TPR |
-| Formal Verification for Agent Orchestration | [Phoenix, Blog '26](https://understandingdata.com/posts/formal-verification-for-agent-orchestration/) | ATU |
+| Proving Data-Poisoning Robustness in Decision Trees | [Drews et al., PLDI '20](https://dl.acm.org/doi/10.1145/3385412.3385975) | VER |
+| Beta-CROWN: Efficient Bound Propagation with Per-neuron Split Constraints for Complete and Incomplete Neural Network Robustness Verification | [Wang et al., NeurIPS '21](https://proceedings.neurips.cc/paper/2021/hash/fac7fead96dafceaf80c1daffeae82a4-Abstract.html) | VER |
+| Let a Neural Network Be Your Invariant | [Giacobbe et al., NeurIPS '25](https://openreview.net/forum?id=qBPb7g1SEa) | VER |
+| Large Language Model Powered Symbolic Execution | [Li et al., OOPSLA '25](https://doi.org/10.1145/3763163) | VER |
+| Agentic Verification of Software Systems | [Tu et al., FSE '26](https://arxiv.org/abs/2511.17330) | VER |
+| Introduction to Neural Network Verification, Chapters 1, 2, 3, 5 | [Albarghouthi, Textbook '26](https://verifieddeeplearning.com/nnv_book.pdf) | VER |
+| Stochastic Superoptimization | [Schkufza et al., ASPLOS '13](https://dl.acm.org/doi/10.1145/2490301.2451150) | SUP |
+| Faster Sorting Algorithms Discovered Using Deep Reinforcement Learning | [Mankowitz et al., Nature '23](https://www.nature.com/articles/s41586-023-06004-9) | SUP |
+| Learning Differentiable Programs with Admissible Neural Heuristics | [Shah et al., NeurIPS '20](https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html) | NSP |
+
+
+## Accommodations {: #accommodations}
+
+The course is designed to help every student create a novel piece of research.
+If you find that a change is needed, please come talk to me so that we can work
+together to achieve the goal of the course through alternate means. One of the
+best ways to work together is to talk about potential issues and solutions as
+early as possible. For example, if you already know that you would benefit from
+accommodations, please meet with me so we can develop an implementation plan
+together.

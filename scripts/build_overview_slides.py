@@ -50,13 +50,11 @@ TOPIC_COLORS = {
     "LSD": "green",
     "ATU": "orange",
     "SAT": "purple",
-    "PRA": "vermillion",
     "AUF": "skyblue",
     "NSP": "yellow",
     "SUP": "black",
     "TPR": "teal",
-    "MLV": "indigo",
-    "TST": "magenta",
+    "VER": "indigo",
 }
 
 # Matches a theme code bolded in markdown (e.g. "**SAT**") once rendered to
@@ -474,6 +472,17 @@ body {
 .tag.c-lime { background: color-mix(in srgb, var(--color-lime) 16%, white); }
 .tag.c-magenta { background: color-mix(in srgb, var(--color-magenta) 16%, white); }
 
+.confirmed-badge {
+  position: absolute;
+  top: 2cqh;
+  right: 2.5cqw;
+  font-size: clamp(1.8rem, 4.5cqw, 3.2rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-black);
+  z-index: 5;
+}
+
 .slide-paper .body {
   flex: 1 1 auto;
   min-height: 0;
@@ -690,6 +699,9 @@ def render_tags(codes: list[str]) -> str:
     return f'<div class="tag-group">{spans}</div>'
 
 
+CONFIRMED_BADGE = '<div class="confirmed-badge" title="Confirmed" aria-label="Confirmed">&#10003;</div>'
+
+
 def render_meta_row(meta: dict[str, str]) -> str:
     parts = []
     instructor = meta.get("instructor")
@@ -697,7 +709,7 @@ def render_meta_row(meta: dict[str, str]) -> str:
         instructor_url = meta.get("instructor_url")
         parts.append(f'<a href="{instructor_url}">{instructor}</a>' if instructor_url else instructor)
     parts.extend(
-        meta[key] for key in ("course", "university", "term", "schedule", "location") if meta.get(key)
+        meta[key] for key in ("university", "term", "schedule", "location") if meta.get(key)
     )
     return f'<p class="meta">{" &middot; ".join(parts)}</p>' if parts else ""
 
@@ -763,12 +775,15 @@ def render_paper_slide(body: str) -> str:
 
     tags_match = TAGS_LINE_RE.search(body)
     codes = TAG_RE.findall(tags_match.group(1)) if tags_match else []
+    confirmed = "CONFIRMED" in codes
+    codes = [c for c in codes if c != "CONFIRMED"]
 
     rest_start = tags_match.end() if tags_match else (link.end() if link else (h2.end() if h2 else 0))
     rest = body[rest_start:].strip()
 
+    badge = CONFIRMED_BADGE if confirmed else ""
     head = f'<div class="paper-head"><h2>{title}</h2>{citation}{render_tags(codes)}</div>'
-    return f'{head}{render_markdown_body(rest)}'
+    return f'{badge}{head}{render_markdown_body(rest)}'
 
 
 def build_slides(text: str, meta: dict[str, str]) -> str:

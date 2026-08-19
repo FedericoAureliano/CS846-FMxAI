@@ -386,6 +386,17 @@ body {
 .tag.c-lime { background: color-mix(in srgb, var(--color-lime) 16%, white); }
 .tag.c-magenta { background: color-mix(in srgb, var(--color-magenta) 16%, white); }
 
+.confirmed-badge {
+  position: absolute;
+  top: 2cqh;
+  right: 2.5cqw;
+  font-size: clamp(1.8rem, 4.5cqw, 3.2rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-black);
+  z-index: 5;
+}
+
 .slide-paper .body {
   flex: 1 1 auto;
   min-height: 0;
@@ -477,7 +488,7 @@ body {
 <body>
 <div id="stage">
   <div id="deck">
-  <section class="slide slide-title active"><div><h1>CS846: FMxAI</h1><p class="meta"><a href="https://federico.morarocha.ca">Federico Mora</a> &middot; CS 846: FMxAI &middot; University of Waterloo &middot; Fall '26 &middot; Tues 3:00-5:50pm &middot; DC 2585</p></div><p class="nav-hint"><span class="nav-key">&#11013;&#65039; &#10145;&#65039;</span> move between slides &middot; <span class="nav-key">&#11014;&#65039; &#11015;&#65039;</span> jump between sections</p></section>
+  <section class="slide slide-title active"><div><h1>CS846: FMxAI</h1><p class="meta"><a href="https://federico.morarocha.ca">Federico Mora</a> &middot; University of Waterloo &middot; Fall '26 &middot; Tues 3:00-5:50pm &middot; DC 2585</p></div><p class="nav-hint"><span class="nav-key">&#11013;&#65039; &#10145;&#65039;</span> move between slides &middot; <span class="nav-key">&#11014;&#65039; &#11015;&#65039;</span> jump between sections</p></section>
 <section class="slide slide-content"><h1>Grading</h1><div class="body"><p>Our meetings will be centered around paper discussions. Attendance, reading of assigned papers, and participation are essential.</p>
 <ul>
 <li>20% participation</li>
@@ -494,7 +505,8 @@ body {
 <section class="slide slide-content"><h1>Paper Discussions</h1><div class="body"><ul>
 <li>Every student will present two papers.</li>
 </ul></div></section>
-<section class="slide slide-content"><h1>Schedule</h1><div class="body"><table>
+<section class="slide slide-content"><h1>Schedule</h1><div class="body"><p>All due dates are end of day on the date listed.</p>
+<table>
 <thead>
 <tr>
 <th>Date</th>
@@ -509,24 +521,24 @@ body {
 <td><a href="overview-slides.html">1</a></td>
 </tr>
 <tr>
-<td><strong>Sep 16</strong></td>
-<td><strong><a href="FORM_URL_HERE">Reading preferences due</a></strong></td>
+<td><strong>Sep 15</strong></td>
+<td><strong><a href="FORM_URL_HERE">Discussion preferences due</a></strong></td>
 <td></td>
 </tr>
 <tr>
 <td>Sep 22</td>
 <td>Agents and tool-use <span class="tag c-orange">ATU</span></td>
-<td>TBD</td>
+<td><a href="https://rlhfbook.com/c/13-tools">1</a>, ?</td>
 </tr>
 <tr>
 <td>Sep 29</td>
 <td>Constraints on LLM outputs <span class="tag c-blue">SSC</span></td>
-<td>TBD</td>
+<td><a href="https://huggingface.co/blog/how-to-generate">1</a>, ?</td>
 </tr>
 <tr>
 <td>Oct 06</td>
 <td>Learning specifications from data <span class="tag c-green">LSD</span></td>
-<td>TBD</td>
+<td>?, ?</td>
 </tr>
 <tr>
 <td><strong>Oct 09</strong></td>
@@ -541,12 +553,12 @@ body {
 <tr>
 <td>Oct 20</td>
 <td>Autoformalization <span class="tag c-skyblue">AUF</span></td>
-<td>TBD</td>
+<td>?, ?</td>
 </tr>
 <tr>
 <td>Oct 27</td>
-<td>Program analysis <span class="tag c-vermillion">PRA</span></td>
-<td>TBD</td>
+<td>Satisfiability (modulo theories) <span class="tag c-purple">SAT</span></td>
+<td><a href="https://verifieddeeplearning.com/nnv_book.pdf">1</a>, ?</td>
 </tr>
 <tr>
 <td><em>Nov 03</em></td>
@@ -555,23 +567,23 @@ body {
 </tr>
 <tr>
 <td>Nov 10</td>
-<td>Satisfiability (modulo theories) <span class="tag c-purple">SAT</span></td>
-<td>TBD</td>
+<td>Theorem proving <span class="tag c-teal">TPR</span></td>
+<td>?, ?</td>
 </tr>
 <tr>
 <td>Nov 17</td>
-<td>Theorem proving <span class="tag c-teal">TPR</span></td>
-<td>TBD</td>
+<td>Verification of programs <span class="tag c-indigo">VER</span></td>
+<td>?, ?</td>
 </tr>
 <tr>
 <td>Nov 24</td>
 <td>Superoptimization <span class="tag c-black">SUP</span></td>
-<td>TBD</td>
+<td>?, ?</td>
 </tr>
 <tr>
 <td>Dec 01</td>
-<td>Bonus (<span class="tag c-yellow">NSP</span>, <span class="tag c-indigo">MLV</span>, or <span class="tag c-magenta">TST</span>)</td>
-<td><a href="https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html">1</a>, TBD</td>
+<td>Bonus</td>
+<td><a href="https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html">1</a>, ?</td>
 </tr>
 <tr>
 <td><em>Dec 08</em></td>
@@ -586,28 +598,22 @@ body {
 </tbody>
 </table></div></section>
 <section class="slide slide-section" data-theme="ATU" data-theme-name="Agents and Tool-Use (Sep 22)"><div class="section-head"><h1>Agents and Tool-Use (Sep 22)</h1><div class="tag-group"><span class="tag c-orange">ATU</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Reinforcement Learning from Human Feedback, Chapter 13</h2><p class="citation"><a href="https://rlhfbook.com/c/13-tools">Lambert, Textbook '26</a></p><div class="tag-group"><span class="tag c-orange">ATU</span></div></div><div class="body"><figure class="paper-figure">
+<section class="slide slide-paper"><div class="confirmed-badge" title="Confirmed" aria-label="Confirmed">&#10003;</div><div class="paper-head"><h2>Reinforcement Learning from Human Feedback, Chapter 13</h2><p class="citation"><a href="https://rlhfbook.com/c/13-tools">Lambert, Textbook '26</a></p><div class="tag-group"><span class="tag c-orange">ATU</span></div></div><div class="body"><figure class="paper-figure">
   <img src="https://rlhfbook.com/c/images/tool_use_generation.png" alt="Diagram of tool use interleaving model generation with external tool execution">
-  <figcaption>Figure 1: Tool use interleaves model generation with external execution: the model generates tokens until it emits a tool call (orange), an external system executes the tool and injects the output (purple) into the sequence, then the model continues generating. Models can emit multiple tool calls in a single generation. During training, tool call and output tokens are typically masked from the loss.</figcaption>
+  <figcaption>Figure 1: Tool use interleaves model generation with external execution: the model generates tokens until it emits a tool call (orange), an external system executes the tool and injects the output (purple) into the sequence, and then the model continues generating. Models can emit multiple tool calls in a single generation. During training, tool call and output tokens are typically masked from the loss.</figcaption>
 </figure></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers</h2><p class="citation"><a href="https://aclanthology.org/2023.emnlp-main.313.pdf">Olausson et al., EMNLP '23</a></p><div class="tag-group"><span class="tag c-orange">ATU</span><span class="tag c-skyblue">AUF</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers</h2><p class="citation"><a href="https://aclanthology.org/2023.emnlp-main.313.pdf">Olausson et al., EMNLP '23</a></p><div class="tag-group"><span class="tag c-orange">ATU</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>Towards Verifiably Safe Tool Use for LLM Agents</h2><p class="citation"><a href="https://dl.acm.org/doi/pdf/10.1145/3786582.3786839">Doshi et al., ICSE-NIER '26</a></p><div class="tag-group"><span class="tag c-orange">ATU</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Formal Verification for Agent Orchestration</h2><p class="citation"><a href="https://understandingdata.com/posts/formal-verification-for-agent-orchestration/">Phoenix, Blog '26</a></p><div class="tag-group"><span class="tag c-orange">ATU</span></div></div></section>
 <section class="slide slide-section" data-theme="SSC" data-theme-name="Constraints on LLM Outputs (Sep 29)"><div class="section-head"><h1>Constraints on LLM Outputs (Sep 29)</h1><div class="tag-group"><span class="tag c-blue">SSC</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>How To Generate Text: Using Different Decoding Methods For Language Generation With Transformers</h2><p class="citation"><a href="https://huggingface.co/blog/how-to-generate">von Platen, Blog '20</a></p><div class="tag-group"><span class="tag c-blue">SSC</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models</h2><p class="citation"><a href="https://aclanthology.org/2021.emnlp-main.779/">Scholak et al., EMNLP '21</a></p><div class="tag-group"><span class="tag c-blue">SSC</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Grammar Prompting for Domain-Specific Language Generation with Large Language Models</h2><p class="citation"><a href="https://arxiv.org/pdf/2305.19234">Wang et al., NeurIPS '23</a></p><div class="tag-group"><span class="tag c-blue">SSC</span></div></div></section>
+<section class="slide slide-paper"><div class="confirmed-badge" title="Confirmed" aria-label="Confirmed">&#10003;</div><div class="paper-head"><h2>How To Generate Text: Using Different Decoding Methods For Language Generation With Transformers</h2><p class="citation"><a href="https://huggingface.co/blog/how-to-generate">von Platen, Blog '20</a></p><div class="tag-group"><span class="tag c-blue">SSC</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>Constrained Adaptive Rejection Sampling</h2><p class="citation"><a href="https://arxiv.org/pdf/2510.01902">Parys et al., ICML '26</a></p><div class="tag-group"><span class="tag c-blue">SSC</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>ChopChop: A Programmable Framework for Semantically Constraining the Output of Language Models</h2><p class="citation"><a href="https://arxiv.org/pdf/2509.00360">Nagy et al., POPL '26</a></p><div class="tag-group"><span class="tag c-blue">SSC</span></div></div></section>
 <section class="slide slide-section" data-theme="LSD" data-theme-name="Learning Specifications from Data (Oct 06)"><div class="section-head"><h1>Learning Specifications from Data (Oct 06)</h1><div class="tag-group"><span class="tag c-green">LSD</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Learning Regular Sets from Queries and Counterexamples</h2><p class="citation"><a href="https://swt.informatik.uni-freiburg.de/teaching/WS2019-20/AutomataTheory/Learning%20Automata%20%28Caveat%20not%20related%20to%20Machine%20Learning?month:int=4&year:int=2025&orig_query=">Angluin, I&C '87</a></p><div class="tag-group"><span class="tag c-green">LSD</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>Mining Specifications</h2><p class="citation"><a href="https://haoxintu.github.io/files/10-Mining%20specifications.pdf">Ammons et al., POPL '02</a></p><div class="tag-group"><span class="tag c-green">LSD</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>Learning Concise Models from Long Execution Traces</h2><p class="citation"><a href="https://arxiv.org/abs/2001.05230">Jeppu et al., DAC '20</a></p><div class="tag-group"><span class="tag c-green">LSD</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Learning Context-Free Grammars for Grammar-Constrained Decoding via Declarative Agentic Programming with Guarantees</h2><p class="citation"><a href="https://arxiv.org/abs/2608.05493">Cheang et al., arXiv '26</a></p><div class="tag-group"><span class="tag c-orange">ATU</span><span class="tag c-green">LSD</span><span class="tag c-skyblue">AUF</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Learning Context-Free Grammars for Grammar-Constrained Decoding via Declarative Agentic Programming with Guarantees</h2><p class="citation"><a href="https://arxiv.org/abs/2608.05493">Cheang et al., arXiv '26</a></p><div class="tag-group"><span class="tag c-green">LSD</span></div></div></section>
 <section class="slide slide-section" data-theme="AUF" data-theme-name="Autoformalization (Oct 20)"><div class="section-head"><h1>Autoformalization (Oct 20)</h1><div class="tag-group"><span class="tag c-skyblue">AUF</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Autoformalization with Large Language Models</h2><p class="citation"><a href="https://arxiv.org/abs/2205.12615">Wu et al., NeurIPS '22</a></p><div class="tag-group"><span class="tag c-skyblue">AUF</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Synthetic Programming Elicitation for Text-to-Code in Very Low-Resource Programming and Formal Languages</h2><p class="citation"><a href="https://arxiv.org/pdf/2406.03636">Mora et al., NeurIPS '24</a></p><div class="tag-group"><span class="tag c-skyblue">AUF</span><span class="tag c-blue">SSC</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Specgen: Automated Generation Of Formal Program Specifications Via Large Language Models</h2><p class="citation"><a href="https://dl.acm.org/doi/10.1109/ICSE55347.2025.00129">Ma et al., ICSE '25</a></p><div class="tag-group"><span class="tag c-skyblue">AUF</span><span class="tag c-green">LSD</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Synthetic Programming Elicitation for Text-to-Code in Very Low-Resource Programming and Formal Languages</h2><p class="citation"><a href="https://arxiv.org/pdf/2406.03636">Mora et al., NeurIPS '24</a></p><div class="tag-group"><span class="tag c-skyblue">AUF</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>A Neurosymbolic Approach to Natural Language Formalization and Verification</h2><p class="citation"><a href="https://link.springer.com/chapter/10.1007/978-3-032-32526-6_28">An et al., CAV '26</a></p><div class="tag-group"><span class="tag c-skyblue">AUF</span></div></div></section>
 <section class="slide slide-content"><h1>Speed Matching <svg class="lightning" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></h1><div class="body"><ul>
 <li>Find a pair (30 seconds)</li>
@@ -616,39 +622,28 @@ body {
 <li>Brainstorm with your pair on a project that you could work on together (2 minutes)</li>
 <li>Find a new pair (30 seconds) and repeat</li>
 </ul></div></section>
-<section class="slide slide-section" data-theme="PRA" data-theme-name="Program Analysis (Oct 27)"><div class="section-head"><h1>Program Analysis (Oct 27)</h1><div class="tag-group"><span class="tag c-vermillion">PRA</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>LLM Meets Bounded Model Checking: Neuro-symbolic Loop Invariant Inference</h2><p class="citation"><a href="https://dl.acm.org/doi/10.1145/3691620.3695014">Wu et al., ASE '24</a></p><div class="tag-group"><span class="tag c-green">LSD</span><span class="tag c-vermillion">PRA</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Large Language Model Powered Symbolic Execution</h2><p class="citation"><a href="https://doi.org/10.1145/3763163">Li et al., OOPSLA '25</a></p><div class="tag-group"><span class="tag c-vermillion">PRA</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Let a Neural Network Be Your Invariant</h2><p class="citation"><a href="https://openreview.net/forum?id=qBPb7g1SEa">Giacobbe et al., NeurIPS '25</a></p><div class="tag-group"><span class="tag c-vermillion">PRA</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Agentic Verification of Software Systems</h2><p class="citation"><a href="https://arxiv.org/abs/2511.17330">Tu et al., FSE '26</a></p><div class="tag-group"><span class="tag c-vermillion">PRA</span></div></div></section>
-<section class="slide slide-section" data-theme="SAT" data-theme-name="Satisfiability (Modulo Theories) (Nov 10)"><div class="section-head"><h1>Satisfiability (Modulo Theories) (Nov 10)</h1><div class="tag-group"><span class="tag c-purple">SAT</span></div></div></section>
+<section class="slide slide-section" data-theme="SAT" data-theme-name="Satisfiability (Modulo Theories) (Oct 27)"><div class="section-head"><h1>Satisfiability (Modulo Theories) (Oct 27)</h1><div class="tag-group"><span class="tag c-purple">SAT</span></div></div></section>
+<section class="slide slide-paper"><div class="confirmed-badge" title="Confirmed" aria-label="Confirmed">&#10003;</div><div class="paper-head"><h2>Introduction to Neural Network Verification, Chapters 4, 6 (7 optional)</h2><p class="citation"><a href="https://verifieddeeplearning.com/nnv_book.pdf">Albarghouthi, Textbook '26</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>SATzilla: Portfolio-based Algorithm Selection for SAT</h2><p class="citation"><a href="https://arxiv.org/abs/1111.2249">Xu et al., JAIR '08</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>MedleySolver: Online SMT Algorithm Selection</h2><p class="citation"><a href="https://www.pure.ed.ac.uk/ws/files/248374419/MedleySolver_PIMPALKHARE_DOA05072021_AFV.pdf">Pimpalkhare et al., SAT '21</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>Guiding High-Performance SAT Solvers with Unsat-Core Predictions</h2><p class="citation"><a href="https://link.springer.com/chapter/10.1007/978-3-030-24258-9_24">Selsam and Bjørner, SAT '19</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>Learning to Solve SMT Formulas</h2><p class="citation"><a href="https://www.sri.inf.ethz.ch/publications/balunovic2018learnsmt">Balunović et al., NeurIPS '18</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>Domain-Specific Hyperspecialization (For SAT)</h2><p class="citation"><a href="https://c.mov/lymphosat/">Green, Blog '26</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div></section>
-<section class="slide slide-section" data-theme="TPR" data-theme-name="Theorem Proving (Nov 17)"><div class="section-head"><h1>Theorem Proving (Nov 17)</h1><div class="tag-group"><span class="tag c-teal">TPR</span></div></div></section>
+<section class="slide slide-section" data-theme="TPR" data-theme-name="Theorem Proving (Nov 10)"><div class="section-head"><h1>Theorem Proving (Nov 10)</h1><div class="tag-group"><span class="tag c-teal">TPR</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>Generative Language Modeling for Automated Theorem Proving</h2><p class="citation"><a href="https://arxiv.org/abs/2009.03393">Polu and Sutskever, arXiv '20</a></p><div class="tag-group"><span class="tag c-teal">TPR</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>HyperTree Proof Search for Neural Theorem Proving</h2><p class="citation"><a href="https://proceedings.neurips.cc/paper_files/paper/2022/hash/a8901c5e85fb8e1823bbf0f755053672-Abstract-Conference.html">Lample et al., NeurIPS '22</a></p><div class="tag-group"><span class="tag c-teal">TPR</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Baldur: Whole-Proof Generation and Repair with Large Language Models</h2><p class="citation"><a href="https://dl.acm.org/doi/10.1145/3611643.3616243">First et al., FSE '23</a></p><div class="tag-group"><span class="tag c-teal">TPR</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Seed-Prover: Deep and Broad Reasoning for Automated Theorem Proving</h2><p class="citation"><a href="https://arxiv.org/pdf/2507.23726">ByteDance, arXiv '25</a></p><div class="tag-group"><span class="tag c-teal">TPR</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>Postmortem for Kernel Soundness Bug #14576</h2><p class="citation"><a href="https://leodemoura.github.io/blog/2026-8-1-postmortem-for-kernel-soundness-bug-14576/">de Moura, Blog '26</a></p><div class="tag-group"><span class="tag c-teal">TPR</span></div></div></section>
+<section class="slide slide-section" data-theme="VER" data-theme-name="Verification of Programs (Nov 17)"><div class="section-head"><h1>Verification of Programs (Nov 17)</h1><div class="tag-group"><span class="tag c-indigo">VER</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Large Language Model Powered Symbolic Execution</h2><p class="citation"><a href="https://doi.org/10.1145/3763163">Li et al., OOPSLA '25</a></p><div class="tag-group"><span class="tag c-indigo">VER</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Let a Neural Network Be Your Invariant</h2><p class="citation"><a href="https://openreview.net/forum?id=qBPb7g1SEa">Giacobbe et al., NeurIPS '25</a></p><div class="tag-group"><span class="tag c-indigo">VER</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Agentic Verification of Software Systems</h2><p class="citation"><a href="https://arxiv.org/abs/2511.17330">Tu et al., FSE '26</a></p><div class="tag-group"><span class="tag c-indigo">VER</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Introduction to Neural Network Verification, Chapters 1, 2, 3, 5</h2><p class="citation"><a href="https://verifieddeeplearning.com/nnv_book.pdf">Albarghouthi, Textbook '26</a></p><div class="tag-group"><span class="tag c-indigo">VER</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Proving Data-Poisoning Robustness in Decision Trees</h2><p class="citation"><a href="https://dl.acm.org/doi/10.1145/3385412.3385975">Drews et al., PLDI '20</a></p><div class="tag-group"><span class="tag c-indigo">VER</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Beta-CROWN: Efficient Bound Propagation with Per-neuron Split Constraints for Complete and Incomplete Neural Network Robustness Verification</h2><p class="citation"><a href="https://proceedings.neurips.cc/paper/2021/hash/fac7fead96dafceaf80c1daffeae82a4-Abstract.html">Wang et al., NeurIPS '21</a></p><div class="tag-group"><span class="tag c-indigo">VER</span></div></div></section>
 <section class="slide slide-section" data-theme="SUP" data-theme-name="Superoptimization (Nov 24)"><div class="section-head"><h1>Superoptimization (Nov 24)</h1><div class="tag-group"><span class="tag c-black">SUP</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>Stochastic Superoptimization</h2><p class="citation"><a href="https://dl.acm.org/doi/10.1145/2490301.2451150">Schkufza et al., ASPLOS '13</a></p><div class="tag-group"><span class="tag c-black">SUP</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Learning to Superoptimize Programs</h2><p class="citation"><a href="https://arxiv.org/abs/1612.01094">Bunel et al., ICLR '17</a></p><div class="tag-group"><span class="tag c-black">SUP</span></div></div></section>
 <section class="slide slide-paper"><div class="paper-head"><h2>Faster Sorting Algorithms Discovered Using Deep Reinforcement Learning</h2><p class="citation"><a href="https://www.nature.com/articles/s41586-023-06004-9">Mankowitz et al., Nature '23</a></p><div class="tag-group"><span class="tag c-black">SUP</span></div></div></section>
 <section class="slide slide-section" data-theme="NSP" data-theme-name="Neuro-symbolic Programming (Dec 01)"><div class="section-head"><h1>Neuro-symbolic Programming (Dec 01)</h1><div class="tag-group"><span class="tag c-yellow">NSP</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>DeepProbLog: Neural Probabilistic Logic Programming</h2><p class="citation"><a href="https://proceedings.neurips.cc/paper/2018/hash/dc5d637ed5e62c36ecb73b654b05ba2a-Abstract.html">Manhaeve et al., NeurIPS '18</a></p><div class="tag-group"><span class="tag c-yellow">NSP</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Learning Differentiable Programs with Admissible Neural Heuristics</h2><p class="citation"><a href="https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html">Shah et al., NeurIPS '20</a></p><div class="tag-group"><span class="tag c-yellow">NSP</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Scallop: A Language for Neurosymbolic Programming</h2><p class="citation"><a href="https://dl.acm.org/doi/pdf/10.1145/3591280">Li et al., PLDI '23</a></p><div class="tag-group"><span class="tag c-yellow">NSP</span></div></div></section>
-<section class="slide slide-section" data-theme="MLV" data-theme-name="Machine-Learning Verification (Dec 01)"><div class="section-head"><h1>Machine-Learning Verification (Dec 01)</h1><div class="tag-group"><span class="tag c-indigo">MLV</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks</h2><p class="citation"><a href="https://link.springer.com/chapter/10.1007/978-3-319-63387-9_5">Katz et al., CAV '17</a></p><div class="tag-group"><span class="tag c-indigo">MLV</span><span class="tag c-purple">SAT</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Proving Data-Poisoning Robustness in Decision Trees</h2><p class="citation"><a href="https://dl.acm.org/doi/10.1145/3385412.3385975">Drews et al., PLDI '20</a></p><div class="tag-group"><span class="tag c-indigo">MLV</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Beta-CROWN: Efficient Bound Propagation with Per-neuron Split Constraints for Complete and Incomplete Neural Network Robustness Verification</h2><p class="citation"><a href="https://proceedings.neurips.cc/paper/2021/hash/fac7fead96dafceaf80c1daffeae82a4-Abstract.html">Wang et al., NeurIPS '21</a></p><div class="tag-group"><span class="tag c-indigo">MLV</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Neural Network Verification with Proof Production</h2><p class="citation"><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10026587&casa_token=6jy7_pSgbOwAAAAA:HNny8NVwdhsCPew67iMK2jLHdzqnTfss8SOPuMsrDubYtSQ_Y8IiU8myHghTs7t7MO1ymxzL9Q">Isac et al., FMCAD '22</a></p><div class="tag-group"><span class="tag c-indigo">MLV</span></div></div></section>
-<section class="slide slide-section" data-theme="TST" data-theme-name="Testing (Dec 01)"><div class="section-head"><h1>Testing (Dec 01)</h1><div class="tag-group"><span class="tag c-magenta">TST</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>Large Language Models Are Zero-Shot Fuzzers: Fuzzing Deep-Learning Libraries via Large Language Models</h2><p class="citation"><a href="https://dl.acm.org/doi/abs/10.1145/3597926.3598067">Deng et al., ISSTA '23</a></p><div class="tag-group"><span class="tag c-magenta">TST</span></div></div></section>
-<section class="slide slide-paper"><div class="paper-head"><h2>CODAMOSA: Escaping Coverage Plateaus in Test Generation with Pre-trained Large Language Models</h2><p class="citation"><a href="https://www.carolemieux.com/codamosa_icse23.pdf">Lemieux et al., ICSE '23</a></p><div class="tag-group"><span class="tag c-magenta">TST</span></div></div></section>
+<section class="slide slide-paper"><div class="confirmed-badge" title="Confirmed" aria-label="Confirmed">&#10003;</div><div class="paper-head"><h2>Learning Differentiable Programs with Admissible Neural Heuristics</h2><p class="citation"><a href="https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html">Shah et al., NeurIPS '20</a></p><div class="tag-group"><span class="tag c-yellow">NSP</span></div></div></section>
 <section class="slide slide-content"><h1>Speed Matching <svg class="lightning" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></h1><div class="body"><ul>
 <li>Find a pair (30 seconds)</li>
 <li>Describe a research project that you have worked on or that you would like to work on (1 minute)</li>
@@ -656,8 +651,9 @@ body {
 <li>Brainstorm with your pair on a project that you could work on together (2 minutes)</li>
 <li>Find a new pair (30 seconds) and repeat</li>
 </ul></div></section>
-<section class="slide slide-content"><h1>Reading Preferences (Due Sep 16)</h1><div class="body"><p>Fill out <a href="FORM_URL_HERE">this form</a> to submit your preferences before Sep 16.</p>
-<p>You will be matched to papers based on your submitted preferences on Sep 17.</p></div></section>
+<section class="slide slide-content"><h1>Discussion Preferences (Due Sep 15)</h1><div class="body"><p>Fill out <a href="FORM_URL_HERE">this form</a> to submit your discussion preferences by
+end of day on Sep 15.</p>
+<p>You will be matched to papers based on your submitted preferences on Sep 16.</p></div></section>
   </div>
   <div id="progress"><div id="progress-bar"></div></div>
   <div id="chrome">

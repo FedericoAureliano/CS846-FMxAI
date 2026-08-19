@@ -47,22 +47,24 @@ Every project must contain new research — a new idea or insight — and an ele
 <!-- slide:content -->
 # Schedule
 
+All due dates are end of day on the date listed.
+
 | Date | Description | Read |
 | --- | --- | --- |
 | Sep 15 | Introduction and overview | [1](overview-slides.html) |
-| **Sep 16** | **[Reading preferences due](FORM_URL_HERE)** | |
-| Sep 22 | Agents and tool-use **ATU** | TBD |
-| Sep 29 | Constraints on LLM outputs **SSC** | TBD |
-| Oct 06 | Learning specifications from data **LSD** | TBD |
+| **Sep 15** | **[Discussion preferences due](FORM_URL_HERE)** | |
+| Sep 22 | Agents and tool-use **ATU** | [1](https://rlhfbook.com/c/13-tools), ? |
+| Sep 29 | Constraints on LLM outputs **SSC** | [1](https://huggingface.co/blog/how-to-generate), ? |
+| Oct 06 | Learning specifications from data **LSD** | ?, ? |
 | **Oct 09** | **Proposals due** | |
 | ~~Oct 13~~ | ~~Reading week~~ | |
-| Oct 20 | Autoformalization **AUF** | TBD |
-| Oct 27 | Program analysis **PRA** | TBD |
+| Oct 20 | Autoformalization **AUF** | ?, ? |
+| Oct 27 | Satisfiability (modulo theories) **SAT** | [1](https://verifieddeeplearning.com/nnv_book.pdf), ? |
 | _Nov 03_ | _Mini presentations day_ | |
-| Nov 10 | Satisfiability (modulo theories) **SAT** | TBD |
-| Nov 17 | Theorem proving **TPR** | TBD |
-| Nov 24 | Superoptimization **SUP** | TBD |
-| Dec 01 | Bonus (**NSP**, **MLV**, or **TST**) | [1](https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html), TBD |
+| Nov 10 | Theorem proving **TPR** | ?, ? |
+| Nov 17 | Verification of programs **VER** | ?, ? |
+| Nov 24 | Superoptimization **SUP** | ?, ? |
+| Dec 01 | Bonus | [1](https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html), ? |
 | _Dec 08_ | _Final presentations day_ | |
 | **Dec 18** | **Reports due** | |
 
@@ -79,11 +81,11 @@ Every project must contain new research — a new idea or insight — and an ele
 
 [Lambert, Textbook '26](https://rlhfbook.com/c/13-tools)
 
-`ATU`
+`ATU` `CONFIRMED`
 
 <figure class="paper-figure">
   <img src="https://rlhfbook.com/c/images/tool_use_generation.png" alt="Diagram of tool use interleaving model generation with external tool execution">
-  <figcaption>Figure 1: Tool use interleaves model generation with external execution: the model generates tokens until it emits a tool call (orange), an external system executes the tool and injects the output (purple) into the sequence, then the model continues generating. Models can emit multiple tool calls in a single generation. During training, tool call and output tokens are typically masked from the loss.</figcaption>
+  <figcaption>Figure 1: Tool use interleaves model generation with external execution: the model generates tokens until it emits a tool call (orange), an external system executes the tool and injects the output (purple) into the sequence, and then the model continues generating. Models can emit multiple tool calls in a single generation. During training, tool call and output tokens are typically masked from the loss.</figcaption>
 </figure>
 
 ---
@@ -93,7 +95,7 @@ Every project must contain new research — a new idea or insight — and an ele
 
 [Olausson et al., EMNLP '23](https://aclanthology.org/2023.emnlp-main.313.pdf)
 
-`ATU` `AUF`
+`ATU`
 
 ---
 
@@ -101,15 +103,6 @@ Every project must contain new research — a new idea or insight — and an ele
 ## Towards Verifiably Safe Tool Use for LLM Agents
 
 [Doshi et al., ICSE-NIER '26](https://dl.acm.org/doi/pdf/10.1145/3786582.3786839)
-
-`ATU`
-
----
-
-<!-- slide:paper -->
-## Formal Verification for Agent Orchestration
-
-[Phoenix, Blog '26](https://understandingdata.com/posts/formal-verification-for-agent-orchestration/)
 
 `ATU`
 
@@ -126,25 +119,7 @@ Every project must contain new research — a new idea or insight — and an ele
 
 [von Platen, Blog '20](https://huggingface.co/blog/how-to-generate)
 
-`SSC`
-
----
-
-<!-- slide:paper -->
-## PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models
-
-[Scholak et al., EMNLP '21](https://aclanthology.org/2021.emnlp-main.779/)
-
-`SSC`
-
----
-
-<!-- slide:paper -->
-## Grammar Prompting for Domain-Specific Language Generation with Large Language Models
-
-[Wang et al., NeurIPS '23](https://arxiv.org/pdf/2305.19234)
-
-`SSC`
+`SSC` `CONFIRMED`
 
 ---
 
@@ -173,15 +148,6 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:paper -->
-## Learning Regular Sets from Queries and Counterexamples
-
-[Angluin, I&C '87](https://swt.informatik.uni-freiburg.de/teaching/WS2019-20/AutomataTheory/Learning%20Automata%20%28Caveat%20not%20related%20to%20Machine%20Learning?month:int=4&year:int=2025&orig_query=)
-
-`LSD`
-
----
-
-<!-- slide:paper -->
 ## Mining Specifications
 
 [Ammons et al., POPL '02](https://haoxintu.github.io/files/10-Mining%20specifications.pdf)
@@ -204,7 +170,7 @@ Every project must contain new research — a new idea or insight — and an ele
 
 [Cheang et al., arXiv '26](https://arxiv.org/abs/2608.05493)
 
-`ATU` `LSD` `AUF`
+`LSD`
 
 ---
 
@@ -215,29 +181,11 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:paper -->
-## Autoformalization with Large Language Models
-
-[Wu et al., NeurIPS '22](https://arxiv.org/abs/2205.12615)
-
-`AUF`
-
----
-
-<!-- slide:paper -->
 ## Synthetic Programming Elicitation for Text-to-Code in Very Low-Resource Programming and Formal Languages
 
 [Mora et al., NeurIPS '24](https://arxiv.org/pdf/2406.03636)
 
-`AUF` `SSC`
-
----
-
-<!-- slide:paper -->
-## Specgen: Automated Generation Of Formal Program Specifications Via Large Language Models
-
-[Ma et al., ICSE '25](https://dl.acm.org/doi/10.1109/ICSE55347.2025.00129)
-
-`AUF` `LSD`
+`AUF`
 
 ---
 
@@ -262,50 +210,17 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:section -->
-# Program Analysis (Oct 27)
-`PRA`
-
----
-
-<!-- slide:paper -->
-## LLM Meets Bounded Model Checking: Neuro-symbolic Loop Invariant Inference
-
-[Wu et al., ASE '24](https://dl.acm.org/doi/10.1145/3691620.3695014)
-
-`LSD` `PRA`
-
----
-
-<!-- slide:paper -->
-## Large Language Model Powered Symbolic Execution
-
-[Li et al., OOPSLA '25](https://doi.org/10.1145/3763163)
-
-`PRA`
-
----
-
-<!-- slide:paper -->
-## Let a Neural Network Be Your Invariant
-
-[Giacobbe et al., NeurIPS '25](https://openreview.net/forum?id=qBPb7g1SEa)
-
-`PRA`
-
----
-
-<!-- slide:paper -->
-## Agentic Verification of Software Systems
-
-[Tu et al., FSE '26](https://arxiv.org/abs/2511.17330)
-
-`PRA`
-
----
-
-<!-- slide:section -->
-# Satisfiability (Modulo Theories) (Nov 10)
+# Satisfiability (Modulo Theories) (Oct 27)
 `SAT`
+
+---
+
+<!-- slide:paper -->
+## Introduction to Neural Network Verification, Chapters 4, 6 (7 optional)
+
+[Albarghouthi, Textbook '26](https://verifieddeeplearning.com/nnv_book.pdf)
+
+`SAT` `CONFIRMED`
 
 ---
 
@@ -355,7 +270,7 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:section -->
-# Theorem Proving (Nov 17)
+# Theorem Proving (Nov 10)
 `TPR`
 
 ---
@@ -364,33 +279,6 @@ Every project must contain new research — a new idea or insight — and an ele
 ## Generative Language Modeling for Automated Theorem Proving
 
 [Polu and Sutskever, arXiv '20](https://arxiv.org/abs/2009.03393)
-
-`TPR`
-
----
-
-<!-- slide:paper -->
-## HyperTree Proof Search for Neural Theorem Proving
-
-[Lample et al., NeurIPS '22](https://proceedings.neurips.cc/paper_files/paper/2022/hash/a8901c5e85fb8e1823bbf0f755053672-Abstract-Conference.html)
-
-`TPR`
-
----
-
-<!-- slide:paper -->
-## Baldur: Whole-Proof Generation and Repair with Large Language Models
-
-[First et al., FSE '23](https://dl.acm.org/doi/10.1145/3611643.3616243)
-
-`TPR`
-
----
-
-<!-- slide:paper -->
-## Seed-Prover: Deep and Broad Reasoning for Automated Theorem Proving
-
-[ByteDance, arXiv '25](https://arxiv.org/pdf/2507.23726)
 
 `TPR`
 
@@ -406,6 +294,66 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:section -->
+# Verification of Programs (Nov 17)
+`VER`
+
+---
+
+<!-- slide:paper -->
+## Large Language Model Powered Symbolic Execution
+
+[Li et al., OOPSLA '25](https://doi.org/10.1145/3763163)
+
+`VER`
+
+---
+
+<!-- slide:paper -->
+## Let a Neural Network Be Your Invariant
+
+[Giacobbe et al., NeurIPS '25](https://openreview.net/forum?id=qBPb7g1SEa)
+
+`VER`
+
+---
+
+<!-- slide:paper -->
+## Agentic Verification of Software Systems
+
+[Tu et al., FSE '26](https://arxiv.org/abs/2511.17330)
+
+`VER`
+
+---
+
+<!-- slide:paper -->
+## Introduction to Neural Network Verification, Chapters 1, 2, 3, 5
+
+[Albarghouthi, Textbook '26](https://verifieddeeplearning.com/nnv_book.pdf)
+
+`VER`
+
+---
+
+<!-- slide:paper -->
+## Proving Data-Poisoning Robustness in Decision Trees
+
+[Drews et al., PLDI '20](https://dl.acm.org/doi/10.1145/3385412.3385975)
+
+`VER`
+
+---
+
+<!-- slide:paper -->
+## Beta-CROWN: Efficient Bound Propagation with Per-neuron Split Constraints for Complete and Incomplete Neural Network Robustness Verification
+
+[Wang et al., NeurIPS '21](https://proceedings.neurips.cc/paper/2021/hash/fac7fead96dafceaf80c1daffeae82a4-Abstract.html)
+
+`VER`
+
+---
+
+<!-- slide:section -->
 # Superoptimization (Nov 24)
 `SUP`
 
@@ -415,15 +363,6 @@ Every project must contain new research — a new idea or insight — and an ele
 ## Stochastic Superoptimization
 
 [Schkufza et al., ASPLOS '13](https://dl.acm.org/doi/10.1145/2490301.2451150)
-
-`SUP`
-
----
-
-<!-- slide:paper -->
-## Learning to Superoptimize Programs
-
-[Bunel et al., ICLR '17](https://arxiv.org/abs/1612.01094)
 
 `SUP`
 
@@ -445,95 +384,11 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:paper -->
-## DeepProbLog: Neural Probabilistic Logic Programming
-
-[Manhaeve et al., NeurIPS '18](https://proceedings.neurips.cc/paper/2018/hash/dc5d637ed5e62c36ecb73b654b05ba2a-Abstract.html)
-
-`NSP`
-
----
-
-<!-- slide:paper -->
 ## Learning Differentiable Programs with Admissible Neural Heuristics
 
 [Shah et al., NeurIPS '20](https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html)
 
-`NSP`
-
----
-
-<!-- slide:paper -->
-## Scallop: A Language for Neurosymbolic Programming
-
-[Li et al., PLDI '23](https://dl.acm.org/doi/pdf/10.1145/3591280)
-
-`NSP`
-
----
-
-<!-- slide:section -->
-# Machine-Learning Verification (Dec 01)
-`MLV`
-
----
-
-<!-- slide:paper -->
-## Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks
-
-[Katz et al., CAV '17](https://link.springer.com/chapter/10.1007/978-3-319-63387-9_5)
-
-`MLV` `SAT`
-
----
-
-<!-- slide:paper -->
-## Proving Data-Poisoning Robustness in Decision Trees
-
-[Drews et al., PLDI '20](https://dl.acm.org/doi/10.1145/3385412.3385975)
-
-`MLV`
-
----
-
-<!-- slide:paper -->
-## Beta-CROWN: Efficient Bound Propagation with Per-neuron Split Constraints for Complete and Incomplete Neural Network Robustness Verification
-
-[Wang et al., NeurIPS '21](https://proceedings.neurips.cc/paper/2021/hash/fac7fead96dafceaf80c1daffeae82a4-Abstract.html)
-
-`MLV`
-
----
-
-<!-- slide:paper -->
-## Neural Network Verification with Proof Production
-
-[Isac et al., FMCAD '22](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10026587&casa_token=6jy7_pSgbOwAAAAA:HNny8NVwdhsCPew67iMK2jLHdzqnTfss8SOPuMsrDubYtSQ_Y8IiU8myHghTs7t7MO1ymxzL9Q)
-
-`MLV`
-
----
-
-<!-- slide:section -->
-# Testing (Dec 01)
-`TST`
-
----
-
-<!-- slide:paper -->
-## Large Language Models Are Zero-Shot Fuzzers: Fuzzing Deep-Learning Libraries via Large Language Models
-
-[Deng et al., ISSTA '23](https://dl.acm.org/doi/abs/10.1145/3597926.3598067)
-
-`TST`
-
----
-
-<!-- slide:paper -->
-## CODAMOSA: Escaping Coverage Plateaus in Test Generation with Pre-trained Large Language Models
-
-[Lemieux et al., ICSE '23](https://www.carolemieux.com/codamosa_icse23.pdf)
-
-`TST`
+`NSP` `CONFIRMED`
 
 ---
 
@@ -549,8 +404,9 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:content -->
-# Reading Preferences (Due Sep 16)
+# Discussion Preferences (Due Sep 15)
 
-Fill out [this form](FORM_URL_HERE) to submit your preferences before Sep 16.
+Fill out [this form](FORM_URL_HERE) to submit your discussion preferences by
+end of day on Sep 15.
 
-You will be matched to papers based on your submitted preferences on Sep 17.
+You will be matched to papers based on your submitted preferences on Sep 16.
