@@ -17,7 +17,7 @@ location: DC 2585
 <!-- slide:content -->
 # Grading
 
-Our meetings will be centered around paper discussions. Attendance, reading of assigned papers, and participation are essential.
+Our meetings will be centered around paper discussions and in-class activities. Attendance, reading of assigned papers, and participation are essential.
 
 - 20% participation
 - 30% discussion leads
@@ -38,9 +38,16 @@ Every project must contain new research — a new idea or insight — and an ele
 ---
 
 <!-- slide:content -->
-# Paper Discussions
+# Discussion Leads
 
-- Every student will present two papers.
+For research papers, discussion leads present a review with four components:
+
+- research context (~5 minutes)
+- paper summary (~15 minutes)
+- strengths and weaknesses (~5 minutes)
+- what has changed or will change (~5 minutes)
+
+For textbooks, discussion leads give a 30-minute tutorial. For blog posts, discussion leads lead a 30-minute deep-dive.
 
 ---
 
@@ -234,9 +241,9 @@ All due dates are end of day on the date listed.
 ---
 
 <!-- slide:paper -->
-## MedleySolver: Online SMT Algorithm Selection
+## Learning to Solve SMT Formulas
 
-[Pimpalkhare et al., SAT '21](https://www.pure.ed.ac.uk/ws/files/248374419/MedleySolver_PIMPALKHARE_DOA05072021_AFV.pdf)
+[Balunović et al., NeurIPS '18](https://www.sri.inf.ethz.ch/publications/balunovic2018learnsmt)
 
 `SAT`
 
@@ -252,9 +259,9 @@ All due dates are end of day on the date listed.
 ---
 
 <!-- slide:paper -->
-## Learning to Solve SMT Formulas
+## MedleySolver: Online SMT Algorithm Selection
 
-[Balunović et al., NeurIPS '18](https://www.sri.inf.ethz.ch/publications/balunovic2018learnsmt)
+[Pimpalkhare et al., SAT '21](https://www.pure.ed.ac.uk/ws/files/248374419/MedleySolver_PIMPALKHARE_DOA05072021_AFV.pdf)
 
 `SAT`
 
@@ -300,9 +307,18 @@ All due dates are end of day on the date listed.
 ---
 
 <!-- slide:paper -->
-## Large Language Model Powered Symbolic Execution
+## Proving Data-Poisoning Robustness in Decision Trees
 
-[Li et al., OOPSLA '25](https://doi.org/10.1145/3763163)
+[Drews et al., PLDI '20](https://dl.acm.org/doi/10.1145/3385412.3385975)
+
+`VER`
+
+---
+
+<!-- slide:paper -->
+## Beta-CROWN: Efficient Bound Propagation with Per-neuron Split Constraints for Complete and Incomplete Neural Network Robustness Verification
+
+[Wang et al., NeurIPS '21](https://proceedings.neurips.cc/paper/2021/hash/fac7fead96dafceaf80c1daffeae82a4-Abstract.html)
 
 `VER`
 
@@ -312,6 +328,15 @@ All due dates are end of day on the date listed.
 ## Let a Neural Network Be Your Invariant
 
 [Giacobbe et al., NeurIPS '25](https://openreview.net/forum?id=qBPb7g1SEa)
+
+`VER`
+
+---
+
+<!-- slide:paper -->
+## Large Language Model Powered Symbolic Execution
+
+[Li et al., OOPSLA '25](https://doi.org/10.1145/3763163)
 
 `VER`
 
@@ -330,24 +355,6 @@ All due dates are end of day on the date listed.
 ## Introduction to Neural Network Verification, Chapters 1, 2, 3, 5
 
 [Albarghouthi, Textbook '26](https://verifieddeeplearning.com/nnv_book.pdf)
-
-`VER`
-
----
-
-<!-- slide:paper -->
-## Proving Data-Poisoning Robustness in Decision Trees
-
-[Drews et al., PLDI '20](https://dl.acm.org/doi/10.1145/3385412.3385975)
-
-`VER`
-
----
-
-<!-- slide:paper -->
-## Beta-CROWN: Efficient Bound Propagation with Per-neuron Split Constraints for Complete and Incomplete Neural Network Robustness Verification
-
-[Wang et al., NeurIPS '21](https://proceedings.neurips.cc/paper/2021/hash/fac7fead96dafceaf80c1daffeae82a4-Abstract.html)
 
 `VER`
 
