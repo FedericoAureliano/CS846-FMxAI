@@ -98,7 +98,16 @@ minutes long.
 
 ### Guidelines for Report {: #guidelines-for-report}
 
-The report should be a conference paper-style write-up.
+The report should be a conference paper-style write-up. For example, students
+can use the [AAAI-27
+format](https://aaai.org/conference/aaai/aaai-27/main-technical-track-call/) and include the following sections:
+
+1. introduction;
+2. technical background;
+3. approach;
+4. evaluation;
+5. related work; and
+6. conclusions/future work.
 
 ## Schedule {: #schedule}
 
@@ -126,13 +135,12 @@ corresponding student-led presentations.
 
 ### Reading Bank {: #reading-bank}
 
-The readings below span nine themes: agents and tool-use **ATU**; syntactic
-and semantic constraints on LLM outputs **SSC**; learning specifications
-from data **LSD**; autoformalization **AUF**; satisfiability (modulo
-theories) **SAT**; theorem proving **TPR**;
-verification of programs **VER**; superoptimization **SUP**; and
-neuro-symbolic programming **NSP**. Use the dropdown in the table's
-rightmost column to narrow the list to a single theme.
+The readings will be drawn from the following bank of papers, textbooks, and
+blog posts, which cover nine themes: agents and tool-use **ATU**; syntactic and
+semantic constraints on LLM outputs **SSC**; learning specifications from data **LSD**;
+autoformalization **AUF**; satisfiability (modulo theories) **SAT**; theorem
+proving **TPR**; verification of programs **VER**; superoptimization **SUP**;
+and neuro-symbolic programming **NSP**.
 
 | Title | Link | Topic |
 | --- | --- | --- |

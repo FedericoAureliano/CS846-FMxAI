@@ -427,6 +427,7 @@ tbody tr.row-alt {{
 .tag.c-magenta {{ background: color-mix(in srgb, var(--color-magenta) 16%, white); }}
 
 main > p .tag {{ margin: 0 1px; }}
+.tag-glue {{ white-space: nowrap; }}
 
 img {{ max-width: 100%; }}
 
@@ -453,7 +454,7 @@ STRIKETHROUGH_RE = re.compile(r"~~(.+?)~~")
 EM_DASH_RE = re.compile(r"(?<=\S)---(?=\S)")
 ROW_RE = re.compile(r"<tr>\n(<td>.*?</td>\n<td>.*?</td>\n)<td>([^<]+)</td>\n</tr>", re.DOTALL)
 TOPICS_HEADER_RE = re.compile(r"<th>Topic</th>")
-LEGEND_ITEM_RE = re.compile(r"<strong>(.+?)</strong>")
+LEGEND_ITEM_RE = re.compile(r"<strong>(.+?)</strong>([;,.:]?)")
 SCHEDULE_TABLE_RE = re.compile(r"<table>\n(?=<thead>\n<tr>\n<th>Date</th>)")
 HEADING_RE = re.compile(r'<h([23]) id="([\w-]+)">(.*?)</h\1>')
 
@@ -563,14 +564,22 @@ def build_topic_filter(body: str) -> str:
 
 def colorize_legend(body: str) -> str:
     """Replace each legend entry's bolded code with the same pill used in
-    the table, on the left of the line, color matched via TOPIC_COLORS."""
+    the table, on the left of the line, color matched via TOPIC_COLORS.
+
+    Any semicolon/comma/period immediately following the pill is pulled
+    into a no-wrap wrapper with it, so the browser can't break the line
+    between the pill and its punctuation (which would strand the
+    punctuation alone at the start of the next line)."""
 
     def render(match: re.Match) -> str:
-        code = match.group(1)
+        code, punct = match.group(1), match.group(2)
         color = TOPIC_COLORS.get(code)
         if not color:
             return match.group(0)
-        return f'<span class="tag c-{color}">{code}</span>'
+        pill = f'<span class="tag c-{color}">{code}</span>'
+        if punct:
+            return f'<span class="tag-glue">{pill}{punct}</span>'
+        return pill
 
     return LEGEND_ITEM_RE.sub(render, body)
 
