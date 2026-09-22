@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CS846: FMxAI</title>
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Emoji&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-emoji: "Noto Emoji";
+
+  --color-base-00: #ffffff;
+  --color-base-05: #fcfcfc;
+  --color-base-20: #f6f6f6;
+  --color-base-30: #e4e4e4;
+  --color-base-40: #bdbdbd;
+  --color-base-60: #707070;
+  --color-base-100: #222222;
+  --color-accent: hsl(258, 88%, 66%);
+  --color-accent-hover: hsl(258, 88%, 58%);
+
+  --color-orange: #e69f00;
+  --color-skyblue: #56b4e9;
+  --color-green: #009e73;
+  --color-blue: #0072b2;
+  --color-vermillion: #d55e00;
+  --color-purple: #cc79a7;
+  --color-yellow: #7a6a00;
+  --color-black: #000000;
+  --color-teal: #106b6b;
+  --color-indigo: #5b3fa0;
+  --color-lime: #218807;
+  --color-magenta: #9329a3;
+
+  --bg: var(--color-base-00);
+  --bg-alt: var(--color-base-20);
+  --fg: var(--color-base-100);
+  --muted: var(--color-base-60);
+  --border: var(--color-base-30);
+
+  --size-2-2: 4px;
+  --size-4-1: 4px;
+  --size-4-2: 8px;
+  --size-4-3: 12px;
+  --size-4-4: 16px;
+  --size-4-5: 20px;
+  --size-4-6: 24px;
+  --size-4-8: 32px;
+  --size-4-9: 36px;
+  --size-4-12: 48px;
+  --size-4-16: 64px;
+
+  --line-height-normal: 1.5;
+  --line-height-tight: 1.15;
+
+  /* Space between the slide frame and the browser edge. */
+  --frame-gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: var(--line-height-normal);
+  -webkit-text-size-adjust: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--frame-gap);
+}
+
+/* The 16:9 frame. container-type lets slide typography below be sized in
+   cqw/cqh so it scales with the frame itself, not the raw viewport. */
+#stage {
+  container-type: size;
+  position: relative;
+  width: min(100%, calc((100vh - 2 * var(--frame-gap)) * 16 / 9));
+  max-height: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid #000;
+  background: var(--bg);
+  overflow: hidden;
+  touch-action: none;
+}
+
+#deck {
+  position: absolute;
+  inset: 0;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6cqh 7cqw 10cqh;
+}
+
+.slide.active { display: flex; }
+
+.slide a {
+  color: var(--fg);
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-orange) 38%, transparent);
+  text-decoration-thickness: 0.6em;
+  text-underline-offset: -0.42em;
+  text-decoration-skip-ink: none;
+}
+.slide a:hover { text-decoration-color: var(--color-orange); }
+
+.slide code {
+  font-family: var(--font-mono);
+  background: var(--bg-alt);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+.slide pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Title slide */
+
+.slide-title h1 {
+  font-size: clamp(2rem, 6cqw, 3.6rem);
+  font-weight: 700;
+  margin: 0;
+  line-height: var(--line-height-tight);
+}
+
+.slide-title h2 {
+  font-size: clamp(1rem, 2.4cqw, 1.4rem);
+  font-weight: 400;
+  color: var(--muted);
+  margin: var(--size-4-4) 0 0;
+}
+
+.slide-title .meta {
+  margin-top: var(--size-4-9);
+  color: var(--muted);
+  font-size: var(--font-ui-small, 15px);
+}
+
+.slide-title .nav-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8cqh;
+  margin: 0;
+  text-align: center;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.slide-title .nav-hint .nav-key {
+  font-family: var(--font-emoji);
+  font-variant-emoji: text;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  vertical-align: -0.15em;
+}
+
+/* Content slides (Grading, Project, Paper Discussions, Schedule, ...) */
+
+.slide-content {
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.slide-content h1 .lightning {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.1em;
+  margin-left: var(--size-4-2);
+  fill: var(--color-accent);
+}
+
+.slide-content h1 {
+  font-size: clamp(1.6rem, 5cqw, 3rem);
+  font-weight: 700;
+  margin: 0 0 var(--size-4-6);
+  line-height: var(--line-height-tight);
+  flex-shrink: 0;
+}
+
+.slide-content h1::before {
+  content: "> ";
+  color: var(--color-accent);
+}
+
+.slide-content .body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  font-size: clamp(0.9rem, 1.6cqw, 1.15rem);
+}
+
+.slide-content .body p,
+.slide-content .body ul,
+.slide-content .body ol { margin: 0 0 var(--size-4-3); }
+
+.slide-content .body li { margin: 0 0 var(--size-2-2); }
+
+.slide-content .body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: clamp(0.75rem, 1.3cqw, 0.95rem);
+}
+
+.slide-content .body th, .slide-content .body td {
+  text-align: left;
+  padding: var(--size-4-1) var(--size-4-3);
+  vertical-align: top;
+}
+
+.slide-content .body thead th {
+  border-bottom: 2px solid var(--fg);
+  font-weight: 600;
+}
+
+.slide-content .body tbody tr:not(:last-child) td {
+  border-bottom: 1px solid var(--border);
+}
+
+.slide-content .body del { color: var(--muted); text-decoration-thickness: 0.12em; }
+
+.slide-content .body pre {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--size-4-4);
+  margin: 0 0 var(--size-4-3);
+  overflow-x: auto;
+}
+
+.slide-content .body pre code {
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 1.2cqw, 0.9rem);
+  line-height: var(--line-height-normal);
+}
+
+/* Section (theme divider) slides */
+
+.slide-section {
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.slide-section .section-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--size-4-4);
+}
+
+.slide-section h1 {
+  font-size: clamp(1.6rem, 5.5cqw, 3.2rem);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  margin: 0;
+}
+
+.slide-section h1::before {
+  content: "> ";
+  color: var(--color-accent);
+}
+
+.slide-section .section-head .tag {
+  font-size: clamp(0.85rem, 1.7cqw, 1.1rem);
+  padding: 4px 14px;
+  position: relative;
+  top: -0.55em;
+}
+
+.slide-section .body {
+  margin-top: var(--size-4-6);
+  font-size: clamp(0.95rem, 1.6cqw, 1.15rem);
+  color: var(--muted);
+}
+
+.slide-section .body p, .slide-section .body li { margin: 0 0 var(--size-4-2); }
+
+/* Paper slides */
+
+.slide-paper {
+  align-items: stretch;
+  justify-content: flex-start;
+  padding-top: var(--size-4-9);
+  padding-bottom: var(--size-4-9);
+}
+
+.slide-paper .paper-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--size-4-2) var(--size-4-4);
+  margin-bottom: var(--size-4-6);
+  flex-shrink: 0;
+}
+
+.slide-paper h2 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: clamp(1rem, 1.9cqw, 1.5rem);
+  line-height: var(--line-height-tight);
+  margin: 0;
+  text-align: left;
+  flex: 1 1 20rem;
+  min-width: 0;
+  white-space: normal;
+  /* Hanging indent: wrapped lines start after the ">> " prefix below,
+     not under it. */
+  padding-left: 1.4em;
+  text-indent: -1.4em;
+}
+
+.slide-paper h2::before {
+  content: ">> ";
+  color: var(--color-accent);
+}
+
+.slide-paper .citation {
+  font-family: var(--font-mono);
+  color: var(--muted);
+  font-size: clamp(0.75rem, 1.2cqw, 0.9rem);
+  margin: 0;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.tag {
+  display: inline-block;
+  background: hsla(258, 88%, 66%, 0.14);
+  color: var(--color-accent-hover);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding: 2px var(--size-4-2);
+  border: 1px solid currentColor;
+  border-radius: 999px;
+}
+.tag + .tag { margin-left: 4px; }
+
+.tag-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+  margin: 0;
+}
+
+.slide-paper .paper-head .tag-group { flex: 0 0 auto; }
+
+.c-orange { color: var(--color-orange); }
+.c-skyblue { color: var(--color-skyblue); }
+.c-green { color: var(--color-green); }
+.c-blue { color: var(--color-blue); }
+.c-vermillion { color: var(--color-vermillion); }
+.c-purple { color: var(--color-purple); }
+.c-yellow { color: var(--color-yellow); }
+.c-black { color: var(--color-black); }
+.c-teal { color: var(--color-teal); }
+.c-indigo { color: var(--color-indigo); }
+.c-lime { color: var(--color-lime); }
+.c-magenta { color: var(--color-magenta); }
+
+.tag.c-orange { background: color-mix(in srgb, var(--color-orange) 16%, white); }
+.tag.c-skyblue { background: color-mix(in srgb, var(--color-skyblue) 16%, white); }
+.tag.c-green { background: color-mix(in srgb, var(--color-green) 16%, white); }
+.tag.c-blue { background: color-mix(in srgb, var(--color-blue) 16%, white); }
+.tag.c-vermillion { background: color-mix(in srgb, var(--color-vermillion) 16%, white); }
+.tag.c-purple { background: color-mix(in srgb, var(--color-purple) 16%, white); }
+.tag.c-yellow { background: color-mix(in srgb, var(--color-yellow) 16%, white); }
+.tag.c-black { background: color-mix(in srgb, var(--color-black) 16%, white); }
+.tag.c-teal { background: color-mix(in srgb, var(--color-teal) 16%, white); }
+.tag.c-indigo { background: color-mix(in srgb, var(--color-indigo) 16%, white); }
+.tag.c-lime { background: color-mix(in srgb, var(--color-lime) 16%, white); }
+.tag.c-magenta { background: color-mix(in srgb, var(--color-magenta) 16%, white); }
+
+.confirmed-badge {
+  position: absolute;
+  top: 2cqh;
+  right: 2.5cqw;
+  font-size: clamp(1.8rem, 4.5cqw, 3.2rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-black);
+  z-index: 5;
+}
+
+.slide-paper .body {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-width: 56rem;
+  margin: 0 auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide-paper .body p, .slide-paper .body li { font-size: 1.05rem; }
+
+.slide-paper .body figure {
+  display: table;
+  margin: 0 auto var(--size-4-3);
+  max-width: 100%;
+  text-align: center;
+}
+
+.slide-paper .body figure img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 38cqh;
+  height: auto;
+}
+
+.slide-paper .body figure.paper-figure-large img {
+  max-height: 58cqh;
+}
+
+.slide-paper .body .figure-row {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-12);
+}
+
+.slide-paper .body .figure-row figure {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.slide-paper .body .figure-row figure img {
+  max-height: 34cqh;
+}
+
+.slide-paper .body .figure-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-4-4);
+}
+
+.slide-paper .body figure.figure-narrow {
+  display: block;
+}
+
+.slide-paper .body figure.figure-narrow img {
+  max-width: 65%;
+}
+
+.slide-paper .body figcaption {
+  margin-top: var(--size-4-2);
+  font-size: 0.78rem;
+  line-height: var(--line-height-normal);
+  color: var(--muted);
+  text-align: left;
+}
+
+.slide-paper .body blockquote {
+  margin: 0 0 var(--size-4-3);
+  padding: var(--size-4-2) var(--size-4-4);
+  border-left: 4px solid var(--color-purple);
+  font-style: italic;
+  color: var(--muted);
+}
+
+.slide-paper .body blockquote p {
+  margin: 0;
+}
+
+/* Chrome: progress bar and a 3-column footer (brand / theme / count),
+   both pinned inside the frame so they read as part of the slide. */
+
+#progress {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--bg-alt);
+  z-index: 10;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--color-accent);
+  transition: width 0.15s ease;
+}
+
+#chrome {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--size-4-4);
+  padding: var(--size-4-2) var(--size-4-5);
+  background: linear-gradient(to top, var(--bg) 55%, transparent);
+  z-index: 10;
+}
+
+#chrome.hidden { display: none; }
+
+#footer-brand, #theme-footer, #counter {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#footer-brand { justify-self: start; }
+#theme-footer { justify-self: center; }
+#counter { justify-self: end; }
+
+@media (max-width: 640px) {
+  .slide { padding: 5cqh 6cqw 12cqh; }
+  #footer-brand { display: none; }
+  .slide-paper h2 { flex-basis: 100%; }
+  .slide-section .section-head { flex-wrap: wrap; }
+}
+
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="deck">
+  <section class="slide slide-title active"><div><h1>CS846: FMxAI</h1><p class="meta"><a href="https://federico.morarocha.ca">Federico Mora</a> &middot; University of Waterloo &middot; Fall '26 &middot; Tues 3:00-5:50pm</p></div><p class="nav-hint"><span class="nav-key">&#11013;&#65039; &#10145;&#65039;</span> move between slides &middot; <span class="nav-key">&#11014;&#65039; &#11015;&#65039;</span> jump between sections</p></section>
+<section class="slide slide-content"><h1>Syllabus</h1><div class="body"><ol>
+<li><a href="index.html">Syllabus</a></li>
+<li><a href="https://learn.uwaterloo.ca">LEARN quiz</a></li>
+</ol></div></section>
+<section class="slide slide-section" data-theme="ATU" data-theme-name="Agents and Tool-Use (Sep 22)"><div class="section-head"><h1>Agents and Tool-Use (Sep 22)</h1><div class="tag-group"><span class="tag c-orange">ATU</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers</h2><p class="citation"><a href="https://aclanthology.org/2023.emnlp-main.313.pdf">Olausson et al., EMNLP '23</a></p><div class="tag-group"><span class="tag c-orange">ATU</span></div></div><div class="body"><figure class="paper-figure paper-figure-large">
+  <img src="images/olausson-emnlp-23.png" alt="Diagram of the LINC pipeline: an LLM semantic parser samples logic formulas from a natural-language problem, a theorem prover checks each sample and filters out syntax/semantic errors, and majority voting over the remaining labels produces the final output">
+</figure></div></section>
+<section class="slide slide-paper"><div class="confirmed-badge" title="Confirmed" aria-label="Confirmed">&#10003;</div><div class="paper-head"><h2>Reinforcement Learning from Human Feedback, Chapter 13</h2><p class="citation"><a href="https://rlhfbook.com/c/13-tools">Lambert, Textbook '26</a></p><div class="tag-group"><span class="tag c-orange">ATU</span></div></div><div class="body"><figure class="paper-figure">
+  <img src="https://rlhfbook.com/c/images/tool_use_generation.png" alt="Diagram of tool use interleaving model generation with external tool execution">
+  <figcaption>Figure 1: Tool use interleaves model generation with external execution: the model generates tokens until it emits a tool call (orange), an external system executes the tool and injects the output (purple) into the sequence, and then the model continues generating. Models can emit multiple tool calls in a single generation. During training, tool call and output tokens are typically masked from the loss.</figcaption>
+</figure></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Towards Verifiably Safe Tool Use for LLM Agents</h2><p class="citation"><a href="https://dl.acm.org/doi/pdf/10.1145/3786582.3786839">Doshi et al., ICSE-NIER '26</a></p><div class="tag-group"><span class="tag c-orange">ATU</span></div></div><div class="body"><figure class="paper-figure">
+  <img src="images/doshi-icse-nier-26.png" alt="Example agent conversation where an LLM agent reschedules a meeting and, without being asked, emails the other attendee an explanation that leaks the sensitive reason for the reschedule">
+</figure></div></section>
+<section class="slide slide-content"><h1>Speed Matching <svg class="lightning" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></h1><div class="body"><ul>
+<li>Find a pair (30 seconds)</li>
+<li>Describe a research project that you have worked on or that you would like to work on (1 minute)</li>
+<li>Listen to a research project that your pair has worked on or would like to work on (1 minute)</li>
+<li>Brainstorm with your pair on a project that you could work on together (2 minutes)</li>
+<li>Find a new pair (30 seconds) and repeat</li>
+</ul></div></section>
+<section class="slide slide-section" data-theme="CLO" data-theme-name="Constraints on LLM Outputs (Sep 29)"><div class="section-head"><h1>Constraints on LLM Outputs (Sep 29)</h1><div class="tag-group"><span class="tag c-blue">CLO</span></div></div></section>
+<section class="slide slide-paper"><div class="confirmed-badge" title="Confirmed" aria-label="Confirmed">&#10003;</div><div class="paper-head"><h2>How To Generate Text: Using Different Decoding Methods For Language Generation With Transformers</h2><p class="citation"><a href="https://huggingface.co/blog/how-to-generate">von Platen, Blog '20</a></p><div class="tag-group"><span class="tag c-blue">CLO</span></div></div><div class="body"><figure class="paper-figure">
+  <img src="https://huggingface.co/blog/assets/02_how-to-generate/top_k_sampling.png" alt="Top-K sampling illustrated with two bar charts of word probabilities: the top 6 words after 'The' cover 68% of probability mass, while the top 6 after 'The car' cover 99%, showing that a fixed K can be too small or too large depending on the distribution">
+  <figcaption>Example sampling startegy: top-K sampling redistributes probability mass among the K most likely next words, but a fixed K can cut off a flat distribution too early or admit too many words from a peaked one.</figcaption>
+</figure></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Constrained Adaptive Rejection Sampling</h2><p class="citation"><a href="https://arxiv.org/pdf/2510.01902">Parys et al., ICML '26</a></p><div class="tag-group"><span class="tag c-blue">CLO</span></div></div><div class="body"><div class="figure-row">
+
+<figure class="paper-figure">
+  <img src="images/parys-icml-26-ex.png" alt="Example 3.1: a grammar for arithmetic expressions over digits 0 and 1, where strings like 1+0+1 are accepted but 0++ or +1 are not">
+</figure>
+
+<figure class="paper-figure">
+  <img src="images/parys-icml-26-plot.png" alt="Plot comparing approximation error versus number of samples for CARS against other exact and inexact constrained sampling methods, showing CARS reaches low error with fewer samples than most baselines">
+</figure>
+
+</div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Type-Constrained Code Generation with Language Models</h2><p class="citation"><a href="https://dl.acm.org/doi/10.1145/3729274">Mündler et al., PLDI '25</a></p><div class="tag-group"><span class="tag c-blue">CLO</span></div></div><div class="body"><figure class="paper-figure">
+  <img src="images/mundler-pldi-26.png" alt="A partial TypeScript program awaiting completion, with five candidate completions shown alongside whether vanilla, syntax-constrained, and type-constrained decoding accept or reject each one; only type-constrained decoding correctly rejects all four invalid completions and accepts the well-formed one">
+</figure></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Synthetic Programming Elicitation for Text-to-Code in Very Low-Resource Programming and Formal Languages</h2><p class="citation"><a href="https://arxiv.org/pdf/2406.03636">Mora et al., NeurIPS '24</a></p><div class="tag-group"><span class="tag c-blue">CLO</span></div></div><div class="body"><figure class="paper-figure">
+  <img src="images/mora-neurips-24.png" alt="A desire path meme: a person walks the worn dirt shortcut labeled 'LLM Outputs' instead of the paved path labeled 'Formal Language', illustrating that LLM-generated code naturally drifts toward informal syntax rather than the target formal language">
+</figure></div></section>
+<section class="slide slide-content"><h1>Speed Matching <svg class="lightning" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></h1><div class="body"><ul>
+<li>Find a pair (30 seconds)</li>
+<li>Describe a research project that you have worked on or that you would like to work on (1 minute)</li>
+<li>Listen to a research project that your pair has worked on or would like to work on (1 minute)</li>
+<li>Brainstorm with your pair on a project that you could work on together (2 minutes)</li>
+<li>Find a new pair (30 seconds) and repeat</li>
+</ul></div></section>
+<section class="slide slide-section" data-theme="GSC" data-theme-name="Generating System Constraints (Oct 06)"><div class="section-head"><h1>Generating System Constraints (Oct 06)</h1><div class="tag-group"><span class="tag c-green">GSC</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Mining Specifications</h2><p class="citation"><a href="https://haoxintu.github.io/files/10-Mining%20specifications.pdf">Ammons et al., POPL '02</a></p><div class="tag-group"><span class="tag c-green">GSC</span></div></div><div class="body"><figure class="paper-figure">
+  <img src="images/ammons-popl-02.png" alt="Problem 2.1: given an unlabelled training set of interaction traces with an API or ADT, find an automaton that generates exactly the correct traces; this automaton is called a specification, and an algorithm that finds it is called a specification miner">
+</figure></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Learning Context-Free Grammars for Grammar-Constrained Decoding via Declarative Agentic Programming with Guarantees</h2><p class="citation"><a href="https://arxiv.org/abs/2608.05493">Cheang et al., arXiv '26</a></p><div class="tag-group"><span class="tag c-green">GSC</span></div></div><div class="body"><figure class="paper-figure">
+  <img src="images/cheang-arxiv-26.png" alt="Autogrammar's two-phase pipeline: in the learning phase, execution logs and API documentation are used to produce a context-free grammar for the target DSL; in the deployment phase, a downstream LM uses the grammar through a validator to generate correct DSL programs in response to natural-language tasks">
+</figure></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>A Neurosymbolic Approach to Natural Language Formalization and Verification</h2><p class="citation"><a href="https://link.springer.com/chapter/10.1007/978-3-032-32526-6_28">An et al., CAV '26</a></p><div class="tag-group"><span class="tag c-green">GSC</span></div></div><div class="body"><figure class="paper-figure paper-figure-large">
+  <img src="images/an-cav-26.png" alt="End-to-end architecture of ARC: a Policy Model Creator autoformalizes a natural-language policy document into a policy model, refines it via test-case enumeration, conflict detection, and user feedback, and an Answer Verifier autoformalizes a question-and-answer conversation, aggregates logical equivalence, and checks it against the policy model with an SMT solver">
+</figure></div></section>
+<section class="slide slide-content"><h1>Speed Matching <svg class="lightning" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></h1><div class="body"><ul>
+<li>Find a pair (30 seconds)</li>
+<li>Describe a research project that you have worked on or that you would like to work on (1 minute)</li>
+<li>Listen to a research project that your pair has worked on or would like to work on (1 minute)</li>
+<li>Brainstorm with your pair on a project that you could work on together (2 minutes)</li>
+<li>Find a new pair (30 seconds) and repeat</li>
+</ul></div></section>
+<section class="slide slide-section" data-theme="SAT" data-theme-name="Satisfiability (Modulo Theories) (Oct 20)"><div class="section-head"><h1>Satisfiability (Modulo Theories) (Oct 20)</h1><div class="tag-group"><span class="tag c-purple">SAT</span></div></div></section>
+<section class="slide slide-paper"><div class="confirmed-badge" title="Confirmed" aria-label="Confirmed">&#10003;</div><div class="paper-head"><h2>Introduction to Neural Network Verification, Chapters 4, 6 (7 optional)</h2><p class="citation"><a href="https://verifieddeeplearning.com/nnv_book.pdf">Albarghouthi, Textbook '26</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div><div class="body"><div class="figure-column">
+
+<figure class="paper-figure figure-narrow">
+  <img src="images/albargouthi-textbook-1.png" alt="Chapter 4 title banner: Logics and Satisfiability">
+</figure>
+
+<figure class="paper-figure figure-narrow">
+  <img src="images/albargouthi-textbook-2.png" alt="Chapter 6 title banner: DPLL Modulo Theories">
+</figure>
+
+</div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Guiding High-Performance SAT Solvers with Unsat-Core Predictions</h2><p class="citation"><a href="https://arxiv.org/pdf/1903.04671">Selsam and Bjørner, SAT '19</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div><div class="body"><blockquote>
+<p>The <em>NeuroSAT</em> neural network architecture was introduced in [37] for
+predicting properties of propositional formulae. When trained to predict the
+satisfiability of toy problems, it was shown to find solutions and
+unsatisfiable cores on its own. However, the authors saw "no obvious path" to
+using the architecture to improve the state-of-the-art. In this work, we train
+a simplified NeuroSAT architecture to directly predict the unsatisfiable cores
+of real problems. We modify several high-performance SAT solvers to
+periodically replace their variable activity scores with NeuroSAT’s prediction
+of how likely the variables are to appear in an unsatisfiable core.</p>
+</blockquote>
+<p>In short, </p>
+<blockquote>
+<p>... we use it to help inform variable branching decisions within
+high-performance SAT solvers on real problems.</p>
+</blockquote></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Learning to Solve SMT Formulas</h2><p class="citation"><a href="https://www.sri.inf.ethz.ch/publications/balunovic2018learnsmt">Balunović et al., NeurIPS '18</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div><div class="body"><div class="figure-column">
+
+<figure class="paper-figure">
+  <img src="images/balunovic-neurips-18-1.png" alt="Search tree over tactic applications: starting from formula phi, each transformation (tactic) branches into new formulas, some of which time out and others of which are solved quickly, illustrating the need to choose tactics wisely">
+</figure>
+
+<figure class="paper-figure">
+  <img src="images/balunovic-neurips-18-2.png" alt="The action space of available tactics, including constant folding, normalizing bounds, bit blasting, and calling a decision procedure over reals, integers, or bitvectors">
+</figure>
+
+</div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>SATzilla: Portfolio-based Algorithm Selection for SAT</h2><p class="citation"><a href="https://arxiv.org/abs/1111.2249">Xu et al., JAIR '08</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div><div class="body"><blockquote>
+<p>It has been widely observed that there is no single "dominant" SAT solver; instead, different
+solvers perform best on different instances. Rather than following the traditional approach
+of choosing the best solver for a given class of instances, we advocate making this decision
+online on a per-instance basis.</p>
+</blockquote>
+<figure class="paper-figure">
+  <img src="https://2020blogfor.github.io/images/blog_images/sat/onlinechart.png" alt="Flowchart of SATzilla's online phase: select a SAT instance from test data, compute features, use hardness models to predict algorithm runtimes, run the predicted fastest algorithm, and return the result">
+  <figcaption>Source: Costa, Natarajan, Rosa, Shao, and Zhai, <a href="https://2020blogfor.github.io/posts/2020/04/sat/">"SATzilla"</a>, Blog '20.</figcaption>
+</figure></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>MedleySolver: Online SMT Algorithm Selection</h2><p class="citation"><a href="https://www.pure.ed.ac.uk/ws/files/248374419/MedleySolver_PIMPALKHARE_DOA05072021_AFV.pdf">Pimpalkhare et al., SAT '21</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div><div class="body"><figure class="paper-figure">
+  <img src="images/pimpalkhare-sat-21.png" alt="Pipeline diagram: queries from SMT-enabled tools like UCLID5, KLEE, and the Rosette language are streamed into MedleySolver, which learns online and outputs SAT/UNSAT for each query">
+</figure>
+
+<blockquote>
+<p>SMT users rarely aim to solve a single query in isolation and usually care
+about [total] resource consumption. For example, verification engines generate many
+verification queries for one verification problem and aim to solve these
+queries in the least amount of time.</p>
+</blockquote></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Domain-Specific Hyperspecialization (For SAT)</h2><p class="citation"><a href="https://c.mov/lymphosat/">Green, Blog '26</a></p><div class="tag-group"><span class="tag c-purple">SAT</span></div></div><div class="body"><figure class="paper-figure paper-figure-large">
+  <img src="images/green-blog-26.png" alt="Satirical diagram mapping four NP-hard problems (graph coloring, bin packing, set cover, SAT) each to its own bespoke custom solver, instead of reducing them all to a single general SAT solver">
+</figure></div></section>
+<section class="slide slide-content"><h1>Speed Matching <svg class="lightning" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></h1><div class="body"><ul>
+<li>Find a pair (30 seconds)</li>
+<li>Describe a research project that you have worked on or that you would like to work on (1 minute)</li>
+<li>Listen to a research project that your pair has worked on or would like to work on (1 minute)</li>
+<li>Brainstorm with your pair on a project that you could work on together (2 minutes)</li>
+<li>Find a new pair (30 seconds) and repeat</li>
+</ul></div></section>
+<section class="slide slide-section" data-theme="PVE" data-theme-name="Program Verification (Oct 27)"><div class="section-head"><h1>Program Verification (Oct 27)</h1><div class="tag-group"><span class="tag c-skyblue">PVE</span></div></div></section>
+<section class="slide slide-paper"><div class="confirmed-badge" title="Confirmed" aria-label="Confirmed">&#10003;</div><div class="paper-head"><h2>Getting Started with Dafny: A Guide</h2><p class="citation"><a href="https://dafny.org/latest/OnlineTutorial/guide">Leino, Textbook '23</a></p><div class="tag-group"><span class="tag c-skyblue">PVE</span></div></div><div class="body"><figure class="paper-figure paper-figure-large">
+  <img src="images/leino-textbook-23.png" alt="Dafny code for binary search: a sorted predicate and a BinarySearch method with requires/ensures contracts and a while loop annotated with invariants, verified statically against the specification">
+</figure></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>AutoVerus: Automated Proof Generation for Rust Code</h2><p class="citation"><a href="https://dl.acm.org/doi/full/10.1145/3763174">Yang et al., OOPSLA '25</a></p><div class="tag-group"><span class="tag c-skyblue">PVE</span></div></div><div class="body"><figure class="paper-figure paper-figure-large">
+  <img src="images/yang-oopsla-25.png" alt="A Rust count_digits function alongside its Verus spec functions, with the proof annotations (loop invariants and asserts) needed to verify the implementation against the specification highlighted separately from the specification itself">
+</figure></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>VERINA: Benchmarking Verifiable Code Generation</h2><p class="citation"><a href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/41b8c80f9113b9f8e2e129447221682a-Abstract-Conference.html">Ye et al., ICLR '26</a></p><div class="tag-group"><span class="tag c-skyblue">PVE</span></div></div><div class="body"><blockquote>
+<p>Verifiable code generation—jointly generating code, specifications, and
+proofs of code-specification alignment—offers a promising path to address this
+limitation and further unleash LLMs’ benefits in coding. Yet, there exists a
+significant gap in evaluation: current benchmarks often focus on only
+individual components rather than providing a holistic evaluation framework of
+all tasks.</p>
+</blockquote>
+<p>But proof success is quite low:</p>
+<blockquote>
+<p>The best model, OpenAI o3, achieves a 72.6% code correctness rate,
+52.3% for specification soundness and completeness, and a mere 4.9% proof success 
+rate (based on one trial per task).</p>
+</blockquote></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Large Language Model Powered Symbolic Execution</h2><p class="citation"><a href="https://doi.org/10.1145/3763163">Li et al., OOPSLA '25</a></p><div class="tag-group"><span class="tag c-skyblue">PVE</span></div></div><div class="body"><figure class="paper-figure paper-figure-large">
+  <img src="images/li-oopsla-25.png" alt="Example workflow: source code is parsed into an AST, a path slice is generated and rendered back into source, then an LLM is prompted with a pre-condition, the slice, and a post-condition to decide whether the post-condition holds along that path, passing or failing accordingly">
+</figure></div></section>
+<section class="slide slide-content"><h1>Speed Matching <svg class="lightning" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></h1><div class="body"><ul>
+<li>Find a pair (30 seconds)</li>
+<li>Describe a research project that you have worked on or that you would like to work on (1 minute)</li>
+<li>Listen to a research project that your pair has worked on or would like to work on (1 minute)</li>
+<li>Brainstorm with your pair on a project that you could work on together (2 minutes)</li>
+<li>Find a new pair (30 seconds) and repeat</li>
+</ul></div></section>
+<section class="slide slide-section" data-theme="SUP" data-theme-name="Superoptimization (Nov 10)"><div class="section-head"><h1>Superoptimization (Nov 10)</h1><div class="tag-group"><span class="tag c-black">SUP</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Program Synthesis is Possible</h2><p class="citation"><a href="https://www.cs.cornell.edu/~asampson/blog/minisynth.html">Sampson, Blog '18</a></p><div class="tag-group"><span class="tag c-black">SUP</span></div></div><div class="body"><blockquote>
+<p>you have the "slow" expression <code>x * 2</code>, and you know that there's a "faster"
+version to be had that can be written <code>x &lt;&lt; ??</code> for some value of <code>??</code>. 
+Let's ask Z3 what to write there...</p>
+</blockquote></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Stochastic Superoptimization</h2><p class="citation"><a href="https://dl.acm.org/doi/10.1145/2490301.2451150">Schkufza et al., ASPLOS '13</a></p><div class="tag-group"><span class="tag c-black">SUP</span></div></div><div class="body"><figure class="paper-figure paper-figure-large">
+  <img src="images/schkufza-asplos-13.png" alt="Cycling Through 3 Values benchmark: gcc -O3 translates the esoteric bit-twiddling implementation almost literally into assembly, while STOKE rediscovers the intuitive algorithm using conditional move instructions in far fewer instructions">
+</figure></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Faster Sorting Algorithms Discovered Using Deep Reinforcement Learning</h2><p class="citation"><a href="https://www.nature.com/articles/s41586-023-06004-9">Mankowitz et al., Nature '23</a></p><div class="tag-group"><span class="tag c-black">SUP</span></div></div><div class="body"><figure class="paper-figure paper-figure-large">
+  <img src="images/mankowitz-nature-23.png" alt="Diagram of the AssemblyGame: AlphaDev selects an assembly instruction to append to the algorithm being built, then all test input sequences are run through the algorithm and the outputs are compared against expected outputs to compute a correctness-based reward">
+</figure></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Mathematical Discoveries from Program Search with Large Language Models</h2><p class="citation"><a href="https://www.nature.com/articles/s41586-023-06924-6">Romera-Paredes et al., Nature '23</a></p><div class="tag-group"><span class="tag c-black">SUP</span></div></div><div class="body"><figure class="paper-figure paper-figure-large">
+  <img src="images/romera-paredes-nature-23.png" alt="Diagram of the FunSearch loop: a specification and prompt built from high-scoring programs sampled from a programs database are fed to a pretrained LLM, which generates new programs that are evaluated and, if correct, stored back in the programs database, with the highest-scoring program retrievable at any point">
+  <figcaption>Overview of FunSearch. The input to FunSearch is a specification of the problem in the form of an 'evaluate' function, an initial implementation of the function to evolve, which can be trivial, and potentially a skeleton. At each iteration, FunSearch builds a prompt by combining several programs sampled from the programs database (favouring high-scoring ones). The prompt is then fed to the pretrained LLM and new programs are created. Newly created programs are then scored and stored in the programs database (if correct), thus closing the loop. The user can at any point retrieve the highest-scoring programs discovered so far.</figcaption>
+</figure></div></section>
+<section class="slide slide-content"><h1>Speed Matching <svg class="lightning" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></h1><div class="body"><ul>
+<li>Find a pair (30 seconds)</li>
+<li>Describe a research project that you have worked on or that you would like to work on (1 minute)</li>
+<li>Listen to a research project that your pair has worked on or would like to work on (1 minute)</li>
+<li>Brainstorm with your pair on a project that you could work on together (2 minutes)</li>
+<li>Find a new pair (30 seconds) and repeat</li>
+</ul></div></section>
+<section class="slide slide-section" data-theme="TPR" data-theme-name="Theorem Proving (Nov 17)"><div class="section-head"><h1>Theorem Proving (Nov 17)</h1><div class="tag-group"><span class="tag c-teal">TPR</span></div></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Generative Language Modeling for Automated Theorem Proving</h2><p class="citation"><a href="https://arxiv.org/abs/2009.03393">Polu and Sutskever, arXiv '20</a></p><div class="tag-group"><span class="tag c-teal">TPR</span></div></div><div class="body"><blockquote>
+<p>We present an automated prover and proof assistant, GPT-f, for the Metamath
+formalization language, and analyze its performance. GPT-f found new short
+proofs that were accepted into the main Metamath library, which is to our
+knowledge, the first time a deep learning based system has contributed proofs
+that were adopted by a formal mathematics community.</p>
+</blockquote></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Hilbert: Recursively Building Formal Proofs with Informal Reasoning</h2><p class="citation"><a href="https://openreview.net/pdf?id=GN8OdkTo3B">Varambally et al., ICLR '26</a></p><div class="tag-group"><span class="tag c-teal">TPR</span></div></div><div class="body"><figure class="paper-figure paper-figure-large">
+  <img src="images/varambally-iclr-26.png" alt="Diagram of the Hilbert algorithm: given a target theorem, a prover attempts formal proof generation; on failure the theorem is decomposed into subgoal theorems that are each retried with the prover and a reasoner (shallow solve), recursing into further decomposition until all subgoals are resolved">
+</figure></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Postmortem for Kernel Soundness Bug #14576</h2><p class="citation"><a href="https://leodemoura.github.io/blog/2026-8-1-postmortem-for-kernel-soundness-bug-14576/">de Moura, Blog '26</a></p><div class="tag-group"><span class="tag c-teal">TPR</span></div></div><div class="body"><blockquote>
+<p>On July 25, Ramana Kumar published a repository containing a <code>sorry</code>-free
+"disproof" of the Collatz conjecture, produced with AI assistance. It is not a
+valid proof because it exploits a bug in the kernel's handling of nested
+inductive types.</p>
+</blockquote></div></section>
+<section class="slide slide-content"><h1>Speed Matching <svg class="lightning" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></h1><div class="body"><ul>
+<li>Find a pair (30 seconds)</li>
+<li>Describe a research project that you have worked on or that you would like to work on (1 minute)</li>
+<li>Listen to a research project that your pair has worked on or would like to work on (1 minute)</li>
+<li>Brainstorm with your pair on a project that you could work on together (2 minutes)</li>
+<li>Find a new pair (30 seconds) and repeat</li>
+</ul></div></section>
+<section class="slide slide-section" data-theme="MLV" data-theme-name="Machine-Learning Verification (Nov 24)"><div class="section-head"><h1>Machine-Learning Verification (Nov 24)</h1><div class="tag-group"><span class="tag c-indigo">MLV</span></div></div></section>
+<section class="slide slide-paper"><div class="confirmed-badge" title="Confirmed" aria-label="Confirmed">&#10003;</div><div class="paper-head"><h2>Introduction to Neural Network Verification, Chapters 1, 2, 3, 5</h2><p class="citation"><a href="https://verifieddeeplearning.com/nnv_book.pdf">Albarghouthi, Textbook '26</a></p><div class="tag-group"><span class="tag c-indigo">MLV</span></div></div><div class="body"><blockquote>
+<p>This book is about verifying that a neural network behaves according to some
+set of desirable properties.</p>
+</blockquote>
+<p>Importantly, </p>
+<blockquote>
+<p>A number of people in the verification community, the author included, argue
+that specification [deciding on the set of desirable properties] is harder than
+verification—that is, the hard part is asking the right questions!</p>
+</blockquote></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>VNN-LIB 2.0: Rigorous Foundations for Neural Network Verification</h2><p class="citation"><a href="https://arxiv.org/pdf/2605.07451">Roy et al., CAV '26</a></p><div class="tag-group"><span class="tag c-indigo">MLV</span></div></div><div class="body"><pre><code>(vnnlib-version &lt;2.0&gt;)
+
+; Network declaration
+(declare-network f
+    (declare-input  X float32 [2,2])
+    (declare-output Y float32 [1])
+)
+
+; Input constraints
+(assert (and (&gt;= X[0,0] 0.0) (&lt;= X[0,0] 1.0)))
+(assert (and (&gt;= X[0,1] 0.0) (&lt;= X[0,1] 1.0)))
+(assert (and (&gt;= X[1,0] 0.0) (&lt;= X[1,0] 1.0)))
+(assert (and (&gt;= X[1,1] 0.0) (&lt;= X[1,1] 1.0)))
+
+; Output constraints
+(assert (or (&lt;= Y[0] -3.0) (&gt;= Y[0] 0.0)))
+</code></pre></div></section>
+<section class="slide slide-paper"><div class="paper-head"><h2>Beta-CROWN: Efficient Bound Propagation with Per-neuron Split Constraints for Complete and Incomplete Neural Network Robustness Verification</h2><p class="citation"><a href="https://proceedings.neurips.cc/paper/2021/hash/fac7fead96dafceaf80c1daffeae82a4-Abstract.html">Wang et al., NeurIPS '21</a></p><div class="tag-group"><span class="tag c-indigo">MLV</span></div></div><div class="body"><figure class="paper-figure paper-figure-large">
+  <img src="https://camo.githubusercontent.com/f9399e783288dfcf70f7467159c13fb5dfb2ce6a0bba3663d0bdf36f6769c6cf/68747470733a2f2f7777772e6875616e2d7a68616e672e636f6d2f696d616765732f75706c6f61642f616c7068612d626574612d63726f776e2f6c6f676f5f323032322e706e67" alt="The αβ-CROWN logo: a crown badge reading 'winner of International Verification of Neural Networks Competitions (VNN-COMP 2021-2025)'">
+</figure></div></section>
+<section class="slide slide-section" data-theme="" data-theme-name="Bonus or Guest Talks (Dec 01)"><div class="section-head"><h1>Bonus or Guest Talks (Dec 01)</h1><div class="tag-group"></div></div></section>
+<section class="slide slide-content"><h1>Speed Matching <svg class="lightning" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></h1><div class="body"><ul>
+<li>Find a pair (30 seconds)</li>
+<li>Describe a research project that you have worked on or that you would like to work on (1 minute)</li>
+<li>Listen to a research project that your pair has worked on or would like to work on (1 minute)</li>
+<li>Brainstorm with your pair on a project that you could work on together (2 minutes)</li>
+<li>Find a new pair (30 seconds) and repeat</li>
+</ul></div></section>
+<section class="slide slide-content"><h1>References</h1><div class="body"><ul>
+<li>Seshia, S. A. (2024). <em>EECS 219C: Formal methods: Specification,
+  verification, and synthesis</em> <a href="https://people.eecs.berkeley.edu/~sseshia/219c/spr24/">Course website</a>. University of California,
+  Berkeley.</li>
+<li>Chasins, S. E. (2024). <em>CS 294-184: Building user-centered programming
+  tools</em> <a href="https://schasins.com/cs294-usable-programming-2024/">Course website</a>. University of California, Berkeley.</li>
+<li>Willsey, M. (2024). <em>CS 294-260: Declarative program analysis and
+  optimization</em> <a href="https://inst.eecs.berkeley.edu/~cs294-260/sp24/">Course website</a>. University of California, Berkeley.</li>
+<li>Artificial Intelligence Tool(s): Claude (Sonnet 5), Anthropic;
+  Writing: Claude was used to fix spelling and grammatical mistakes in the syllabus; 
+  Project Administration: Claude was used to build and maintain Markdown-to-HTML
+  scripts and keep the Schedule and Reading Bank tables in sync.</li>
+</ul></div></section>
+  </div>
+  <div id="progress"><div id="progress-bar"></div></div>
+  <div id="chrome">
+    <div id="footer-brand">Federico Mora &middot; CS 846: FMxAI &middot; University of Waterloo</div>
+    <div id="theme-footer"></div>
+    <div id="counter"><span id="counter-current">1</span> / <span id="counter-total">1</span></div>
+  </div>
+</div>
+<script>
+
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var current = 0;
+
+  var counterCurrent = document.getElementById('counter-current');
+  var counterTotal = document.getElementById('counter-total');
+  var progressBar = document.getElementById('progress-bar');
+  var themeFooter = document.getElementById('theme-footer');
+  var chrome = document.getElementById('chrome');
+  var sectionSlides = slides.filter(function (s) { return s.classList.contains('slide-section'); });
+  // Top-level slides: everything except individual paper slides, which
+  // nest under the section that precedes them.
+  var landmarks = [];
+  slides.forEach(function (s, i) { if (!s.classList.contains('slide-paper')) landmarks.push(i); });
+
+  counterTotal.textContent = String(total);
+
+  // Only section/paper slides belong to a theme; content slides (Grading,
+  // Speed Matching, etc.) are top-level regardless of where they sit in
+  // the deck, so they never inherit a theme label from a slide before them.
+  function nearestThemeLabel(i) {
+    var cur = slides[i];
+    if (!cur.classList.contains('slide-section') && !cur.classList.contains('slide-paper')) {
+      return '';
+    }
+    for (var j = i; j >= 0; j--) {
+      if (slides[j].classList.contains('slide-section')) {
+        var number = sectionSlides.indexOf(slides[j]) + 1;
+        var name = slides[j].getAttribute('data-theme-name') || '';
+        return 'Theme ' + number + ': ' + name;
+      }
+    }
+    return '';
+  }
+
+  function showSlide(i) {
+    slides[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+
+    counterCurrent.textContent = String(current + 1);
+    progressBar.style.width = ((current + 1) / total * 100) + '%';
+    themeFooter.textContent = nearestThemeLabel(current);
+    chrome.classList.toggle('hidden', slides[current].classList.contains('slide-title'));
+    history.replaceState(null, '', '#' + (current + 1));
+  }
+
+  function next() { if (current + 1 < total) showSlide(current + 1); }
+  function prev() { if (current - 1 >= 0) showSlide(current - 1); }
+
+  function nextLandmark() {
+    for (var i = 0; i < landmarks.length; i++) {
+      if (landmarks[i] > current) { showSlide(landmarks[i]); return; }
+    }
+  }
+
+  function prevLandmark() {
+    for (var i = landmarks.length - 1; i >= 0; i--) {
+      if (landmarks[i] < current) { showSlide(landmarks[i]); return; }
+    }
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      next();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      prev();
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      nextLandmark();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      prevLandmark();
+    }
+  });
+
+  // Swipe navigation: horizontal swipes step through slides like the left/
+  // right arrow keys.
+  var SWIPE_THRESHOLD = 50;
+  var touchStartX = 0;
+  var touchStartY = 0;
+
+  document.addEventListener('touchstart', function (e) {
+    var t = e.changedTouches[0];
+    touchStartX = t.clientX;
+    touchStartY = t.clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', function (e) {
+    var t = e.changedTouches[0];
+    var dx = t.clientX - touchStartX;
+    var dy = t.clientY - touchStartY;
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+      if (dx <= -SWIPE_THRESHOLD) next();
+      else if (dx >= SWIPE_THRESHOLD) prev();
+    }
+  }, { passive: true });
+
+  var hash = parseInt(location.hash.replace('#', ''), 10);
+  var start = Number.isInteger(hash) && hash >= 1 && hash <= total ? hash - 1 : 0;
+  showSlide(start);
+})();
+
+</script>
+</body>
+</html>
