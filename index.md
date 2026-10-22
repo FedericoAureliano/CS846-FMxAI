@@ -123,8 +123,8 @@ corresponding student-led presentations.
 | Oct 20 | Satisfiability (modulo theories) **SAT** | [1](https://verifieddeeplearning.com/nnv_book.pdf), [2](https://arxiv.org/pdf/1903.04671), [3](https://c.mov/lymphosat/) |
 | Oct 27 | Program verification **PVE** | [1](https://dafny.org/latest/OnlineTutorial/guide), [2](https://dl.acm.org/doi/full/10.1145/3763174), [3](https://doi.org/10.1145/3763163) |
 | _Nov 03_ | _Mini presentations day_ | |
-| Nov 10 | Superoptimization **SUP** | [1](https://dl.acm.org/doi/10.1145/2490301.2451150), [2](https://www.nature.com/articles/s41586-023-06004-9), [3](https://www.nature.com/articles/s41586-023-06924-6), [4](https://kim-em.github.io/blog/2026-7-24-why-lean-is-faster-than-rust/) |
-| Nov 17 | Theorem proving **TPR** | [1](https://arxiv.org/abs/2009.03393), [2](https://openreview.net/pdf?id=GN8OdkTo3B), [3](https://leodemoura.github.io/blog/2026-8-1-postmortem-for-kernel-soundness-bug-14576/) |
+| Nov 10 | Superoptimization **SUP** | [1](https://kim-em.github.io/blog/2026-7-24-why-lean-is-faster-than-rust/), [2](https://dl.acm.org/doi/10.1145/2490301.2451150), [3](https://www.nature.com/articles/s41586-023-06004-9) |
+| Nov 17 | Theorem proving **TPR** | [1](https://www.nature.com/articles/s41586-023-06924-6)\*, [2](https://arxiv.org/abs/2009.03393), [3](https://leodemoura.github.io/blog/2026-8-1-postmortem-for-kernel-soundness-bug-14576/) |
 | Nov 24 | Machine-learning verification **MLV** | [1](https://verifieddeeplearning.com/nnv_book.pdf), [2](https://arxiv.org/pdf/2605.07451), [3](https://proceedings.iclr.cc/paper_files/paper/2026/hash/41b8c80f9113b9f8e2e129447221682a-Abstract-Conference.html)\* |
 | Dec 01 | Bonus | [1](https://proceedings.neurips.cc/paper/2021/hash/fac7fead96dafceaf80c1daffeae82a4-Abstract.html)\*, [2](https://proceedings.neurips.cc/paper/2020/hash/342285bb2a8cadef22f667eeb6a63732-Abstract.html), [3](https://www.ijcai.org/proceedings/2024/0211.pdf) |
 | _Dec 08_ | _Final presentations day_ | |
